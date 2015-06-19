@@ -19,4 +19,5 @@ Suggests:
     EGRET,
     rmarkdown,
     dplyr,
-    ggplot2
+    ggplot2,
+    XML
