@@ -1,0 +1,22 @@
+Package: gsIntroR
+Type: Package
+Title: Introduction to R: USGS
+Version: 0.1.0
+Date: 2015-06-19
+Authors@R: c( person("Jeff", "Hollister", role = c("aut"),
+    email = "hollister.jeff@epa.gov"),
+    person("Laura", "DeCicco", role = c("aut","cre"),
+    email = "ldecicco@usgs.gov"))
+Maintainer: Laura DeCicco <ldecicco@usgs.gov>
+Description: Introduction material for USGS-R water users.
+License: CC0
+LazyData: TRUE
+VignetteBuilder: knitr
+BuildVignettes: true
+Suggests:
+    knitr,
+    dataRetrieval,
+    EGRET,
+    rmarkdown,
+    dplyr,
+    ggplot2
