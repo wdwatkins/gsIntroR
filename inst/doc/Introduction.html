@@ -11,7 +11,7 @@
 <meta name="author" content="Jeffrey W. Hollister &amp; Luke Winslow" />
 
 
-<title>01 - Introduction to R: The basics</title>
+<title>A. Introduction to R: The basics</title>
 
 
 
@@ -51,7 +51,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 
 
 <div id="header">
-<h1 class="title">01 - Introduction to R: The basics</h1>
+<h1 class="title">A. Introduction to R: The basics</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
 <h4 class="date"><em>19 June, 2015</em></h4>
 </div>
@@ -141,27 +141,27 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Random normal numbers</span>
 <span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">2</span>)</code></pre>
-<pre><code>##   [1] 12.268910 11.926951 13.114492 12.150875 11.377184 13.129893 10.326580
-##   [8]  9.386083  5.559990 11.913188  9.394263  6.656550  7.106513 10.846390
-##  [15]  7.207844 12.435786 11.013864 12.337156 10.960246  8.883770 10.663403
-##  [22]  9.727801  6.875932  9.282866 11.206228 14.042586  8.143788  9.184963
-##  [29]  8.918102  5.559720 12.513414  7.584939  9.500204  9.836356 11.525513
-##  [36] 11.262278  7.828045 11.874914  9.458439  9.859091  9.925211 11.729008
-##  [43]  8.071984  8.559609  7.741413 10.103876 10.129511 12.520006  9.341931
-##  [50]  8.781817  6.135071 11.516324  7.299180 10.387337  8.791939  9.018420
-##  [57] 10.967318 10.548453  7.401752 12.694105 10.016163 14.753454 10.008608
-##  [64] 10.625172 10.369912  7.407312 14.620607 11.965041  9.717649  6.048888
-##  [71]  9.717936  7.725914 13.103611 10.268238 11.123143  9.471926 10.445881
-##  [78]  8.091336 12.418034 12.630635  8.884909 10.534725 10.536816  9.079017
-##  [85] 10.797331 10.516916 10.352082 10.429840 10.969635  6.789545  7.860398
-##  [92] 10.049368 13.518170 11.526475  9.209724 10.878524 11.045926  8.106504
-##  [99]  9.665360  7.780762</code></pre>
+<pre><code>##   [1]  7.118880 11.573241  5.045042 10.772978  9.713975  9.043055 11.056223
+##   [8]  5.603467  9.331417 10.301096 12.291895  9.647001 11.583386 10.740194
+##  [15] 10.518711  8.062650  9.780809  7.523295 12.205026 10.368483 12.998617
+##  [22] 12.035287  5.813661 10.744299 10.618322  7.524336  8.488863 12.433527
+##  [29] 11.122313 10.477903  9.368050 11.217966 10.762498 11.300507  9.348866
+##  [36] 10.185423 11.775892 11.046954  6.766656 10.977649 14.442440  8.917189
+##  [43]  7.965424  8.657734  5.347658 10.205132 11.420951  7.812401  9.577205
+##  [50] 12.498298  9.469837 12.463858  8.844299 10.849491 11.031399  7.772377
+##  [57] 12.044971  9.934606 11.535790  6.361045 13.496571  9.892090  5.945098
+##  [64]  9.974738 15.314775  9.720672  8.726519  9.816838 11.343874 10.273373
+##  [71] 10.506192  8.912164 12.380508  9.004099 11.130213 10.281402 10.412807
+##  [78] 11.427252 10.644100  9.676987 11.059539 10.097126  9.580041 10.797857
+##  [85] 11.236592 11.515344  9.732434 10.791039  8.190479  9.452727  9.928965
+##  [92]  8.746127  8.278460 10.741722 14.359589 10.053758 11.400171 10.512290
+##  [99] 11.438376  9.204305</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Mean</span>
 <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] 0.09069806</code></pre>
+<pre><code>## [1] 0.02056968</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Sum</span>
 <span class="kw">sum</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] 5.391922</code></pre>
+<pre><code>## [1] -4.442753</code></pre>
 <p>A few side notes. The <code>#</code> indicates a comment. You can put whatever else you’d like after this, but on the same line as the <code>#</code>. R will not evaluate it. When commenting your code, err on the side of too much! Also, you will see <code>()</code>, <code>[]</code>, and <code>{}</code> used in R code. The <code>()</code> indicates a function (almost always), the <code>[]</code> indicates indexing (grabbing values by the location), and the <code>{}</code> groups code that is meant to be run together and is usually used when programming functions in R.</p>
 </div>
 <div id="using-packages" class="section level2">

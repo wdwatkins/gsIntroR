@@ -1,5 +1,5 @@
 ---
-title: "01 - Introduction to R: The basics"
+title: "A. Introduction to R: The basics"
 author: Jeffrey W. Hollister & Luke Winslow
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -9,7 +9,7 @@ output:
     fig_height: 6
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{01 - Introduction to R: The basics}
+  %\VignetteIndexEntry{A. Introduction to R: The basics}
   \usepackage[utf8]{inputenc}
 ---
 

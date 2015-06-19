@@ -1,5 +1,5 @@
 ---
-title: "02 - Get"
+title: "B. Get"
 author: Jeffrey W. Hollister & Luke Winslow
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -9,7 +9,7 @@ output:
     fig_height: 6
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{02 - Get}
+  %\VignetteIndexEntry{B. Get}
   \usepackage[utf8]{inputenc}
 ---
 

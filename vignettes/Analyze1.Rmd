@@ -1,5 +1,5 @@
 ---
-title: "05 - Analyze: Base"
+title: "E. Analyze: Base"
 author: Jeffrey W. Hollister & Emily Read
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -9,7 +9,7 @@ output:
     fig_height: 6
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{05 - Analyze: Base}
+  %\VignetteIndexEntry{E. Analyze: Base}
   \usepackage[utf8]{inputenc}
 ---
 ```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
