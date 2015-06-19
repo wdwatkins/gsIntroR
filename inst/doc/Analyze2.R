@@ -22,17 +22,20 @@ plotFourStats(eListMerced, qUnit=3)
 
 ## ----Exercise1, echo=FALSE-----------------------------------------------
 
-## ----Choptank_noWRTDS----------------------------------------------------
-#Choptank River at Greensboro, MD:
-siteNumber <- "01491000"
-startDate <- "1979-10-01"
-endDate <- "2011-09-30"
-param<-"00631"
-Daily <- readNWISDaily(siteNumber,"00060",startDate,endDate)
-INFO<- readNWISInfo(siteNumber,param,interactive=FALSE)
-INFO$shortName <- "Choptank River"
-Sample <- readNWISSample(siteNumber,param,startDate,endDate)
-eList <- mergeReport(INFO, Daily, Sample)
+## ----Choptank_noWRTDS, eval=FALSE----------------------------------------
+#  #Choptank River at Greensboro, MD:
+#  siteNumber <- "01491000"
+#  startDate <- "1979-10-01"
+#  endDate <- "2011-09-30"
+#  param<-"00631"
+#  Daily <- readNWISDaily(siteNumber,"00060",startDate,endDate)
+#  INFO<- readNWISInfo(siteNumber,param,interactive=FALSE)
+#  INFO$shortName <- "Choptank River"
+#  Sample <- readNWISSample(siteNumber,param,startDate,endDate)
+#  eList <- mergeReport(INFO, Daily, Sample)
+
+## ----echo=FALSE, eval=TRUE-----------------------------------------------
+eList <- Choptank_eList
 
 ## ----Choptank_noWRTDS_plotexample----------------------------------------
 multiPlotDataOverview(eList, qUnit=1)

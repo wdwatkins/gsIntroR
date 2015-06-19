@@ -17,7 +17,6 @@ vignette: >
 options(repos="http://cran.rstudio.com/")
 if(!require("EGRET")){
   install.packages("EGRET")
-
 }
 
 if(!require("XML")){
@@ -96,7 +95,7 @@ Next, let's consider water quality without using WRTDS:
 
 
 
-```{r Choptank_noWRTDS}
+```{r Choptank_noWRTDS, eval=FALSE}
 #Choptank River at Greensboro, MD:
 siteNumber <- "01491000"
 startDate <- "1979-10-01"
@@ -107,6 +106,10 @@ INFO<- readNWISInfo(siteNumber,param,interactive=FALSE)
 INFO$shortName <- "Choptank River"
 Sample <- readNWISSample(siteNumber,param,startDate,endDate)
 eList <- mergeReport(INFO, Daily, Sample)
+```
+
+```{r echo=FALSE, eval=TRUE}
+eList <- Choptank_eList
 ```
 
 Now the analysis is done, but we still need to do some plotting. 
