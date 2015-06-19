@@ -5,6 +5,8 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   rmarkdown::html_vignette:
     toc: true
+    fig_width: 6
+    fig_height: 6
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{01 - Introduction to R: The basics}
