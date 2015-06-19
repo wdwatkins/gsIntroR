@@ -1,0 +1,287 @@
+---
+title: "03 - Clean"
+author: Jeffrey W. Hollister & Luke Winslow
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{03 - Clean}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
+options(repos="http://cran.rstudio.com/")
+if(!require("ggplot2")){
+  install.packages("ggplot2")
+}
+if(!require("dplyr")){
+  install.packages("dplyr")
+}
+
+library("ggplot2")
+library("dplyr")
+```
+
+In this third lesson we are going to start working on maninpulating and cleaning up our data frames.  We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in R.  We will show the basics of subsetting, merging, modifying, and sumarizing data and our examples will all use Hadley Wickham and Romain Francois' `dplyr` package.  There are many ways to do this type of work in R, many of which are available from base R, but I heard from many (AED colleagues and Hadley himself!) focusing on one way to do this is best, so `dplyr` it is!
+
+Before we jump into the lesson, quick links and lesson goals are:
+
+
+##Quick Links to Exercises and R code
+- [Lesson 3 R Code](inst/doc/03-Clean.R): All the code from this post in an R Script.
+- [Exercise 1](#exercise-1): Subsetting the Gages data with `dplyr`
+- [Exercise 2](#exercise-2): Merge two Gages data files together.
+- [Exercise 3](#exercise-3): Using `dplyr` to modify and summarize the Gages.
+
+
+##Lesson Goals
+- Show and tell on using base R for data manipulation
+- Better understand data cleaning through use of `dplyr`
+- Use `merge()` to combine data frames by a common key.
+- Do some basic reshaping and summarizing data frames.
+- Know what pipes are and why you might want to use them
+
+##What is `dplyr`? 
+
+The package `dplyr` is a fairly new (2014) package that tries to provide easy tools for the most common data manipulation tasks.  It is built to work directly with data frames.  The thinking behind it was largely inspired by the package `plyr` which has been in use for some time but suffered from being slow in some cases.  `dplyr` addresses this by porting much of the computation to C++.  An additional feature is the ability to work with data stored directly in an external database.  The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.  
+
+This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory.  The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.  There is a lot of great info on `dplyr`.  If you have an interest, i'd encourage you to look more.  The vignettes are particulary good.
+
+- [`dplyr` GitHub repo](https://github.com/hadley/dplyr)
+- [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/)
+
+##Subsetting in base R
+In base R you can use a indexing to select out rows and columns.  You will see this quite often in other peoples' code, so I want to at least show it to you.  
+
+```{r indexing_examp}
+#Create a vector
+x<-c(10:19)
+x
+#Positive indexing returns just the value in the ith place
+x[7]
+#Negative indexing returns all values except the value in the ith place
+x[-3]
+#Ranges work too
+x[8:10]
+#A vector can be used to index
+#Can be numeric
+x[c(2,6,10)]
+#Can be boolean - will repeat the pattern 
+x[c(TRUE,FALSE)]
+#Can even get fancy
+x[x%%2==0]
+```
+
+You can also index a data frame or select individual columns of a data frame.  Since a data frame has two dimensions, you need to specify an index for both the row and the column.  You can specify both and get a single value like `data_frame[row,column]`,specify just the row and the get the whole row back like `data_frame[row,]` or get just the column with `data_frame[,column]`.   These examples show that.
+
+```{r data_frame_index}
+#Let's use one of the stock data frames in R, iris
+head(iris)
+#And grab a specific value
+iris[1,1]
+#A whole column
+petal_len<-iris[,3]
+petal_len
+#A row
+obs15<-iris[15,]
+obs15
+#Many rows
+obs3to7<-iris[3:7,]
+obs3to7
+```
+
+Also remember that data frames have column names.  We can use those too.  Let's try it.
+
+```{r more_data_frame_index}
+#First, there are a couple of ways to use the column names
+iris$Petal.Length
+head(iris["Petal.Length"])
+#Multiple colums
+head(iris[c("Petal.Length","Species")])
+#Now we can combine what we have seen to do some more complex queries
+#Lets get all the data for Species with a petal length greater than 6
+big_iris<-iris[iris$Petal.Length>=6,]
+head(big_iris)
+#Or maybe we want just the sepal widths of the virginica species
+virginica_iris<-iris$Sepal.Width[iris$Species=="virginica"]
+head(virginica_iris)
+```
+
+
+##Data Manipulation in `dplyr`
+So, base R can do what you need, but it is a bit complicated and the syntax is a bit dense.  In `dplyr` this can be done with two functions, `select()` and `filter()`.  The code can be a bit more verbose, but it allows you to write code that is much more readable.  Before we start we need to make sure we've got everything installed and loaded.  If you do not have R Version 3.0.2 or greater you will have some problems (i.e. no `dplyr` for you).
+
+```{r real_setup, echo=FALSE, include=FALSE, purl=FALSE}
+if(!require("dplyr")){
+  install.packages("dplyr")
+}
+library("dplyr")
+```
+
+```{r setup_dplyr,eval=FALSE}
+install.packages("dplyr")
+library("dplyr")
+```
+
+I am going to repeat some of what I showed above on data frames but now with `dplyr`.  This is what we will be using in the exercises.
+
+
+```{r more_data_frame_dplyr}
+#First, select some columns
+dplyr_sel<-select(iris,Sepal.Length,Petal.Length,Species)
+#That's it.  Select one or many columns
+#Now select some, like before
+dplyr_big_iris<-filter(iris, Petal.Length>=6)
+head(dplyr_big_iris)
+#Or maybe we want just the virginica species
+virginica_iris<-filter(iris,Species=="virginica")
+head(virginica_iris)
+```
+
+But what if I wanted to select and filter?  There are three ways to do this: use intermediate steps, nested functions, or pipes.  With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function.  You can also nest functions (i.e. one function inside of another).  This is handy, but can be difficult to read if too many functions are nested as the process from inside out.  The last option, pipes, are a fairly recent addition to R.  Pipes in the unix/linux world are not new and allow you to chain commands together where the output of one command is the input to the next.  This provides a more natural way to read the commands in that they are executed in the way you conceptualize it and make the interpretation of the code a bit easier.  Pipes in R look like `%>%` and are made available via th `magrittr` package, which is installed as part of `dplyr`.  Let's try all three with the same analysis: selecting out a subset of columns but for only a single species.
+
+```{r combine_commands}
+#Intermediate data frames
+#Select First: note the order of the output, neat too!
+dplyr_big_iris_tmp1<-select(iris,Species,Sepal.Length,Petal.Length)
+dplyr_big_iris_tmp<-filter(dplyr_big_iris_tmp1,Petal.Length>=6)
+head(dplyr_big_iris_tmp)
+
+#Nested function
+dplyr_big_iris_nest<-filter(select(iris,Species,Sepal.Length,Petal.Length),Species=="virginica")
+head(dplyr_big_iris_nest)
+
+#Pipes
+dplyr_big_iris_pipe<-select(iris,Species,Sepal.Length,Petal.Length) %>%
+  filter(Species=="virginica")
+head(dplyr_big_iris_pipe)
+```
+
+```{r Exercise1, echo=FALSE}
+```
+
+##Exercise 1
+This exercise is going to focus on using what we just covered on `dplyr` to start to clean up the National Lakes Assessment data files.  Remember to use the stickies: green when you're done, red if you have a problem.
+
+1. If it isn't already open, make sure you have the script we created, "usgs_analysis.R" opened up.
+2. Start a new section of code in this script by simply putting in a line or two of comments indicating what it is this set of code does.
+3. Our goal for this is to create two new data frames that represent a subset of the observations as well as a subset of the data. 
+4. First, from the  `gages_cover` data frame we want a new data frame that has only the following columns: STAID, DEVNLCD06, FORESTNLCD06, BARRENNLCD06, PASTURENLCD06, and CROPSNLCD06.  Name the new data frame `gages_cover_subset`.  Think `select()`
+5. Next, lets subset the water quality data from `gages_sites`.  The columns we want for this are: STAID, STANAME, DRAIN_SQKM, LAT_GAGE, LNG_GAGE, STATE, and COUNTYNAME_SITE. Name the new data frame `gages_sites_subset`.
+6. Last thing we are going to need to do is get a subset of the observations from `gages_sites_subset`. We only want streams where STATE equals "NM". Call it `gages_sites_nm`.
+
+##Merging Data
+Joining data in `dplyr` is accomplished via the various `x_join()` commands (e.g., `inner_join`, `left_join`, `anti_join`, etc).  These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you.  If not then they aren't immediately intutive.  For our purposes, the base functions `rbind()` and `merge()` are more than adequate.  
+
+We are going to talk about several different ways to do this.  First, let's add some new rows to a data frame.  This is very handy as you might have data collected and entered at one time, and then additional observations made later that need to be added.  So with `rbind()` we can stack two data frames with the same columns to store more observations.  
+
+```{r rbind_examp}
+#Let's first create a new small example data.frame
+rbind_df<-data.frame(a=1:3,b=c("a","b","c"),c=c(T,T,F),d=rnorm(3))
+#Now an example df to add
+rbind_df2<-data.frame(a=10:12,b=c("x","y","z"),c=c(F,F,F),d=rnorm(3))
+rbind_df<-rbind(rbind_df, rbind_df2)
+rbind_df
+```
+
+Now something to think about.  Could you add a vector as a new row?  Why/Why not? When/When not?
+
+Let's go back to the columns now. There are simple ways to add columns of the same length with observations in the same order to a data frame, but it is very common to have to datasets that are in different orders and have differing numbers of rows.  What we want to do in that case is going to be more of a database type function and join two tables based on a common column.  A common way to do that in base R is with `merge()`.   So let's contrive another example by creating a dataset to merge to `rbind_df` that we created above.
+
+```{r merge_example}
+# Contrived data frame
+rbind_df_merge_me<-data.frame(a=c(1,3,10,11,14,6,23),x=rnorm(7),names=c("bob","joe","sue",NA,NA,"jeff",NA))
+# Create merge of matches
+rbind_df_merge_match<-merge(rbind_df,rbind_df_merge_me,by="a")
+rbind_df_merge_match
+# Create merge of matches and all of the first data frame
+rbind_df_merge_allx<-merge(rbind_df,rbind_df_merge_me,by="a",all.x=TRUE)
+rbind_df_merge_allx
+```
+
+```{r Exercise2, echo=FALSE}
+```
+
+##Exercise 2
+In this exercise we are going to practice merging our Gages data. You will remember that we have two datasets, site information and basin landcover types. We selected some rows out of the site data (based on state) but didn't select out of the basin landcover table, so we have two data frames, with differing numbers of rows and unknown order. Use your stickies!
+
+1. This is the only task we have for this exercise.  Add to your script a line (or more if you need it) to create a new data frame, `gages_data`, that is a merge of `gages_sites_nm` and `gages_cover_subset`, but with only lines in `gages_sites_nm` preserved in the output.  The column to merge on is "STAID"
+2. This data frame may have some `NA` values.  For the purposes of these lessons, it is better to remove these.  Add another line to your code and create a data frame that removes all NA values from `gages_data`.
+2. If that goes quickly, feel free to explore `rbind()` some.
+
+##Modify and Summarize
+Now back to `dplyr`.  One area where it really shines is in modifying and summarizing.   We will do more here than we did with base, but first lets walk through one of the examples we did previously, aggregating.  We can do this with `group_by()` and  `summarize()`.
+
+First, we'll look at an example of grouping a data frame and summarizing the data within those groups.
+
+```{r aggregate_examp}
+#Chained with Pipes
+group_by(iris,Species)%>%
+  summarize(mean(Sepal.Length),
+            mean(Sepal.Width),
+            mean(Petal.Length),
+            mean(Petal.Width))
+```
+
+There are many other functions in `dplyr` that are useful.  Much of what they do, can certainly be accomplished with base R, but not quite as intuitively.  Let's run through some examples with `arrange()`, `slice()`,  and `mutate()`.
+
+First `arrange()` will re-order a data frame based on the values of a columns.  It will take multiple columns and can be in descending or ascending order. I think `iris` is getting a bit tired, let's try a different stock data frame this time:  `mtcars`.  If you are interested you can try `data()` to see what is available.
+
+```{r arrange_example}
+head(mtcars)
+#ascending order is default
+head(arrange(mtcars,mpg))
+#descending
+head(arrange(mtcars,desc(mpg)))
+#multiple columns: most cyl with best mpg at top
+head(arrange(mtcars,desc(cyl),desc(mpg)))
+```
+
+Now `slice()` which accomplishes what we did with the numeric indices before.  Remembering back to that, we'd could grab rows of the data frame with something like `x[1:3,]`.  
+
+```{r slice_example}
+#grab rows 3 through 10
+slice(mtcars,3:10)
+```
+
+`mutate()` allows us to add new columns based on expressions applied to existing columns
+
+```{r mutate_example}
+head(mutate(mtcars,kml=mpg*0.425))
+```
+
+Lastly, one more function, `rowwise()` allows us run rowwise, operations.  Let's use a bit of a contrived example for this.
+
+```{r rowwise_examp}
+#First a dataset of temperatures, recorded weekly at 100 sites.
+temp_df<-data.frame(id=1:100,week1=runif(100,20,25), week2=runif(100,19,24), 
+                    week3=runif(100,18,26), week4=runif(100,17,23))
+head(temp_df)
+#To add row means to the dataset, without the ID
+temp_df2<-temp_df %>% 
+  rowwise() %>% 
+  mutate(site_mean = mean(c(week1,week2,week3,week4)))
+head(temp_df2)
+```
+
+We now have quite a few tools that we can use to clean and manipulate data in R.  We have barely touched what both base R and `dplyr` are capable of accomplishing, but hopefully you now have some basics to build on. 
+
+Let's practice some of these last functions with our Gages data.
+
+```{r Exercise3, echo=FALSE}
+```
+
+##Exercise 3
+
+Next, we're going to pull in and merge additional water data from NWIS for NM GAGES-II sites. Keep track of your method by adding to your R script and commenting as you go. This exercise has several steps that each depend on the prior one- use your stickies and don't get frustrated! We'll work through these one at a time. If you complete a step and notice that your neighbor has not, see if you can answer any questions to help them get it done. 
+
+1)  Return to the code chunk in [Lesson 02 Get](inst/doc/Get.Rmd) that accesses NWIS data. Modify that code chunk and add it to your R script to access additional physical and water quality variables at NM sites: temperature ('00010'), discharge ('00060'), and specific conductance ('00095'). Save these data in data frames named using the variable name and state abbreviation. 
+
+2) Next, because we are just exploring here, let's make some assumptions about the variables we have just collected: (a) all of the measurements we have in the data frames are good (we don't want to throw any out because of comment codes indicating issues with the data) and, (b) the only three variables we care about in theis data frame are gage ID (a.k.a., 'site_no'), measurement date ('sample_dt'), and value of the measurement made ('results_va'). These assumptions may *not* hold for other analyses, but for the purposes of this exercise, we'll make them. Subset the four water measurement data frames to include only those three columns each. 
+
+3) Rename the columns to prepare to merge the data with the 'gages_data' data frame. Remember, not all NWIS sites we have collected data from are GAGES-II sites, so we need to merge on a common variable- the columns across the 'gages_data' and the water variables that include the site ID should all be named consistently. Second, consider that 'results_va' columns are distinct across data frames. Re-name those columns prior to the merge so they reflect the variable included (e.g, 'results_temp').
+
+4) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have with a data frame that includes all rows and columns GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
+
+
