@@ -9,7 +9,7 @@ output:
     fig_height: 6
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{A_Introduction to R: The basics}
+  %\VignetteIndexEntry{A. Introduction to R: The basics}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -24,7 +24,7 @@ My goal is to have this workshop be as hands-on and itneractive as possible. I e
 
 To be hands-on, there are exercises throughout. For each lesson, I will provide a list of links near the top of the post so that you can skip all the prose and jump straight to the lessons.  So, here are the links for Lesson 1.
 
-- [Lesson 1 R Code](/inst/doc/01-Introduction.R): All the code from this post in an R Script.
+- [Next lesson](B_Get.html): Get data
 - [Exercise 1](#exercise-1): RStudio Introduction.
 - [Exercise 2](#exercise-2): Functions, packages, and help
 
