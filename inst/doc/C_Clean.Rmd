@@ -26,13 +26,15 @@ library("ggplot2")
 library("dplyr")
 ```
 
+- [Previous lesson](B_Get.html): Get the data.
+- [Next lesson](D_Explore.html): Explore the data.
+
 In this third lesson we are going to start working on maninpulating and cleaning up our data frames.  We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in R.  We will show the basics of subsetting, merging, modifying, and sumarizing data and our examples will all use Hadley Wickham and Romain Francois' `dplyr` package.  There are many ways to do this type of work in R, many of which are available from base R, but I heard from many (AED colleagues and Hadley himself!) focusing on one way to do this is best, so `dplyr` it is!
 
 Before we jump into the lesson, quick links and lesson goals are:
 
 
 ##Quick Links to Exercises and R code
-- [Next lesson](D_Explore.html): Explore the data.
 - [Exercise 1](#exercise-1): Subsetting the Gages data with `dplyr`
 - [Exercise 2](#exercise-2): Merge two Gages data files together.
 - [Exercise 3](#exercise-3): Using `dplyr` to modify and summarize the Gages.
@@ -287,4 +289,5 @@ Next, we're going to pull in and merge additional water data from NWIS for NM GA
 
 4) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have with a data frame that includes all rows and columns GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
 
+- [Previous lesson](B_Get.html): Get the data.
 - [Next lesson](D_Explore.html): Explore the data.

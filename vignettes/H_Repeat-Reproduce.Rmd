@@ -20,10 +20,13 @@ if(!require("ggplot2")){
 library("ggplot2")
 ```
 
+- [Previous lesson](G_Visualize.html): Visualize the data.
+- [Next lesson](I_Parting-Thoughts-and-Extra-Materials.html): Parting thoughts.
+
+
 In theory, you now have a basic understanding of how to conduct a typical data analysis workflow in R.  All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. To do this effectively we need to understand how to create reusable R code and create reproducible reports.  This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.
 
 ##Quick Links to Exercises and R code
-- [Next lesson](I_Parting-Thoughts-and-Extra-Materials.html): Parting thoughts.
 - [Exercise 1](#exercise-1): Create your own function
 
 
@@ -412,4 +415,5 @@ Repeat the steps from above, but this time instead of selecting "Document", sele
 
 I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creating slides by using the `slidify` package.  An example of that presentation is in a talk I gave on [Social Media and Blogging](http://jwhollister.com/epablogpresent).  It does take a bit more work to set this up.  I am also not familar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.
 
+- [Previous lesson](G_Visualize.html): Visualize the data.
 - [Next lesson](I_Parting-Thoughts-and-Extra-Materials.html): Parting thoughts.
