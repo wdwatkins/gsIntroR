@@ -12,6 +12,28 @@ vignette: >
   %\VignetteIndexEntry{D. Explore}
   \usepackage[utf8]{inputenc}
 ---
+```{r echo=FALSE}
+library(knitr)
+titles <- c("00 Before the Workshop","01 Introduction", 
+            "02 Get", "03 Clean", "04 Explore",
+             "05 Analyze Base", "06 Analyze Packages", "07 Visualize",
+             "08 Repeat and Reproduce", "09 Parting Thoughts")
+
+pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(4,6)]
+# directions[1] <- paste("<-",directions[1]) 
+# directions[2] <- paste(directions[2],"->")   
+directions <- c(directions[1],"-----------------------",directions[2])
+kable(t(directions))
+```
+
 - [Previous lesson](C_Clean.html): Clean the data.
 - [Next lesson](E_Analyze.html): Analyze the data in base R.
 
@@ -156,5 +178,9 @@ Similar to before let's first just play around with some basic exploratory data 
 
 3. Lastly, add a boxplot of discharge that shows a boxplot for [NSIP Sentinel](http://water.usgs.gov/nsip/federalneeds.html) ('NSIP_SENTINEL') sites versus non-Sentinel sites. Feel free to try and log transform the discharge data (not required).
 
-- [Previous lesson](C_Clean.html): Clean the data.
-- [Next lesson](E_Analyze.html): Analyze the data in base R.
+
+```{r echo=FALSE}
+kable(t(directions))
+
+```
+

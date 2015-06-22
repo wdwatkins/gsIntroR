@@ -15,10 +15,29 @@ vignette: >
 
 ```{r setup, echo=FALSE, warning=FALSE}
 options(repos="http://cran.rstudio.com/")
+
+library(knitr)
+titles <- c("00 Before the Workshop","01 Introduction", 
+            "02 Get", "03 Clean", "04 Explore",
+             "05 Analyze Base", "06 Analyze Packages", "07 Visualize",
+             "08 Repeat and Reproduce", "09 Parting Thoughts")
+
+pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(2,4)]
+# directions[1] <- paste("<-",directions[1]) 
+# directions[2] <- paste(directions[2],"->")   
+directions <- c(directions[1],"-----------------------",directions[2])
+kable(t(directions))
 ```
 
-- [Previous lesson](A_Introduction.html): Introduction.
-- [Next lesson](C_Clean.html): Clean the data.
+
 
 The second lesson is going to start to lay the foundation for working with data in R.  We will cover some of the very basics of R first, then move on to how you get data into R and how you work with some of the basic data structures.  Lastly, we will cover some ways to find relevant data and pull it directly into R.
 
@@ -390,7 +409,7 @@ The USGS has created an R package to directly link NWIS with R. It is called `da
 ```{r dataRetrievalExample, eval=FALSE}
 library(dataRetrieval)
 # Gather NWIS data:
-siteListPhos <- readNWISdata(stateCd="NM",parameterCd="00665", 
+siteListPhos <- readNWISdata(stateCd="FL",parameterCd="00665", 
                               siteOutput="expanded", 
                              drainAreaMin=400,siteType="ST",
                              service="site") 
@@ -418,5 +437,7 @@ From here on out I hope to have these exercises begin to build on each other. We
 6. Run the script and make sure it doesn't throw any errors and you do in fact get the two data frames.
 7. If you still have some time, explore the data frames using some of the commands we covered.  This part does not need to be included in the script.
 
-- [Previous lesson](A_Introduction.html): Introduction.
-- [Next lesson](C_Clean.html): Clean the data.
+```{r echo=FALSE}
+kable(t(directions))
+
+```
