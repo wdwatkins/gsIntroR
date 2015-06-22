@@ -20,7 +20,7 @@ options(repos="http://cran.rstudio.com/")
 The second lesson is going to start to lay the foundation for working with data in R.  We will cover some of the very basics of R first, then move on to how you get data into R and how you work with some of the basic data structures.  Lastly, we will cover some ways to find relevant data and pull it directly into R.
 
 ##Quick Links to Exercises and R code
-- [Lesson 2 R Code](/inst/doc/02-Get.R): All the code from this post in an R Script.
+- [Next lesson](C_Clean.html): Clean the data.
 - [Exercise 1](#exercise-1): Introduction to the console and basic functions
 - [Exercise 2](#exercise-2): Read in data
 
@@ -416,4 +416,4 @@ From here on out I hope to have these exercises begin to build on each other. We
 6. Run the script and make sure it doesn't throw any errors and you do in fact get the two data frames.
 7. If you still have some time, explore the data frames using some of the commands we covered.  This part does not need to be included in the script.
 
-
+- [Next lesson](C_Clean.html): Clean the data.

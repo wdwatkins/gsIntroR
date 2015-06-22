@@ -30,7 +30,7 @@ library("XML")
 The second section will run through a fairly quick example of using a package, `EGRET` for some analysis. We'll be moving away from the GAGES-II sites in NM to focus on some other sites of interest. I've included this section just to show how (relatively) trivial it is to add an advanced capability to R via packages.
 
 ##Quick Links to Exercises and R code
-- [Lesson 6 R Code](inst/doc/Analyze2.R): All the code from this post in an R Script.
+- [Next lesson](G_Visualize.html): Visualize the data.
 - [Exercise 1](#exercise-1): Use EGRET to explore flow history
 - [Exercise 2](#exercise-2): Use EGRET WRTDS to explore long-term changes in river water quality
 
@@ -154,5 +154,5 @@ Second, it is becoming increasingly common to see journal articles about package
 
 Third, the last resort is of course [Google](http://www.google.com)!  
 
-
+- [Next lesson](G_Visualize.html): Visualize the data.
 

@@ -31,7 +31,7 @@ library("dplyr")
 One of the frequently touted strong points of R is data visualization.  We saw some of that with our use of base graphics, but those plots were, frankly, a bit pedestrian.  More and more though, users are moving away from base graphics and using the`ggplot2` package.  I would even go as far to say that it is almost become the default plotting mechanism in R.  This whole lesson we will focus on creating, modifying, and saving plots with `ggplot2`. And full disclosure here, I am relatively new to `ggplot2` and have been using it to create plots for about a year, thus I likely don't have all the answers!  I will fake it as best I can.
 
 ##Quick Links to Exercises and R code
-- [Lesson 7 R Code](inst/doc/Visualize.R): All the code from this post in an R Script.
+- [Next lesson](H_Repeat-Reproduce.html): Repeat and Reproduce.
 - [Exercise 1](#exercise-1): Create a number of styles of plots
 - [Exercise 2](#exercise-2): Build a plot, using custom themes, and save as a jpeg.
 
@@ -315,3 +315,5 @@ tp_chla +
 - ggplot examples: [Google Image Search](http://goo.gl/P0q2Lx)
 - R Data Viz, gone wrong:[Accidental aRt](http://accidental-art.tumblr.com) 
 
+
+- [Next lesson](H_Repeat-Reproduce.html): Repeat and Reproduce

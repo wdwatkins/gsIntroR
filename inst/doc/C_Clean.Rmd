@@ -32,7 +32,7 @@ Before we jump into the lesson, quick links and lesson goals are:
 
 
 ##Quick Links to Exercises and R code
-- [Lesson 3 R Code](inst/doc/03-Clean.R): All the code from this post in an R Script.
+- [Next lesson](D_Explore.html): Explore the data.
 - [Exercise 1](#exercise-1): Subsetting the Gages data with `dplyr`
 - [Exercise 2](#exercise-2): Merge two Gages data files together.
 - [Exercise 3](#exercise-3): Using `dplyr` to modify and summarize the Gages.
@@ -287,4 +287,4 @@ Next, we're going to pull in and merge additional water data from NWIS for NM GA
 
 4) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have with a data frame that includes all rows and columns GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
 
-
+- [Next lesson](D_Explore.html): Explore the data.

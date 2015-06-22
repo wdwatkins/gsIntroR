@@ -26,7 +26,7 @@ library("dplyr")
 The focus of this workshop hasn't really been statistics, its been more about R, the language.  But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place.  So, we will spend a little bit of time on it.  In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.  
 
 ##Quick Links to Exercises and R code
-- [Lesson 5 R Code](inst/doc/Analyze1.R): All the code from this post in an R Script.
+- [Next lesson](F_Analyze.html): Analyze the data with other packages.
 - [Exercise 1](#exercise-1): Run some basic statistical test and build a simple model with USGS data
 
 ##Lesson Goals
@@ -101,3 +101,6 @@ For this exercise, let's start to look at some of the statistical tests and rela
 1. First, lets take a look at the relationship between discharge, temperature specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites.  Add a section to your script that tests for a difference in the mean value of across these between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implcations for the differences in sample sizes. 
 
 2. Next, lets build some linear models that build a linear model to be used to predict phosphorus concentrations across all GAGES-II sites in NM. Chose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen. 
+
+
+- [Next lesson](F_Analyze.html): Analyze the data with other packages.
