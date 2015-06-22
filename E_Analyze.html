@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">E. Analyze: Base</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>19 June, 2015</em></h4>
+<h4 class="date"><em>22 June, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -99,13 +99,13 @@ xy_tt</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = -8.2211, df = 38.375, p-value = 5.435e-10
+## t = -7.4236, df = 35.043, p-value = 1.086e-08
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -9.157832 -5.539792
+##  -10.058107  -5.738478
 ## sample estimates:
 ## mean of x mean of y 
-##  2.889019 10.237831</code></pre>
+##  3.063744 10.962037</code></pre>
 <p><code>t.test()</code> can also take a formula specification as input. I mentioned this briefly in the previous lesson. At it’s simplest a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign. For a t-test that is all we need to know.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lets pick another dataset, ToothGrowth.</span>
 <span class="co">#Looking at diff in tooth length by groups specified in supp</span>
