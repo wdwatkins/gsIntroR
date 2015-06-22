@@ -73,7 +73,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
 <h2>Quick Links to Exercises and R code</h2>
 <ul>
-<li><a href="inst/doc/Analyze1.R">Lesson 5 R Code</a>: All the code from this post in an R Script.</li>
+<li><a href="F_Analyze.html">Next lesson</a>: Analyze the data with other packages.</li>
 <li><a href="#exercise-1">Exercise 1</a>: Run some basic statistical test and build a simple model with USGS data</li>
 </ul>
 </div>
@@ -99,13 +99,13 @@ xy_tt</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = -7.4236, df = 35.043, p-value = 1.086e-08
+## t = -6.7028, df = 41.915, p-value = 3.911e-08
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -10.058107  -5.738478
+##  -8.348446 -4.484466
 ## sample estimates:
 ## mean of x mean of y 
-##  3.063744 10.962037</code></pre>
+##  2.956289  9.372745</code></pre>
 <p><code>t.test()</code> can also take a formula specification as input. I mentioned this briefly in the previous lesson. At it’s simplest a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign. For a t-test that is all we need to know.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lets pick another dataset, ToothGrowth.</span>
 <span class="co">#Looking at diff in tooth length by groups specified in supp</span>
@@ -237,6 +237,9 @@ lm_aq2&lt;-<span class="kw">lm</span>(Ozone~Temp+Wind+Solar.R,<span class="dt">d
 <li><p>First, lets take a look at the relationship between discharge, temperature specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites. Add a section to your script that tests for a difference in the mean value of across these between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implcations for the differences in sample sizes.</p></li>
 <li><p>Next, lets build some linear models that build a linear model to be used to predict phosphorus concentrations across all GAGES-II sites in NM. Chose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen.</p></li>
 </ol>
+<ul>
+<li><a href="F_Analyze.html">Next lesson</a>: Analyze the data with other packages.</li>
+</ul>
 </div>
 
 

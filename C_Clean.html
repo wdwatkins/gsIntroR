@@ -76,7 +76,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
 <h2>Quick Links to Exercises and R code</h2>
 <ul>
-<li><a href="inst/doc/03-Clean.R">Lesson 3 R Code</a>: All the code from this post in an R Script.</li>
+<li><a href="D_Explore.html">Next lesson</a>: Explore the data.</li>
 <li><a href="#exercise-1">Exercise 1</a>: Subsetting the Gages data with <code>dplyr</code></li>
 <li><a href="#exercise-2">Exercise 2</a>: Merge two Gages data files together.</li>
 <li><a href="#exercise-3">Exercise 3</a>: Using <code>dplyr</code> to modify and summarize the Gages.</li>
@@ -297,13 +297,13 @@ rbind_df&lt;-<span class="kw">data.frame</span>(<span class="dt">a=</span><span 
 rbind_df2&lt;-<span class="kw">data.frame</span>(<span class="dt">a=</span><span class="dv">10</span>:<span class="dv">12</span>,<span class="dt">b=</span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>),<span class="dt">c=</span><span class="kw">c</span>(F,F,F),<span class="dt">d=</span><span class="kw">rnorm</span>(<span class="dv">3</span>))
 rbind_df&lt;-<span class="kw">rbind</span>(rbind_df, rbind_df2)
 rbind_df</code></pre>
-<pre><code>##    a b     c         d
-## 1  1 a  TRUE 0.3139464
-## 2  2 b  TRUE 0.4708695
-## 3  3 c FALSE 1.7314418
-## 4 10 x FALSE 0.8488319
-## 5 11 y FALSE 0.3457042
-## 6 12 z FALSE 0.3407239</code></pre>
+<pre><code>##    a b     c          d
+## 1  1 a  TRUE  0.2836228
+## 2  2 b  TRUE -0.8344546
+## 3  3 c FALSE  0.1720070
+## 4 10 x FALSE  0.4410928
+## 5 11 y FALSE  0.8370482
+## 6 12 z FALSE  1.2716358</code></pre>
 <p>Now something to think about. Could you add a vector as a new row? Why/Why not? When/When not?</p>
 <p>Let’s go back to the columns now. There are simple ways to add columns of the same length with observations in the same order to a data frame, but it is very common to have to datasets that are in different orders and have differing numbers of rows. What we want to do in that case is going to be more of a database type function and join two tables based on a common column. A common way to do that in base R is with <code>merge()</code>. So let’s contrive another example by creating a dataset to merge to <code>rbind_df</code> that we created above.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Contrived data frame</span>
@@ -312,20 +312,20 @@ rbind_df_merge_me&lt;-<span class="kw">data.frame</span>(<span class="dt">a=</sp
 rbind_df_merge_match&lt;-<span class="kw">merge</span>(rbind_df,rbind_df_merge_me,<span class="dt">by=</span><span class="st">&quot;a&quot;</span>)
 rbind_df_merge_match</code></pre>
 <pre><code>##    a b     c         d          x names
-## 1  1 a  TRUE 0.3139464 -1.0455037   bob
-## 2  3 c FALSE 1.7314418  0.2233498   joe
-## 3 10 x FALSE 0.8488319 -1.0384196   sue
-## 4 11 y FALSE 0.3457042 -2.0005058  &lt;NA&gt;</code></pre>
+## 1  1 a  TRUE 0.2836228 -0.5278006   bob
+## 2  3 c FALSE 0.1720070  0.4118121   joe
+## 3 10 x FALSE 0.4410928  0.3751594   sue
+## 4 11 y FALSE 0.8370482 -0.1821119  &lt;NA&gt;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create merge of matches and all of the first data frame</span>
 rbind_df_merge_allx&lt;-<span class="kw">merge</span>(rbind_df,rbind_df_merge_me,<span class="dt">by=</span><span class="st">&quot;a&quot;</span>,<span class="dt">all.x=</span><span class="ot">TRUE</span>)
 rbind_df_merge_allx</code></pre>
-<pre><code>##    a b     c         d          x names
-## 1  1 a  TRUE 0.3139464 -1.0455037   bob
-## 2  2 b  TRUE 0.4708695         NA  &lt;NA&gt;
-## 3  3 c FALSE 1.7314418  0.2233498   joe
-## 4 10 x FALSE 0.8488319 -1.0384196   sue
-## 5 11 y FALSE 0.3457042 -2.0005058  &lt;NA&gt;
-## 6 12 z FALSE 0.3407239         NA  &lt;NA&gt;</code></pre>
+<pre><code>##    a b     c          d          x names
+## 1  1 a  TRUE  0.2836228 -0.5278006   bob
+## 2  2 b  TRUE -0.8344546         NA  &lt;NA&gt;
+## 3  3 c FALSE  0.1720070  0.4118121   joe
+## 4 10 x FALSE  0.4410928  0.3751594   sue
+## 5 11 y FALSE  0.8370482 -0.1821119  &lt;NA&gt;
+## 6 12 z FALSE  1.2716358         NA  &lt;NA&gt;</code></pre>
 </div>
 <div id="exercise-2" class="section level2">
 <h2>Exercise 2</h2>
@@ -417,12 +417,12 @@ temp_df&lt;-<span class="kw">data.frame</span>(<span class="dt">id=</span><span 
                     <span class="dt">week3=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">18</span>,<span class="dv">26</span>), <span class="dt">week4=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">17</span>,<span class="dv">23</span>))
 <span class="kw">head</span>(temp_df)</code></pre>
 <pre><code>##   id    week1    week2    week3    week4
-## 1  1 23.57150 23.62428 20.44983 20.27972
-## 2  2 22.82018 20.40779 20.42044 19.51889
-## 3  3 22.63094 21.46251 25.96098 18.67916
-## 4  4 21.84632 20.36479 21.34410 18.28690
-## 5  5 24.32462 23.08206 22.37876 18.31110
-## 6  6 22.97523 20.64615 24.21906 18.91993</code></pre>
+## 1  1 23.45813 21.35655 19.11214 18.94468
+## 2  2 24.15805 22.47993 20.77501 20.79259
+## 3  3 21.23915 23.99028 23.61260 21.88385
+## 4  4 22.48066 23.41235 19.22488 21.23658
+## 5  5 21.31371 23.59368 21.70241 19.47764
+## 6  6 21.35718 19.20014 25.54308 17.58415</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#To add row means to the dataset, without the ID</span>
 temp_df2&lt;-temp_df %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">rowwise</span>() %&gt;%<span class="st"> </span>
@@ -431,12 +431,12 @@ temp_df2&lt;-temp_df %&gt;%<span class="st"> </span>
 <pre><code>## Source: local data frame [6 x 6]
 ## 
 ##   id    week1    week2    week3    week4 site_mean
-## 1  1 23.57150 23.62428 20.44983 20.27972  21.98133
-## 2  2 22.82018 20.40779 20.42044 19.51889  20.79183
-## 3  3 22.63094 21.46251 25.96098 18.67916  22.18340
-## 4  4 21.84632 20.36479 21.34410 18.28690  20.46053
-## 5  5 24.32462 23.08206 22.37876 18.31110  22.02413
-## 6  6 22.97523 20.64615 24.21906 18.91993  21.69009</code></pre>
+## 1  1 23.45813 21.35655 19.11214 18.94468  20.71787
+## 2  2 24.15805 22.47993 20.77501 20.79259  22.05140
+## 3  3 21.23915 23.99028 23.61260 21.88385  22.68147
+## 4  4 22.48066 23.41235 19.22488 21.23658  21.58862
+## 5  5 21.31371 23.59368 21.70241 19.47764  21.52186
+## 6  6 21.35718 19.20014 25.54308 17.58415  20.92114</code></pre>
 <p>We now have quite a few tools that we can use to clean and manipulate data in R. We have barely touched what both base R and <code>dplyr</code> are capable of accomplishing, but hopefully you now have some basics to build on.</p>
 <p>Let’s practice some of these last functions with our Gages data.</p>
 </div>
@@ -449,6 +449,9 @@ temp_df2&lt;-temp_df %&gt;%<span class="st"> </span>
 <li><p>Rename the columns to prepare to merge the data with the ‘gages_data’ data frame. Remember, not all NWIS sites we have collected data from are GAGES-II sites, so we need to merge on a common variable- the columns across the ‘gages_data’ and the water variables that include the site ID should all be named consistently. Second, consider that ‘results_va’ columns are distinct across data frames. Re-name those columns prior to the merge so they reflect the variable included (e.g, ‘results_temp’).</p></li>
 <li><p>Let’s merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called ‘gages_data_wq’ by merging ‘gages_data’ with the NWIS variables we’ve already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have with a data frame that includes all rows and columns GAGES-II sites for NM, in addition to five new columns: ‘sample_dt’, plus the four water quality variables we’re merging. Hint: the number of rows in your expanded ‘gages_data_wq’ data frame will be much longer than in the original ‘gages_data’ data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others.</p></li>
 </ol>
+<ul>
+<li><a href="D_Explore.html">Next lesson</a>: Explore the data.</li>
+</ul>
 </div>
 
 
