@@ -23,10 +23,12 @@ if(!require("dplyr")){
 library("dplyr")
 ```
 
+- [Previous lesson](D_Explore.html): Explore the data.
+- [Next lesson](F_Analyze.html): Analyze the data with other packages.
+
 The focus of this workshop hasn't really been statistics, its been more about R, the language.  But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place.  So, we will spend a little bit of time on it.  In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.  
 
 ##Quick Links to Exercises and R code
-- [Next lesson](F_Analyze.html): Analyze the data with other packages.
 - [Exercise 1](#exercise-1): Run some basic statistical test and build a simple model with USGS data
 
 ##Lesson Goals
@@ -103,4 +105,5 @@ For this exercise, let's start to look at some of the statistical tests and rela
 2. Next, lets build some linear models that build a linear model to be used to predict phosphorus concentrations across all GAGES-II sites in NM. Chose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen. 
 
 
+- [Previous lesson](D_Explore.html): Explore the data.
 - [Next lesson](F_Analyze.html): Analyze the data with other packages.

@@ -12,10 +12,12 @@ vignette: >
   %\VignetteIndexEntry{D. Explore}
   \usepackage[utf8]{inputenc}
 ---
+- [Previous lesson](C_Clean.html): Clean the data.
+- [Next lesson](E_Analyze.html): Analyze the data in base R.
+
 Our next three lessons (Explore, Analyze, and Visualize) don't actually split neatly into groups.  That being said, I will try my best, but there will be overlap.  For this lesson we are going to focus on some of the first things you do when you start to explore a dataset including basic summary statistics and simple visualizations with base R.
 
 ##Quick Links to Exercises and R code
-- [Next lesson](E_Analyze.html): Analyze the data in base R.
 - [Exercise 1](#exercise-1): Exploring data with basic summary statistics
 - [Exercise 2](#exercise-2): Using base R graphics for exploratory data analysis 
 
@@ -154,4 +156,5 @@ Similar to before let's first just play around with some basic exploratory data 
 
 3. Lastly, add a boxplot of discharge that shows a boxplot for [NSIP Sentinel](http://water.usgs.gov/nsip/federalneeds.html) ('NSIP_SENTINEL') sites versus non-Sentinel sites. Feel free to try and log transform the discharge data (not required).
 
+- [Previous lesson](C_Clean.html): Clean the data.
 - [Next lesson](E_Analyze.html): Analyze the data in base R.
