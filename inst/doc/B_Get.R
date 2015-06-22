@@ -127,9 +127,9 @@ first_last
 
 ## ----create_data_frame---------------------------------------------------
 numbers <- c(1:26,NA)
-letters <- c(NA,letters) #letters is a special object available from base R
+lettersNew <- c(NA,letters) #letters is a special object available from base R
 logical <- c(rep(TRUE,13),NA,rep(FALSE,13))
-examp_df <- data.frame(letters,numbers,logical)
+examp_df <- data.frame(lettersNew,numbers,logical)
 
 ## ----examine_data_frame--------------------------------------------------
 #See the first 6 rows

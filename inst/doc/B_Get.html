@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">B. Get</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
-<h4 class="date"><em>19 June, 2015</em></h4>
+<h4 class="date"><em>22 June, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -364,31 +364,31 @@ first_last</code></pre>
 <p>Data frames are made up of rows and columns. Each column is a vector and those vectors must be of the same length. Essentially, anything that can be saved in a <code>.csv</code> file can be read in as a data frame. Data frames have several attributes. The ones you will interact with the most are column names, row names, dimension.</p>
 <p>So one way to create a data frame is from some vectors and the <code>data.frame()</code> command:</p>
 <pre class="sourceCode r"><code class="sourceCode r">numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">26</span>,<span class="ot">NA</span>)
-letters &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>,letters) <span class="co">#letters is a special object available from base R</span>
+lettersNew &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">NA</span>,letters) <span class="co">#letters is a special object available from base R</span>
 logical &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">TRUE</span>,<span class="dv">13</span>),<span class="ot">NA</span>,<span class="kw">rep</span>(<span class="ot">FALSE</span>,<span class="dv">13</span>))
-examp_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(letters,numbers,logical)</code></pre>
+examp_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(lettersNew,numbers,logical)</code></pre>
 <p>Now that we have this data frame we probably want to do something with it. We can examine it in many ways.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#See the first 6 rows</span>
 <span class="kw">head</span>(examp_df)</code></pre>
-<pre><code>##   letters numbers logical
-## 1    &lt;NA&gt;       1    TRUE
-## 2       a       2    TRUE
-## 3       b       3    TRUE
-## 4       c       4    TRUE
-## 5       d       5    TRUE
-## 6       e       6    TRUE</code></pre>
+<pre><code>##   lettersNew numbers logical
+## 1       &lt;NA&gt;       1    TRUE
+## 2          a       2    TRUE
+## 3          b       3    TRUE
+## 4          c       4    TRUE
+## 5          d       5    TRUE
+## 6          e       6    TRUE</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#See the last 6 rows</span>
 <span class="kw">tail</span>(examp_df)</code></pre>
-<pre><code>##    letters numbers logical
-## 22       u      22   FALSE
-## 23       v      23   FALSE
-## 24       w      24   FALSE
-## 25       x      25   FALSE
-## 26       y      26   FALSE
-## 27       z      NA   FALSE</code></pre>
+<pre><code>##    lettersNew numbers logical
+## 22          u      22   FALSE
+## 23          v      23   FALSE
+## 24          w      24   FALSE
+## 25          x      25   FALSE
+## 26          y      26   FALSE
+## 27          z      NA   FALSE</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#See column names</span>
 <span class="kw">names</span>(examp_df)</code></pre>
-<pre><code>## [1] &quot;letters&quot; &quot;numbers&quot; &quot;logical&quot;</code></pre>
+<pre><code>## [1] &quot;lettersNew&quot; &quot;numbers&quot;    &quot;logical&quot;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#see row names</span>
 <span class="kw">rownames</span>(examp_df)</code></pre>
 <pre><code>##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot;
@@ -396,9 +396,9 @@ examp_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(letter
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Show structure of full data frame</span>
 <span class="kw">str</span>(examp_df)</code></pre>
 <pre><code>## 'data.frame':    27 obs. of  3 variables:
-##  $ letters: Factor w/ 26 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,..: NA 1 2 3 4 5 6 7 8 9 ...
-##  $ numbers: int  1 2 3 4 5 6 7 8 9 10 ...
-##  $ logical: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</code></pre>
+##  $ lettersNew: Factor w/ 26 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,..: NA 1 2 3 4 5 6 7 8 9 ...
+##  $ numbers   : int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ logical   : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Show number of rows and colums</span>
 <span class="kw">dim</span>(examp_df)</code></pre>
 <pre><code>## [1] 27  3</code></pre>
@@ -408,7 +408,7 @@ examp_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(letter
 <pre><code>## [1] 3</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Get summary info</span>
 <span class="kw">summary</span>(examp_df)</code></pre>
-<pre><code>##     letters      numbers       logical       
+<pre><code>##    lettersNew    numbers       logical       
 ##  a      : 1   Min.   : 1.00   Mode :logical  
 ##  b      : 1   1st Qu.: 7.25   FALSE:13       
 ##  c      : 1   Median :13.50   TRUE :13       
@@ -418,31 +418,31 @@ examp_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(letter
 ##  NA's   : 1   NA's   :1</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#remove NA</span>
 <span class="kw">na.omit</span>(examp_df)</code></pre>
-<pre><code>##    letters numbers logical
-## 2        a       2    TRUE
-## 3        b       3    TRUE
-## 4        c       4    TRUE
-## 5        d       5    TRUE
-## 6        e       6    TRUE
-## 7        f       7    TRUE
-## 8        g       8    TRUE
-## 9        h       9    TRUE
-## 10       i      10    TRUE
-## 11       j      11    TRUE
-## 12       k      12    TRUE
-## 13       l      13    TRUE
-## 15       n      15   FALSE
-## 16       o      16   FALSE
-## 17       p      17   FALSE
-## 18       q      18   FALSE
-## 19       r      19   FALSE
-## 20       s      20   FALSE
-## 21       t      21   FALSE
-## 22       u      22   FALSE
-## 23       v      23   FALSE
-## 24       w      24   FALSE
-## 25       x      25   FALSE
-## 26       y      26   FALSE</code></pre>
+<pre><code>##    lettersNew numbers logical
+## 2           a       2    TRUE
+## 3           b       3    TRUE
+## 4           c       4    TRUE
+## 5           d       5    TRUE
+## 6           e       6    TRUE
+## 7           f       7    TRUE
+## 8           g       8    TRUE
+## 9           h       9    TRUE
+## 10          i      10    TRUE
+## 11          j      11    TRUE
+## 12          k      12    TRUE
+## 13          l      13    TRUE
+## 15          n      15   FALSE
+## 16          o      16   FALSE
+## 17          p      17   FALSE
+## 18          q      18   FALSE
+## 19          r      19   FALSE
+## 20          s      20   FALSE
+## 21          t      21   FALSE
+## 22          u      22   FALSE
+## 23          v      23   FALSE
+## 24          w      24   FALSE
+## 25          x      25   FALSE
+## 26          y      26   FALSE</code></pre>
 </div>
 <div id="factors-and-lists" class="section level3">
 <h3>Factors and Lists</h3>
@@ -483,34 +483,34 @@ examp_list</code></pre>
 ##  [86]  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100
 ## 
 ## $df
-##    letters numbers logical
-## 1     &lt;NA&gt;       1    TRUE
-## 2        a       2    TRUE
-## 3        b       3    TRUE
-## 4        c       4    TRUE
-## 5        d       5    TRUE
-## 6        e       6    TRUE
-## 7        f       7    TRUE
-## 8        g       8    TRUE
-## 9        h       9    TRUE
-## 10       i      10    TRUE
-## 11       j      11    TRUE
-## 12       k      12    TRUE
-## 13       l      13    TRUE
-## 14       m      14      NA
-## 15       n      15   FALSE
-## 16       o      16   FALSE
-## 17       p      17   FALSE
-## 18       q      18   FALSE
-## 19       r      19   FALSE
-## 20       s      20   FALSE
-## 21       t      21   FALSE
-## 22       u      22   FALSE
-## 23       v      23   FALSE
-## 24       w      24   FALSE
-## 25       x      25   FALSE
-## 26       y      26   FALSE
-## 27       z      NA   FALSE</code></pre>
+##    lettersNew numbers logical
+## 1        &lt;NA&gt;       1    TRUE
+## 2           a       2    TRUE
+## 3           b       3    TRUE
+## 4           c       4    TRUE
+## 5           d       5    TRUE
+## 6           e       6    TRUE
+## 7           f       7    TRUE
+## 8           g       8    TRUE
+## 9           h       9    TRUE
+## 10          i      10    TRUE
+## 11          j      11    TRUE
+## 12          k      12    TRUE
+## 13          l      13    TRUE
+## 14          m      14      NA
+## 15          n      15   FALSE
+## 16          o      16   FALSE
+## 17          p      17   FALSE
+## 18          q      18   FALSE
+## 19          r      19   FALSE
+## 20          s      20   FALSE
+## 21          t      21   FALSE
+## 22          u      22   FALSE
+## 23          v      23   FALSE
+## 24          w      24   FALSE
+## 25          x      25   FALSE
+## 26          y      26   FALSE
+## 27          z      NA   FALSE</code></pre>
 <p>If you want to learn more about lists or any other data structure, <a href="http://adv-r.had.co.nz/Data-structures.html">Hadley Wickham’s Advanced R section on data structures</a> is good.</p>
 </div>
 </div>

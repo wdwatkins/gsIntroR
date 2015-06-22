@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">C. Clean</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
-<h4 class="date"><em>19 June, 2015</em></h4>
+<h4 class="date"><em>22 June, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -298,12 +298,12 @@ rbind_df2&lt;-<span class="kw">data.frame</span>(<span class="dt">a=</span><span
 rbind_df&lt;-<span class="kw">rbind</span>(rbind_df, rbind_df2)
 rbind_df</code></pre>
 <pre><code>##    a b     c          d
-## 1  1 a  TRUE  1.3620028
-## 2  2 b  TRUE  0.3912038
-## 3  3 c FALSE -1.1175198
-## 4 10 x FALSE  0.8896929
-## 5 11 y FALSE -1.4480202
-## 6 12 z FALSE  1.1800477</code></pre>
+## 1  1 a  TRUE  0.2321827
+## 2  2 b  TRUE  0.5973492
+## 3  3 c FALSE -1.6269466
+## 4 10 x FALSE  0.6763477
+## 5 11 y FALSE  0.5822401
+## 6 12 z FALSE -0.1248216</code></pre>
 <p>Now something to think about. Could you add a vector as a new row? Why/Why not? When/When not?</p>
 <p>Let’s go back to the columns now. There are simple ways to add columns of the same length with observations in the same order to a data frame, but it is very common to have to datasets that are in different orders and have differing numbers of rows. What we want to do in that case is going to be more of a database type function and join two tables based on a common column. A common way to do that in base R is with <code>merge()</code>. So let’s contrive another example by creating a dataset to merge to <code>rbind_df</code> that we created above.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Contrived data frame</span>
@@ -312,20 +312,20 @@ rbind_df_merge_me&lt;-<span class="kw">data.frame</span>(<span class="dt">a=</sp
 rbind_df_merge_match&lt;-<span class="kw">merge</span>(rbind_df,rbind_df_merge_me,<span class="dt">by=</span><span class="st">&quot;a&quot;</span>)
 rbind_df_merge_match</code></pre>
 <pre><code>##    a b     c          d          x names
-## 1  1 a  TRUE  1.3620028 -1.5060326   bob
-## 2  3 c FALSE -1.1175198  0.6088027   joe
-## 3 10 x FALSE  0.8896929 -0.2345828   sue
-## 4 11 y FALSE -1.4480202  1.0277660  &lt;NA&gt;</code></pre>
+## 1  1 a  TRUE  0.2321827  0.8523971   bob
+## 2  3 c FALSE -1.6269466 -0.3073394   joe
+## 3 10 x FALSE  0.6763477  1.1193140   sue
+## 4 11 y FALSE  0.5822401  1.0827067  &lt;NA&gt;</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create merge of matches and all of the first data frame</span>
 rbind_df_merge_allx&lt;-<span class="kw">merge</span>(rbind_df,rbind_df_merge_me,<span class="dt">by=</span><span class="st">&quot;a&quot;</span>,<span class="dt">all.x=</span><span class="ot">TRUE</span>)
 rbind_df_merge_allx</code></pre>
 <pre><code>##    a b     c          d          x names
-## 1  1 a  TRUE  1.3620028 -1.5060326   bob
-## 2  2 b  TRUE  0.3912038         NA  &lt;NA&gt;
-## 3  3 c FALSE -1.1175198  0.6088027   joe
-## 4 10 x FALSE  0.8896929 -0.2345828   sue
-## 5 11 y FALSE -1.4480202  1.0277660  &lt;NA&gt;
-## 6 12 z FALSE  1.1800477         NA  &lt;NA&gt;</code></pre>
+## 1  1 a  TRUE  0.2321827  0.8523971   bob
+## 2  2 b  TRUE  0.5973492         NA  &lt;NA&gt;
+## 3  3 c FALSE -1.6269466 -0.3073394   joe
+## 4 10 x FALSE  0.6763477  1.1193140   sue
+## 5 11 y FALSE  0.5822401  1.0827067  &lt;NA&gt;
+## 6 12 z FALSE -0.1248216         NA  &lt;NA&gt;</code></pre>
 </div>
 <div id="exercise-2" class="section level2">
 <h2>Exercise 2</h2>
@@ -417,12 +417,12 @@ temp_df&lt;-<span class="kw">data.frame</span>(<span class="dt">id=</span><span 
                     <span class="dt">week3=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">18</span>,<span class="dv">26</span>), <span class="dt">week4=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">17</span>,<span class="dv">23</span>))
 <span class="kw">head</span>(temp_df)</code></pre>
 <pre><code>##   id    week1    week2    week3    week4
-## 1  1 21.33964 20.25027 24.09076 21.38104
-## 2  2 22.93213 19.57034 25.11176 22.84823
-## 3  3 23.68253 21.98624 20.55427 20.50351
-## 4  4 22.29191 19.42932 24.42908 21.24634
-## 5  5 23.69200 21.11000 25.63947 18.17025
-## 6  6 22.10807 20.88655 24.67619 18.47524</code></pre>
+## 1  1 23.00094 22.77602 24.59140 18.85479
+## 2  2 20.20424 23.46223 22.98773 21.40228
+## 3  3 22.29309 21.62901 25.20755 17.18070
+## 4  4 24.87928 20.39426 24.27023 21.82346
+## 5  5 24.97828 22.82809 24.86071 22.27396
+## 6  6 20.26906 21.70747 23.81255 19.24308</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#To add row means to the dataset, without the ID</span>
 temp_df2&lt;-temp_df %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">rowwise</span>() %&gt;%<span class="st"> </span>
@@ -431,12 +431,12 @@ temp_df2&lt;-temp_df %&gt;%<span class="st"> </span>
 <pre><code>## Source: local data frame [6 x 6]
 ## 
 ##   id    week1    week2    week3    week4 site_mean
-## 1  1 21.33964 20.25027 24.09076 21.38104  21.76543
-## 2  2 22.93213 19.57034 25.11176 22.84823  22.61561
-## 3  3 23.68253 21.98624 20.55427 20.50351  21.68164
-## 4  4 22.29191 19.42932 24.42908 21.24634  21.84916
-## 5  5 23.69200 21.11000 25.63947 18.17025  22.15293
-## 6  6 22.10807 20.88655 24.67619 18.47524  21.53651</code></pre>
+## 1  1 23.00094 22.77602 24.59140 18.85479  22.30579
+## 2  2 20.20424 23.46223 22.98773 21.40228  22.01412
+## 3  3 22.29309 21.62901 25.20755 17.18070  21.57759
+## 4  4 24.87928 20.39426 24.27023 21.82346  22.84181
+## 5  5 24.97828 22.82809 24.86071 22.27396  23.73526
+## 6  6 20.26906 21.70747 23.81255 19.24308  21.25804</code></pre>
 <p>We now have quite a few tools that we can use to clean and manipulate data in R. We have barely touched what both base R and <code>dplyr</code> are capable of accomplishing, but hopefully you now have some basics to build on.</p>
 <p>Let’s practice some of these last functions with our Gages data.</p>
 </div>
