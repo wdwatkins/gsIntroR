@@ -1,6 +1,28 @@
 ## ----setup, echo=FALSE, warning=FALSE------------------------------------
 options(repos="http://cran.rstudio.com/")
 
+library(knitr)
+
+pageNumber <- 3
+
+titles <- c("Workshop Outline","A. Introduction", 
+            "B. Get", "C. Clean", "D. Explore",
+             "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
+             "H. Repeat and Reproduce", "I. Parting Thoughts")
+
+pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
+
+directions <- c(directions[1],"-----------------------------------------",directions[2])
+kable(t(directions))
+
 ## ----operators_consoloe--------------------------------------------------
 #A really powerful calculator!
 1+1 #Add
@@ -182,7 +204,7 @@ summary(web_df)
 ## ----dataRetrievalExample, eval=FALSE------------------------------------
 #  library(dataRetrieval)
 #  # Gather NWIS data:
-#  siteListPhos <- readNWISdata(stateCd="NM",parameterCd="00665",
+#  siteListPhos <- readNWISdata(stateCd="FL",parameterCd="00665",
 #                                siteOutput="expanded",
 #                               drainAreaMin=400,siteType="ST",
 #                               service="site")
@@ -194,4 +216,8 @@ summary(web_df)
 #  
 
 ## ----Exercise2, echo=FALSE-----------------------------------------------
+
+## ----echo=FALSE----------------------------------------------------------
+kable(t(directions))
+
 

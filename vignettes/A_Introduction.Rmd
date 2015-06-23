@@ -15,10 +15,31 @@ vignette: >
 
 ```{r setup, echo=FALSE, warning=FALSE}
 options(repos="http://cran.rstudio.com/")
+library(knitr)
+
+pageNumber <- 2
+
+titles <- c("Workshop Outline","A. Introduction", 
+            "B. Get", "C. Clean", "D. Explore",
+             "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
+             "H. Repeat and Reproduce", "I. Parting Thoughts")
+
+pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
+directions <- c(directions[1],"-----------------------------------------",directions[2])
+kable(t(directions))
+
 ```
 
-- [Previous lesson](1_Before-The-Workshop.html): Before the workshop.
-- [Next lesson](B_Get.html): Get the data.
+
+- [Workshop Outline](0_Outline.html)
 
 Over the course of the next 2.5 days we are going to walk through a typical data analysis workflow in R. But, with this first lesson we are going to focus on making sure everything is working and getting some basic orientation in R.  The real fun will start in the lessons to come.  
 
@@ -207,5 +228,7 @@ For this second exercise we are going to get used to using some basic functions,
 
 
 
-- [Previous lesson](1_Before-The-Workshop.html): Before the workshop.
-- [Next lesson](B_Get.html): Get the data.
+```{r echo=FALSE}
+kable(t(directions))
+
+```

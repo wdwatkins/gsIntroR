@@ -25,10 +25,30 @@ if(!require("XML")){
 }
 library("XML")
 
+library(knitr)
+
+pageNumber <- 7
+
+titles <- c("Workshop Outline","A. Introduction", 
+            "B. Get", "C. Clean", "D. Explore",
+             "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
+             "H. Repeat and Reproduce", "I. Parting Thoughts")
+
+pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
+directions <- c(directions[1],"-----------------------------------------",directions[2])
+kable(t(directions))
 ```
 
-- [Previous lesson](E_Analyze.html): Analyze the data in base R.
-- [Next lesson](G_Visualize.html): Visualize the data.
+
+- [Workshop Outline](0_Outline.html)
 
 The second section will run through a fairly quick example of using a package, `EGRET` for some analysis. We'll be moving away from the GAGES-II sites in NM to focus on some other sites of interest. I've included this section just to show how (relatively) trivial it is to add an advanced capability to R via packages.
 
@@ -156,6 +176,9 @@ Second, it is becoming increasingly common to see journal articles about package
 
 Third, the last resort is of course [Google](http://www.google.com)!  
 
-- [Previous lesson](E_Analyze.html): Analyze the data in base R.
-- [Next lesson](G_Visualize.html): Visualize the data.
+
+```{r echo=FALSE}
+kable(t(directions))
+```
+
 

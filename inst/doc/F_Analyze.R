@@ -48,3 +48,6 @@ multiPlotDataOverview(eList, qUnit=1)
 ## ----vignette_examp,eval=FALSE-------------------------------------------
 #  vignette(package="knitr")
 
+## ----echo=FALSE----------------------------------------------------------
+kable(t(directions))
+

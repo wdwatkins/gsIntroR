@@ -139,3 +139,6 @@ sum_vec<-function(vec){
 #    return()
 #  }
 
+## ----echo=FALSE----------------------------------------------------------
+kable(t(directions))
+

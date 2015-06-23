@@ -24,10 +24,31 @@ if(!require("dplyr")){
 
 library("ggplot2")
 library("dplyr")
+
+library(knitr)
+
+pageNumber <- 4
+
+titles <- c("Workshop Outline","A. Introduction", 
+            "B. Get", "C. Clean", "D. Explore",
+             "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
+             "H. Repeat and Reproduce", "I. Parting Thoughts")
+
+pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]
+directions <- c(directions[1],"-----------------------------------------",directions[2])
+kable(t(directions))
 ```
 
-- [Previous lesson](B_Get.html): Get the data.
-- [Next lesson](D_Explore.html): Explore the data.
+
+- [Workshop Outline](0_Outline.html)
 
 In this third lesson we are going to start working on maninpulating and cleaning up our data frames.  We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in R.  We will show the basics of subsetting, merging, modifying, and sumarizing data and our examples will all use Hadley Wickham and Romain Francois' `dplyr` package.  There are many ways to do this type of work in R, many of which are available from base R, but I heard from many (AED colleagues and Hadley himself!) focusing on one way to do this is best, so `dplyr` it is!
 
@@ -289,5 +310,9 @@ Next, we're going to pull in and merge additional water data from NWIS for NM GA
 
 4) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have with a data frame that includes all rows and columns GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
 
-- [Previous lesson](B_Get.html): Get the data.
-- [Next lesson](D_Explore.html): Explore the data.
+
+```{r echo=FALSE}
+kable(t(directions))
+
+```
+
