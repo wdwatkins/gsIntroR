@@ -24,6 +24,27 @@ if(!require("dplyr")){
 
 library("ggplot2")
 library("dplyr")
+
+library(knitr)
+
+pageNumber <- 4
+
+titles <- c("00 Before the Workshop","01 Introduction", 
+            "02 Get", "03 Clean", "04 Explore",
+             "05 Analyze Base", "06 Analyze Packages", "07 Visualize",
+             "08 Repeat and Reproduce", "09 Parting Thoughts")
+
+pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]
+directions <- c(directions[1],"-----------------------",directions[2])
+kable(t(directions))
 ```
 
 - [Previous lesson](B_Get.html): Get the data.
@@ -289,5 +310,9 @@ Next, we're going to pull in and merge additional water data from NWIS for NM GA
 
 4) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have with a data frame that includes all rows and columns GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
 
-- [Previous lesson](B_Get.html): Get the data.
-- [Next lesson](D_Explore.html): Explore the data.
+
+```{r echo=FALSE}
+kable(t(directions))
+
+```
+

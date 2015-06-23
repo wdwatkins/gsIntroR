@@ -12,6 +12,31 @@ vignette: >
   %\VignetteIndexEntry{I. Parting Thoughts}
   \usepackage[utf8]{inputenc}
 ---
+
+```{r echo=FALSE}
+
+library(knitr)
+
+pageNumber <- 8
+
+titles <- c("00 Before the Workshop","01 Introduction", 
+            "02 Get", "03 Clean", "04 Explore",
+             "05 Analyze Base", "06 Analyze Packages", "07 Visualize",
+             "08 Repeat and Reproduce", "09 Parting Thoughts")
+
+pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
+directions <- c(directions[1],"-----------------------")
+kable(t(directions))
+```
+
 - [Previous lesson](H_Repeat-Reproduce.html): Repeat and Reproduce.
 
 Having now presented these materials to multiple groups of eager USEPA students, I wanted to add one last post to the site with some parting thoughts.  But before I do that, I wanted to, as promised, put up my code for each of the exercises.  There are many ways to successfully complete the exercises so your code will very likely be different than what I have presented here.  That being said the answers should not be different (except randomForest).
@@ -58,4 +83,7 @@ The United States Environmental Protection Agency (EPA) GitHub project code is p
 
 By submitting a pull request, you make an agreement with EPA that you will not submit a claim of compensation for services rendered to EPA or any other federal agency.  Further, you agree not to charge the time you spend developing software code related to this project to any federal grant or cooperative agreement.
 
-- [Previous lesson](H_Repeat-Reproduce.html): Repeat and Reproduce.
+
+```{r echo=FALSE}
+kable(t(directions))
+```

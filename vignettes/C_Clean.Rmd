@@ -26,6 +26,9 @@ library("ggplot2")
 library("dplyr")
 
 library(knitr)
+
+pageNumber <- 4
+
 titles <- c("00 Before the Workshop","01 Introduction", 
             "02 Get", "03 Clean", "04 Explore",
              "05 Analyze Base", "06 Analyze Packages", "07 Visualize",
@@ -39,9 +42,7 @@ markdownToPrint <- paste0("[",titles,"](",pages,")")
 
 dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
 
-directions <- dfPages$markdownToPrint[c(3,5)]
-# directions[1] <- paste("<-",directions[1]) 
-# directions[2] <- paste(directions[2],"->")   
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]
 directions <- c(directions[1],"-----------------------",directions[2])
 kable(t(directions))
 ```

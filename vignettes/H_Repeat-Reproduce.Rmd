@@ -18,6 +18,27 @@ if(!require("ggplot2")){
   install.packages("ggplot2")
 }
 library("ggplot2")
+
+library(knitr)
+
+pageNumber <- 8
+
+titles <- c("00 Before the Workshop","01 Introduction", 
+            "02 Get", "03 Clean", "04 Explore",
+             "05 Analyze Base", "06 Analyze Packages", "07 Visualize",
+             "08 Repeat and Reproduce", "09 Parting Thoughts")
+
+pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
+directions <- c(directions[1],"-----------------------",directions[2])
+kable(t(directions))
 ```
 
 - [Previous lesson](G_Visualize.html): Visualize the data.
@@ -415,5 +436,9 @@ Repeat the steps from above, but this time instead of selecting "Document", sele
 
 I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes.  I have done that, but using a different method for creating slides by using the `slidify` package.  An example of that presentation is in a talk I gave on [Social Media and Blogging](http://jwhollister.com/epablogpresent).  It does take a bit more work to set this up.  I am also not familar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.
 
-- [Previous lesson](G_Visualize.html): Visualize the data.
-- [Next lesson](I_Parting-Thoughts-and-Extra-Materials.html): Parting thoughts.
+
+```{r echo=FALSE}
+kable(t(directions))
+```
+
+

@@ -134,3 +134,6 @@ tp_chla +
   stat_smooth() +
   facet_grid(RT_NLA ~ LAKE_ORIGIN)
 
+## ----echo=FALSE----------------------------------------------------------
+kable(t(directions))
+

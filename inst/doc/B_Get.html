@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">B. Get</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
-<h4 class="date"><em>22 June, 2015</em></h4>
+<h4 class="date"><em>23 June, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -80,10 +80,15 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 </div>
 
-<ul>
-<li><a href="A_Introduction.html">Previous lesson</a>: Introduction.</li>
-<li><a href="C_Clean.html">Next lesson</a>: Clean the data.</li>
-</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="A_Introduction.html">01 Introduction</a></td>
+<td align="left">———————–</td>
+<td align="left"><a href="C_Clean.html">03 Clean</a></td>
+</tr>
+</tbody>
+</table>
 <p>The second lesson is going to start to lay the foundation for working with data in R. We will cover some of the very basics of R first, then move on to how you get data into R and how you work with some of the basic data structures. Lastly, we will cover some ways to find relevant data and pull it directly into R.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
 <h2>Quick Links to Exercises and R code</h2>
@@ -570,7 +575,7 @@ first_sheet</code></pre>
 <p>The USGS has created an R package to directly link NWIS with R. It is called <code>dataRetrieval</code>. With it, you can quickly and easily get NWIS data into R. Go ahead and experiment with it.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dataRetrieval)
 <span class="co"># Gather NWIS data:</span>
-siteListPhos &lt;-<span class="st"> </span><span class="kw">readNWISdata</span>(<span class="dt">stateCd=</span><span class="st">&quot;NM&quot;</span>,<span class="dt">parameterCd=</span><span class="st">&quot;00665&quot;</span>, 
+siteListPhos &lt;-<span class="st"> </span><span class="kw">readNWISdata</span>(<span class="dt">stateCd=</span><span class="st">&quot;FL&quot;</span>,<span class="dt">parameterCd=</span><span class="st">&quot;00665&quot;</span>, 
                               <span class="dt">siteOutput=</span><span class="st">&quot;expanded&quot;</span>, 
                              <span class="dt">drainAreaMin=</span><span class="dv">400</span>,<span class="dt">siteType=</span><span class="st">&quot;ST&quot;</span>,
                              <span class="dt">service=</span><span class="st">&quot;site&quot;</span>) 
@@ -593,10 +598,15 @@ phosData &lt;-<span class="st"> </span><span class="kw">readNWISqw</span>(siteLi
 <li>Run the script and make sure it doesn’t throw any errors and you do in fact get the two data frames.</li>
 <li>If you still have some time, explore the data frames using some of the commands we covered. This part does not need to be included in the script.</li>
 </ol>
-<ul>
-<li><a href="A_Introduction.html">Previous lesson</a>: Introduction.</li>
-<li><a href="C_Clean.html">Next lesson</a>: Clean the data.</li>
-</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="A_Introduction.html">01 Introduction</a></td>
+<td align="left">———————–</td>
+<td align="left"><a href="C_Clean.html">03 Clean</a></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

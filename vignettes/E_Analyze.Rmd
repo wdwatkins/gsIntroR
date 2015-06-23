@@ -19,8 +19,29 @@ if(!require("dplyr")){
   install.packages("dplyr")
 }
 
-
 library("dplyr")
+
+library(knitr)
+
+pageNumber <- 6
+
+titles <- c("00 Before the Workshop","01 Introduction", 
+            "02 Get", "03 Clean", "04 Explore",
+             "05 Analyze Base", "06 Analyze Packages", "07 Visualize",
+             "08 Repeat and Reproduce", "09 Parting Thoughts")
+
+pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+             "E_Analyze", "F_Analyze", "G_Visualize",
+             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
+             ".html")
+markdownToPrint <- paste0("[",titles,"](",pages,")")
+
+dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
+
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
+directions <- c(directions[1],"-----------------------",directions[2])
+kable(t(directions))
+
 ```
 
 - [Previous lesson](D_Explore.html): Explore the data.
@@ -105,5 +126,7 @@ For this exercise, let's start to look at some of the statistical tests and rela
 2. Next, lets build some linear models that build a linear model to be used to predict phosphorus concentrations across all GAGES-II sites in NM. Chose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen. 
 
 
-- [Previous lesson](D_Explore.html): Explore the data.
-- [Next lesson](F_Analyze.html): Analyze the data with other packages.
+
+```{r echo=FALSE}
+kable(t(directions))
+```

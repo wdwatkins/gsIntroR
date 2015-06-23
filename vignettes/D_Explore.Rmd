@@ -13,6 +13,8 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 ```{r echo=FALSE}
+pageNumber <- 5
+
 library(knitr)
 titles <- c("00 Before the Workshop","01 Introduction", 
             "02 Get", "03 Clean", "04 Explore",
@@ -27,9 +29,7 @@ markdownToPrint <- paste0("[",titles,"](",pages,")")
 
 dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
 
-directions <- dfPages$markdownToPrint[c(4,6)]
-# directions[1] <- paste("<-",directions[1]) 
-# directions[2] <- paste(directions[2],"->")   
+directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]
 directions <- c(directions[1],"-----------------------",directions[2])
 kable(t(directions))
 ```
