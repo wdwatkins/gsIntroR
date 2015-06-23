@@ -83,15 +83,14 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <table>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="1_Before-The-Workshop.html">00 Before the Workshop</a></td>
-<td align="left">———————–</td>
+<td align="left"><a href="0_Outline.html">Workshop Outline</a></td>
+<td align="left">—————————————–</td>
 <td align="left"><a href="B_Get.html">B. Get</a></td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><a href="1_Before-The-Workshop.html">Previous lesson</a>: Before the workshop.</li>
-<li><a href="B_Get.html">Next lesson</a>: Get the data.</li>
+<li><a href="0_Outline.html">Workshop Outline</a></li>
 </ul>
 <p>Over the course of the next 2.5 days we are going to walk through a typical data analysis workflow in R. But, with this first lesson we are going to focus on making sure everything is working and getting some basic orientation in R. The real fun will start in the lessons to come.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
@@ -153,27 +152,27 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Random normal numbers</span>
 <span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">2</span>)</code></pre>
-<pre><code>##   [1] 12.931431  4.312184 10.541124  9.034112  7.785580 12.121752  7.781654
-##   [8] 11.683306  8.652269  9.443702  7.661265  8.321316  9.920982  9.167935
-##  [15] 11.193649 10.488351  9.064701  8.526068 11.630594 12.125639 10.001303
-##  [22]  7.993150 14.803554  9.566683  7.959858 11.047617  6.585591 11.806802
-##  [29]  9.048693  9.474596  8.623726 11.058772 11.994020  9.309018  8.726546
-##  [36] 11.446138  8.996739 11.694659 12.340865  9.811334 11.035974  9.980792
-##  [43]  8.259451  8.843583  7.103317  9.484659  8.205919  8.224132 12.022845
-##  [50] 12.865554  7.657360 12.299782 10.261371  9.006837 10.539038  8.442207
-##  [57] 12.728125  7.946207  9.250760 11.742186 14.563387  9.981949 10.151330
-##  [64]  9.532460  8.399000  9.842053  8.377329  9.610209  6.360879 10.428642
-##  [71]  6.886777  9.471246  6.600560 11.607331  7.537207 10.422638 14.835637
-##  [78] 11.547703 11.057345  8.344893  8.143767 11.548137  9.729335  7.913154
-##  [85]  7.544282 13.340537 11.172846 13.311761 10.639301  8.790169  9.811424
-##  [92]  9.257964 12.662955 14.183308  7.616015  7.995658 10.921175 11.304449
-##  [99]  9.890507 12.557537</code></pre>
+<pre><code>##   [1] 11.182417  6.419480 10.552331  8.758787 12.446081 12.740914 12.542142
+##   [8] 11.928686 15.160735 10.903337  8.286635  6.512065 11.306942  6.506171
+##  [15]  7.612471 10.209536 11.839311 11.277421  7.041729  9.991900  8.679233
+##  [22]  9.534519  9.618798 12.400361  8.890762 11.663873 11.907804 12.553124
+##  [29] 10.436252 12.325299 10.867561 10.572553 10.449090 11.887672  5.864816
+##  [36] 14.922245 11.605204 10.678538  9.339772  9.480524  6.518226 11.492935
+##  [43]  9.238400  8.712513  3.767910  9.810650  9.164844  8.712001 11.374864
+##  [50] 10.605335  9.480284  7.488564 11.390195 10.015555  8.791868  9.231542
+##  [57] 11.839078 13.245248 10.115654 12.265699  8.036626 12.803225 10.588474
+##  [64]  9.750143  8.617236 10.383504 15.577140 11.896727  8.484172 11.155631
+##  [71]  6.112789  9.406737  9.154321 11.443752 10.374038 12.782931 10.629398
+##  [78]  7.859530 11.434095 12.156714 10.130348  8.453045 11.580472 11.348207
+##  [85]  9.556251 12.403588  9.996852  8.523873  8.141864 11.311721 11.480648
+##  [92]  7.408106 10.983993  9.213289  9.046244 12.138953  9.942383 14.216521
+##  [99] 14.040204  8.730403</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Mean</span>
 <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] -0.02683667</code></pre>
+<pre><code>## [1] -0.09206391</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Sum</span>
 <span class="kw">sum</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] -7.901008</code></pre>
+<pre><code>## [1] -16.14921</code></pre>
 <p>A few side notes. The <code>#</code> indicates a comment. You can put whatever else you’d like after this, but on the same line as the <code>#</code>. R will not evaluate it. When commenting your code, err on the side of too much! Also, you will see <code>()</code>, <code>[]</code>, and <code>{}</code> used in R code. The <code>()</code> indicates a function (almost always), the <code>[]</code> indicates indexing (grabbing values by the location), and the <code>{}</code> groups code that is meant to be run together and is usually used when programming functions in R.</p>
 </div>
 <div id="using-packages" class="section level2">
@@ -289,8 +288,8 @@ dataRetrieval::readNWISuv</code></pre>
 <table>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="1_Before-The-Workshop.html">00 Before the Workshop</a></td>
-<td align="left">———————–</td>
+<td align="left"><a href="0_Outline.html">Workshop Outline</a></td>
+<td align="left">—————————————–</td>
 <td align="left"><a href="B_Get.html">B. Get</a></td>
 </tr>
 </tbody>

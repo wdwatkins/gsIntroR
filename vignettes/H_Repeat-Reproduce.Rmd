@@ -23,12 +23,12 @@ library(knitr)
 
 pageNumber <- 9
 
-titles <- c("00 Before the Workshop","A. Introduction", 
+titles <- c("Workshop Outline","A. Introduction", 
             "B. Get", "C. Clean", "D. Explore",
              "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
              "H. Repeat and Reproduce", "I. Parting Thoughts")
 
-pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",
              "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
              ".html")
@@ -37,13 +37,12 @@ markdownToPrint <- paste0("[",titles,"](",pages,")")
 dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
 
 directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
-directions <- c(directions[1],"-----------------------",directions[2])
+directions <- c(directions[1],"-----------------------------------------",directions[2])
 kable(t(directions))
 ```
 
-- [Previous lesson](G_Visualize.html): Visualize the data.
-- [Next lesson](I_Parting-Thoughts-and-Extra-Materials.html): Parting thoughts.
 
+- [Workshop Outline](0_Outline.html)
 
 In theory, you now have a basic understanding of how to conduct a typical data analysis workflow in R.  All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. To do this effectively we need to understand how to create reusable R code and create reproducible reports.  This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.
 

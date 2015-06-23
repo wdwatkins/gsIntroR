@@ -25,12 +25,12 @@ library(knitr)
 
 pageNumber <- 6
 
-titles <- c("00 Before the Workshop","A. Introduction", 
+titles <- c("Workshop Outline","A. Introduction", 
             "B. Get", "C. Clean", "D. Explore",
              "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
              "H. Repeat and Reproduce", "I. Parting Thoughts")
 
-pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",
              "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
              ".html")
@@ -39,13 +39,13 @@ markdownToPrint <- paste0("[",titles,"](",pages,")")
 dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
 
 directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
-directions <- c(directions[1],"-----------------------",directions[2])
+directions <- c(directions[1],"-----------------------------------------",directions[2])
 kable(t(directions))
 
 ```
 
-- [Previous lesson](D_Explore.html): Explore the data.
-- [Next lesson](F_Analyze.html): Analyze the data with other packages.
+
+- [Workshop Outline](0_Outline.html)
 
 The focus of this workshop hasn't really been statistics, its been more about R, the language.  But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place.  So, we will spend a little bit of time on it.  In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.  
 

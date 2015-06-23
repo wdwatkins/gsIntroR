@@ -73,14 +73,13 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <tbody>
 <tr class="odd">
 <td align="left"><a href="D_Explore.html">D. Explore</a></td>
-<td align="left">———————–</td>
+<td align="left">—————————————–</td>
 <td align="left"><a href="F_Analyze.html">F. Analyze Packages</a></td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><a href="D_Explore.html">Previous lesson</a>: Explore the data.</li>
-<li><a href="F_Analyze.html">Next lesson</a>: Analyze the data with other packages.</li>
+<li><a href="0_Outline.html">Workshop Outline</a></li>
 </ul>
 <p>The focus of this workshop hasn’t really been statistics, its been more about R, the language. But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place. So, we will spend a little bit of time on it. In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
@@ -111,13 +110,13 @@ xy_tt</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = -6.0477, df = 39.944, p-value = 4.071e-07
+## t = -6.1437, df = 33.363, p-value = 6.051e-07
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -8.245810 -4.114841
+##  -9.161229 -4.604532
 ## sample estimates:
 ## mean of x mean of y 
-##  2.446753  8.627078</code></pre>
+##  2.321943  9.204824</code></pre>
 <p><code>t.test()</code> can also take a formula specification as input. I mentioned this briefly in the previous lesson. At it’s simplest a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign. For a t-test that is all we need to know.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lets pick another dataset, ToothGrowth.</span>
 <span class="co">#Looking at diff in tooth length by groups specified in supp</span>
@@ -253,7 +252,7 @@ lm_aq2&lt;-<span class="kw">lm</span>(Ozone~Temp+Wind+Solar.R,<span class="dt">d
 <tbody>
 <tr class="odd">
 <td align="left"><a href="D_Explore.html">D. Explore</a></td>
-<td align="left">———————–</td>
+<td align="left">—————————————–</td>
 <td align="left"><a href="F_Analyze.html">F. Analyze Packages</a></td>
 </tr>
 </tbody>

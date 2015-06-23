@@ -32,12 +32,12 @@ library(knitr)
 
 pageNumber <- 8
 
-titles <- c("00 Before the Workshop","A. Introduction", 
+titles <- c("Workshop Outline","A. Introduction", 
             "B. Get", "C. Clean", "D. Explore",
              "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
              "H. Repeat and Reproduce", "I. Parting Thoughts")
 
-pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",
              "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
              ".html")
@@ -46,14 +46,13 @@ markdownToPrint <- paste0("[",titles,"](",pages,")")
 dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
 
 directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
-directions <- c(directions[1],"-----------------------",directions[2])
+directions <- c(directions[1],"-----------------------------------------",directions[2])
 kable(t(directions))
 
 ```
 
-- [Previous lesson](F_Analyze.html): Analyze the data with other packages.
-- [Next lesson](H_Repeat-Reproduce.html): Repeat and Reproduce.
 
+- [Workshop Outline](0_Outline.html)
 
 One of the frequently touted strong points of R is data visualization.  We saw some of that with our use of base graphics, but those plots were, frankly, a bit pedestrian.  More and more though, users are moving away from base graphics and using the`ggplot2` package.  I would even go as far to say that it is almost become the default plotting mechanism in R.  This whole lesson we will focus on creating, modifying, and saving plots with `ggplot2`. And full disclosure here, I am relatively new to `ggplot2` and have been using it to create plots for about a year, thus I likely don't have all the answers!  I will fake it as best I can.
 
