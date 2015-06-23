@@ -110,13 +110,13 @@ xy_tt</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = -10.793, df = 44.201, p-value = 5.69e-14
+## t = -7.5612, df = 41.905, p-value = 2.347e-09
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -10.033429  -6.876197
+##  -9.261132 -5.358803
 ## sample estimates:
 ## mean of x mean of y 
-##  2.474348 10.929161</code></pre>
+##   2.92964  10.23961</code></pre>
 <p><code>t.test()</code> can also take a formula specification as input. I mentioned this briefly in the previous lesson. At it’s simplest a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign. For a t-test that is all we need to know.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lets pick another dataset, ToothGrowth.</span>
 <span class="co">#Looking at diff in tooth length by groups specified in supp</span>

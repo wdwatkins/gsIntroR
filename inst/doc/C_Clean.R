@@ -121,13 +121,19 @@ rbind_df
 
 ## ----merge_example-------------------------------------------------------
 # Contrived data frame
-rbind_df_merge_me<-data.frame(a=c(1,3,10,11,14,6,23),x=rnorm(7),names=c("bob","joe","sue",NA,NA,"jeff",NA))
+rbind_df_merge_me <- data.frame(a=c(1,3,10,11,14,6,23),x=rnorm(7),names=c("bob","joe","sue",NA,NA,"jeff",NA))
 # Create merge of matches
 rbind_df_merge_match<-merge(rbind_df,rbind_df_merge_me,by="a")
 rbind_df_merge_match
 # Create merge of matches and all of the first data frame
-rbind_df_merge_allx<-merge(rbind_df,rbind_df_merge_me,by="a",all.x=TRUE)
+rbind_df_merge_allx <- merge(rbind_df,rbind_df_merge_me,by="a",all.x=TRUE)
 rbind_df_merge_allx
+
+#dplyr is faster:
+
+rbind_df_merge_allx_dplyr <- left_join(rbind_df,rbind_df_merge_me,by="a")
+all.equal(rbind_df_merge_allx_dplyr, rbind_df_merge_allx)
+
 
 ## ----Exercise2, echo=FALSE-----------------------------------------------
 

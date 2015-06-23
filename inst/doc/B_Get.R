@@ -179,11 +179,15 @@ yn <- factor(c("yes", "no", "no", "yes", "yes"))
 yn
 
 #An ordered factor
-lmh <- factor (c("high","high","low","medium","low","medium","high"),levels=c("low","medium","high"),ordered=TRUE )
+lmh <- factor (c("high","high","low","medium","low","medium","high"),
+               levels=c("low","medium","high"),ordered=TRUE )
 lmh
 
 ## ----list_examples-------------------------------------------------------
-examp_list<-list(letters=c("x","y","z"),animals=c("cat","dog","bird","fish"),numbers=1:100,df=examp_df)
+examp_list<-list(letters=c("x","y","z"),
+                 animals=c("cat","dog","bird","fish"),
+                 numbers=1:100,
+                 df=examp_df)
 examp_list
 
 ## ----read_csv_examp------------------------------------------------------

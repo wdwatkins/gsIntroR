@@ -212,6 +212,7 @@ As I mention earlier, there are TOO many resources to mention and everyone has t
 - [Other Resources](http://scicomp2014.edc.uri.edu/resources.html): A list I helped compile for a URI Class.
 - [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
 - [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.
+- [R-bloggers](http://www.r-bloggers.com/): Central hub of content collected from bloggers who write about R. 
 
 ```{r Exercise2, echo=FALSE}
 ```
