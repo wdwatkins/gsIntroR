@@ -30,12 +30,12 @@ library("dplyr")
 
 library(knitr)
 
-pageNumber <- 7
+pageNumber <- 8
 
-titles <- c("00 Before the Workshop","01 Introduction", 
-            "02 Get", "03 Clean", "04 Explore",
-             "05 Analyze Base", "06 Analyze Packages", "07 Visualize",
-             "08 Repeat and Reproduce", "09 Parting Thoughts")
+titles <- c("00 Before the Workshop","A. Introduction", 
+            "B. Get", "C. Clean", "D. Explore",
+             "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
+             "H. Repeat and Reproduce", "I. Parting Thoughts")
 
 pages <- paste0(c("1_Before-The-Workshop","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",

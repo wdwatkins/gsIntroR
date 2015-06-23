@@ -85,7 +85,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <tr class="odd">
 <td align="left"><a href="1_Before-The-Workshop.html">00 Before the Workshop</a></td>
 <td align="left">———————–</td>
-<td align="left"><a href="B_Get.html">02 Get</a></td>
+<td align="left"><a href="B_Get.html">B. Get</a></td>
 </tr>
 </tbody>
 </table>
@@ -153,27 +153,27 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Random normal numbers</span>
 <span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">2</span>)</code></pre>
-<pre><code>##   [1]  8.271643 10.345505 10.930981 10.678163  8.389119  9.197642 11.182780
-##   [8]  8.688691 13.012037  9.768676  9.322241 11.836263 14.061250 11.399505
-##  [15] 11.253368  8.384306 11.625736  7.508870 10.647372 10.003784  8.598410
-##  [22]  7.991970  6.613027  5.864311  7.028743 10.411455  9.257755 11.623229
-##  [29]  9.821088  5.093128  9.754477 11.627749 11.382460  7.641839  8.693883
-##  [36] 11.140224  9.888040  9.868108  8.817048 12.038839  7.187269 11.737752
-##  [43]  9.746536  9.618780  8.172531  8.591383 11.038125  5.441638  8.544354
-##  [50] 11.172074  9.795303 10.585769  9.848779  9.202574  6.349473  6.640306
-##  [57] 10.225121  9.325663  8.720023 11.647975 12.016305 11.373923  8.890862
-##  [64]  9.466265  9.034897  8.550808 11.404195 11.826037 10.688246 10.466246
-##  [71] 11.939250  8.191795  7.741571  7.914087  8.988408 10.555485 11.081704
-##  [78] 14.790707 11.714743 10.793111 10.619166  7.007347  8.699050  7.794212
-##  [85]  8.721655 10.108505  9.538497  7.641176  7.180517  7.680741 11.179291
-##  [92]  7.021497  9.038770 10.985398  9.469242  8.726620  8.375247  8.440135
-##  [99]  7.752154  9.502357</code></pre>
+<pre><code>##   [1] 12.931431  4.312184 10.541124  9.034112  7.785580 12.121752  7.781654
+##   [8] 11.683306  8.652269  9.443702  7.661265  8.321316  9.920982  9.167935
+##  [15] 11.193649 10.488351  9.064701  8.526068 11.630594 12.125639 10.001303
+##  [22]  7.993150 14.803554  9.566683  7.959858 11.047617  6.585591 11.806802
+##  [29]  9.048693  9.474596  8.623726 11.058772 11.994020  9.309018  8.726546
+##  [36] 11.446138  8.996739 11.694659 12.340865  9.811334 11.035974  9.980792
+##  [43]  8.259451  8.843583  7.103317  9.484659  8.205919  8.224132 12.022845
+##  [50] 12.865554  7.657360 12.299782 10.261371  9.006837 10.539038  8.442207
+##  [57] 12.728125  7.946207  9.250760 11.742186 14.563387  9.981949 10.151330
+##  [64]  9.532460  8.399000  9.842053  8.377329  9.610209  6.360879 10.428642
+##  [71]  6.886777  9.471246  6.600560 11.607331  7.537207 10.422638 14.835637
+##  [78] 11.547703 11.057345  8.344893  8.143767 11.548137  9.729335  7.913154
+##  [85]  7.544282 13.340537 11.172846 13.311761 10.639301  8.790169  9.811424
+##  [92]  9.257964 12.662955 14.183308  7.616015  7.995658 10.921175 11.304449
+##  [99]  9.890507 12.557537</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Mean</span>
 <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] 0.09340905</code></pre>
+<pre><code>## [1] -0.02683667</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Sum</span>
 <span class="kw">sum</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] 9.089978</code></pre>
+<pre><code>## [1] -7.901008</code></pre>
 <p>A few side notes. The <code>#</code> indicates a comment. You can put whatever else you’d like after this, but on the same line as the <code>#</code>. R will not evaluate it. When commenting your code, err on the side of too much! Also, you will see <code>()</code>, <code>[]</code>, and <code>{}</code> used in R code. The <code>()</code> indicates a function (almost always), the <code>[]</code> indicates indexing (grabbing values by the location), and the <code>{}</code> groups code that is meant to be run together and is usually used when programming functions in R.</p>
 </div>
 <div id="using-packages" class="section level2">
@@ -291,7 +291,7 @@ dataRetrieval::readNWISuv</code></pre>
 <tr class="odd">
 <td align="left"><a href="1_Before-The-Workshop.html">00 Before the Workshop</a></td>
 <td align="left">———————–</td>
-<td align="left"><a href="B_Get.html">02 Get</a></td>
+<td align="left"><a href="B_Get.html">B. Get</a></td>
 </tr>
 </tbody>
 </table>
