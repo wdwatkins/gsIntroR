@@ -12,8 +12,10 @@ vignette: >
   %\VignetteIndexEntry{I. Parting Thoughts}
   \usepackage[utf8]{inputenc}
 ---
+- [Workshop Outline](0_Outline.html)
 
-```{r echo=FALSE}
+```{r setup, echo=FALSE, warning=FALSE}
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
 
 library(knitr)
 
@@ -37,7 +39,6 @@ directions <- c(directions[1],"-----------------------------------------")
 kable(t(directions))
 ```
 
-- [Workshop Outline](0_Outline.html)
 
 Having now presented these materials to multiple groups of eager USEPA students, I wanted to add one last post to the site with some parting thoughts.  But before I do that, I wanted to, as promised, put up my code for each of the exercises.  There are many ways to successfully complete the exercises so your code will very likely be different than what I have presented here.  That being said the answers should not be different (except randomForest).
 

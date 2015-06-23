@@ -13,8 +13,11 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
-options(repos="http://cran.rstudio.com/")
+- [Workshop Outline](0_Outline.html)
+
+```{r setup, echo=FALSE, warning=FALSE}
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
+
 if(!require("ggplot2")){
   install.packages("ggplot2")
 }
@@ -22,9 +25,8 @@ if(!require("dplyr")){
   install.packages("dplyr")
 }
 
-library("ggplot2")
-library("dplyr")
-
+library(ggplot2)
+library(dplyr)
 library(knitr)
 
 pageNumber <- 4
@@ -47,8 +49,6 @@ directions <- c(directions[1],"-----------------------------------------",direct
 kable(t(directions))
 ```
 
-
-- [Workshop Outline](0_Outline.html)
 
 In this third lesson we are going to start working on maninpulating and cleaning up our data frames.  We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze.  However, in reality, I'd argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in R.  We will show the basics of subsetting, merging, modifying, and sumarizing data and our examples will all use Hadley Wickham and Romain Francois' `dplyr` package.  There are many ways to do this type of work in R, many of which are available from base R, but I heard from many (AED colleagues and Hadley himself!) focusing on one way to do this is best, so `dplyr` it is!
 
@@ -217,13 +217,19 @@ Let's go back to the columns now. There are simple ways to add columns of the sa
 
 ```{r merge_example}
 # Contrived data frame
-rbind_df_merge_me<-data.frame(a=c(1,3,10,11,14,6,23),x=rnorm(7),names=c("bob","joe","sue",NA,NA,"jeff",NA))
+rbind_df_merge_me <- data.frame(a=c(1,3,10,11,14,6,23),x=rnorm(7),names=c("bob","joe","sue",NA,NA,"jeff",NA))
 # Create merge of matches
 rbind_df_merge_match<-merge(rbind_df,rbind_df_merge_me,by="a")
 rbind_df_merge_match
 # Create merge of matches and all of the first data frame
-rbind_df_merge_allx<-merge(rbind_df,rbind_df_merge_me,by="a",all.x=TRUE)
+rbind_df_merge_allx <- merge(rbind_df,rbind_df_merge_me,by="a",all.x=TRUE)
 rbind_df_merge_allx
+
+#dplyr is faster:
+
+rbind_df_merge_allx_dplyr <- left_join(rbind_df,rbind_df_merge_me,by="a")
+all.equal(rbind_df_merge_allx_dplyr, rbind_df_merge_allx)
+
 ```
 
 ```{r Exercise2, echo=FALSE}
@@ -302,7 +308,7 @@ Let's practice some of these last functions with our Gages data.
 
 Next, we're going to pull in and merge additional water data from NWIS for NM GAGES-II sites. Keep track of your method by adding to your R script and commenting as you go. This exercise has several steps that each depend on the prior one- use your stickies and don't get frustrated! We'll work through these one at a time. If you complete a step and notice that your neighbor has not, see if you can answer any questions to help them get it done. 
 
-1)  Return to the code chunk in [Lesson 02 Get](inst/doc/Get.Rmd) that accesses NWIS data. Modify that code chunk and add it to your R script to access additional physical and water quality variables at NM sites: temperature ('00010'), discharge ('00060'), and specific conductance ('00095'). Save these data in data frames named using the variable name and state abbreviation. 
+1)  Return to the code chunk in [Lesson 02 Get](B_Get.html#reading-nwis-data-into-r) that accesses NWIS data. Modify that code chunk and add it to your R script to access additional physical and water quality variables at FL sites: temperature ('00010'), discharge ('00060'), and specific conductance ('00095'). Save these data in data frames named using the variable name and state abbreviation. 
 
 2) Next, because we are just exploring here, let's make some assumptions about the variables we have just collected: (a) all of the measurements we have in the data frames are good (we don't want to throw any out because of comment codes indicating issues with the data) and, (b) the only three variables we care about in theis data frame are gage ID (a.k.a., 'site_no'), measurement date ('sample_dt'), and value of the measurement made ('results_va'). These assumptions may *not* hold for other analyses, but for the purposes of this exercise, we'll make them. Subset the four water measurement data frames to include only those three columns each. 
 

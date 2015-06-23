@@ -13,8 +13,11 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
-options(repos="http://cran.rstudio.com/")
+- [Workshop Outline](0_Outline.html)
+
+```{r setup, echo=FALSE, warning=FALSE}
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
+
 if(!require("ggplot2")){
   install.packages("ggplot2")
 }
@@ -51,8 +54,6 @@ kable(t(directions))
 
 ```
 
-
-- [Workshop Outline](0_Outline.html)
 
 One of the frequently touted strong points of R is data visualization.  We saw some of that with our use of base graphics, but those plots were, frankly, a bit pedestrian.  More and more though, users are moving away from base graphics and using the`ggplot2` package.  I would even go as far to say that it is almost become the default plotting mechanism in R.  This whole lesson we will focus on creating, modifying, and saving plots with `ggplot2`. And full disclosure here, I am relatively new to `ggplot2` and have been using it to create plots for about a year, thus I likely don't have all the answers!  I will fake it as best I can.
 
