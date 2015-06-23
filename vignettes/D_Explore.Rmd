@@ -12,7 +12,12 @@ vignette: >
   %\VignetteIndexEntry{D. Explore}
   \usepackage[utf8]{inputenc}
 ---
-```{r echo=FALSE}
+
+- [Workshop Outline](0_Outline.html)
+
+```{r setup, echo=FALSE, warning=FALSE}
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
+
 pageNumber <- 5
 
 library(knitr)
@@ -34,8 +39,6 @@ directions <- c(directions[1],"-----------------------------------------",direct
 kable(t(directions))
 ```
 
-
-- [Workshop Outline](0_Outline.html)
 
 Our next three lessons (Explore, Analyze, and Visualize) don't actually split neatly into groups.  That being said, I will try my best, but there will be overlap.  For this lesson we are going to focus on some of the first things you do when you start to explore a dataset including basic summary statistics and simple visualizations with base R.
 

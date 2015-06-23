@@ -13,8 +13,10 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
-options(repos="http://cran.rstudio.com/")
+- [Workshop Outline](0_Outline.html)
+
+```{r setup, echo=FALSE, warning=FALSE}
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
 if(!require("EGRET")){
   install.packages("EGRET")
 }
@@ -47,8 +49,6 @@ directions <- c(directions[1],"-----------------------------------------",direct
 kable(t(directions))
 ```
 
-
-- [Workshop Outline](0_Outline.html)
 
 The second section will run through a fairly quick example of using a package, `EGRET` for some analysis. We'll be moving away from the GAGES-II sites in NM to focus on some other sites of interest. I've included this section just to show how (relatively) trivial it is to add an advanced capability to R via packages.
 

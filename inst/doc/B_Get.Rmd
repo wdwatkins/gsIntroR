@@ -13,8 +13,10 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+- [Workshop Outline](0_Outline.html)
+
 ```{r setup, echo=FALSE, warning=FALSE}
-options(repos="http://cran.rstudio.com/")
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
 
 library(knitr)
 
@@ -39,8 +41,6 @@ directions <- c(directions[1],"-----------------------------------------",direct
 kable(t(directions))
 ```
 
-
-- [Workshop Outline](0_Outline.html)
 
 The second lesson is going to start to lay the foundation for working with data in R.  We will cover some of the very basics of R first, then move on to how you get data into R and how you work with some of the basic data structures.  Lastly, we will cover some ways to find relevant data and pull it directly into R.
 

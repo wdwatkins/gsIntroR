@@ -1,4 +1,5 @@
-## ----echo=FALSE----------------------------------------------------------
+## ----setup, echo=FALSE, warning=FALSE------------------------------------
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
 
 library(knitr)
 

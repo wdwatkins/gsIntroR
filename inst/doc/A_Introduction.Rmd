@@ -13,8 +13,11 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+- [Workshop Outline](0_Outline.html)
+
 ```{r setup, echo=FALSE, warning=FALSE}
-options(repos="http://cran.rstudio.com/")
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
+        
 library(knitr)
 
 pageNumber <- 2
@@ -38,8 +41,6 @@ kable(t(directions))
 
 ```
 
-
-- [Workshop Outline](0_Outline.html)
 
 Over the course of the next 2.5 days we are going to walk through a typical data analysis workflow in R. But, with this first lesson we are going to focus on making sure everything is working and getting some basic orientation in R.  The real fun will start in the lessons to come.  
 

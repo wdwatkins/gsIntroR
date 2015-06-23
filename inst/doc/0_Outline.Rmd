@@ -12,7 +12,9 @@ vignette: >
   %\VignetteIndexEntry{Intro R Workshop Outline}
   \usepackage[utf8]{inputenc}
 ---
-This workshop is designed to provide training and tools to perform common data analysis workflow steps: [get](B_Get.html) -> [clean](C_Clean.html) -> [explore](D_Explore.html) -> [analyze](E_Analyze.html) -> [visualize](G_Visualize.html) -> [repeat](H_Repeat-Reproduce.html).   
+This workshop is designed to provide training and tools to perform common data analysis workflow steps: 
+
+[get](B_Get.html) -> [clean](C_Clean.html) -> [explore](D_Explore.html) -> [analyze](E_Analyze.html) -> [visualize](G_Visualize.html) -> [repeat](H_Repeat-Reproduce.html)
 
 The workshop and materials are hands-on and include examples and exercises. After completing the workshop, you won't be an R expert, but should have the foundation for getting started on your own data analysis work in R and will know where and how to get help. 
 
