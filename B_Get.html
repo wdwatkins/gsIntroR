@@ -80,6 +80,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 </div>
 
+<ul>
+<li><a href="0_Outline.html">Workshop Outline</a></li>
+</ul>
 <table>
 <tbody>
 <tr class="odd">
@@ -89,9 +92,6 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </tr>
 </tbody>
 </table>
-<ul>
-<li><a href="0_Outline.html">Workshop Outline</a></li>
-</ul>
 <p>The second lesson is going to start to lay the foundation for working with data in R. We will cover some of the very basics of R first, then move on to how you get data into R and how you work with some of the basic data structures. Lastly, we will cover some ways to find relevant data and pull it directly into R.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
 <h2>Quick Links to Exercises and R code</h2>
@@ -467,7 +467,8 @@ yn</code></pre>
 <pre><code>## [1] yes no  no  yes yes
 ## Levels: no yes</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#An ordered factor</span>
-lmh &lt;-<span class="st"> </span><span class="kw">factor</span> (<span class="kw">c</span>(<span class="st">&quot;high&quot;</span>,<span class="st">&quot;high&quot;</span>,<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>),<span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>),<span class="dt">ordered=</span><span class="ot">TRUE</span> )
+lmh &lt;-<span class="st"> </span><span class="kw">factor</span> (<span class="kw">c</span>(<span class="st">&quot;high&quot;</span>,<span class="st">&quot;high&quot;</span>,<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>),
+               <span class="dt">levels=</span><span class="kw">c</span>(<span class="st">&quot;low&quot;</span>,<span class="st">&quot;medium&quot;</span>,<span class="st">&quot;high&quot;</span>),<span class="dt">ordered=</span><span class="ot">TRUE</span> )
 lmh</code></pre>
 <pre><code>## [1] high   high   low    medium low    medium high  
 ## Levels: low &lt; medium &lt; high</code></pre>
@@ -477,7 +478,10 @@ lmh</code></pre>
 <p>Lists are actually a special type of vector, but it is probably best to think of them as their own thing. Lists can contain multiple items, of multiple types, and of multiple structures. They are very versatile and often used inside functions or as an output of functions.</p>
 <p>Also, lists don’t print out like a vector. They print a new line for each element.</p>
 <p>Lists are made simply with the <code>list()</code> function.</p>
-<pre class="sourceCode r"><code class="sourceCode r">examp_list&lt;-<span class="kw">list</span>(<span class="dt">letters=</span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>),<span class="dt">animals=</span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>,<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;bird&quot;</span>,<span class="st">&quot;fish&quot;</span>),<span class="dt">numbers=</span><span class="dv">1</span>:<span class="dv">100</span>,<span class="dt">df=</span>examp_df)
+<pre class="sourceCode r"><code class="sourceCode r">examp_list&lt;-<span class="kw">list</span>(<span class="dt">letters=</span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>),
+                 <span class="dt">animals=</span><span class="kw">c</span>(<span class="st">&quot;cat&quot;</span>,<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;bird&quot;</span>,<span class="st">&quot;fish&quot;</span>),
+                 <span class="dt">numbers=</span><span class="dv">1</span>:<span class="dv">100</span>,
+                 <span class="dt">df=</span>examp_df)
 examp_list</code></pre>
 <pre><code>## $letters
 ## [1] &quot;x&quot; &quot;y&quot; &quot;z&quot;

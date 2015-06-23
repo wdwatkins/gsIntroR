@@ -80,6 +80,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 </div>
 
+<ul>
+<li><a href="0_Outline.html">Workshop Outline</a></li>
+</ul>
 <table>
 <tbody>
 <tr class="odd">
@@ -89,9 +92,6 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </tr>
 </tbody>
 </table>
-<ul>
-<li><a href="0_Outline.html">Workshop Outline</a></li>
-</ul>
 <p>Over the course of the next 2.5 days we are going to walk through a typical data analysis workflow in R. But, with this first lesson we are going to focus on making sure everything is working and getting some basic orientation in R. The real fun will start in the lessons to come.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
 <h2>Quick Links to Exercises and R code</h2>
@@ -152,27 +152,27 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Random normal numbers</span>
 <span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">2</span>)</code></pre>
-<pre><code>##   [1] 11.182417  6.419480 10.552331  8.758787 12.446081 12.740914 12.542142
-##   [8] 11.928686 15.160735 10.903337  8.286635  6.512065 11.306942  6.506171
-##  [15]  7.612471 10.209536 11.839311 11.277421  7.041729  9.991900  8.679233
-##  [22]  9.534519  9.618798 12.400361  8.890762 11.663873 11.907804 12.553124
-##  [29] 10.436252 12.325299 10.867561 10.572553 10.449090 11.887672  5.864816
-##  [36] 14.922245 11.605204 10.678538  9.339772  9.480524  6.518226 11.492935
-##  [43]  9.238400  8.712513  3.767910  9.810650  9.164844  8.712001 11.374864
-##  [50] 10.605335  9.480284  7.488564 11.390195 10.015555  8.791868  9.231542
-##  [57] 11.839078 13.245248 10.115654 12.265699  8.036626 12.803225 10.588474
-##  [64]  9.750143  8.617236 10.383504 15.577140 11.896727  8.484172 11.155631
-##  [71]  6.112789  9.406737  9.154321 11.443752 10.374038 12.782931 10.629398
-##  [78]  7.859530 11.434095 12.156714 10.130348  8.453045 11.580472 11.348207
-##  [85]  9.556251 12.403588  9.996852  8.523873  8.141864 11.311721 11.480648
-##  [92]  7.408106 10.983993  9.213289  9.046244 12.138953  9.942383 14.216521
-##  [99] 14.040204  8.730403</code></pre>
+<pre><code>##   [1]  9.136781 10.626605  7.477995  9.251293  8.641678  8.109772 10.646046
+##   [8]  9.920672  8.090882 12.665066  8.213671 10.108630  8.613464 13.309700
+##  [15]  6.683985  8.304592 11.730318  8.084191  8.556228  7.991549 12.279216
+##  [22] 11.896419  9.231005  8.955434  7.284691 14.695209 11.759576 10.919787
+##  [29] 11.094626 11.742311  8.479268 11.130824  9.432913 12.696141 13.179176
+##  [36]  8.969510  9.315478  9.464653 10.106390 12.117107 10.342862  9.232345
+##  [43]  5.582401  7.101800  5.131496 13.778827  7.136251 11.818072  9.593460
+##  [50]  7.486052  8.814764 11.637463 11.014396 11.203397 13.845029  8.891874
+##  [57] 10.531078  8.883974 10.933617  8.360549 11.840520  6.619252  9.809941
+##  [64]  5.940625  9.161992  6.897873  8.266743  8.741725 11.688155 11.364385
+##  [71]  9.951994 15.057500 11.375908  9.280285  9.819370 11.958638  8.261873
+##  [78]  8.380670  9.427554 11.572958  8.403917  7.529856 11.630030  7.650853
+##  [85]  9.367303  9.858980  9.242580  6.748852  9.747345  9.808098  8.717001
+##  [92]  8.983375 10.305112  8.247550  9.007620 12.715503  9.429609 13.183000
+##  [99]  8.558783 10.178760</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Mean</span>
 <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] -0.09206391</code></pre>
+<pre><code>## [1] 0.1816987</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Sum</span>
 <span class="kw">sum</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] -16.14921</code></pre>
+<pre><code>## [1] 5.827302</code></pre>
 <p>A few side notes. The <code>#</code> indicates a comment. You can put whatever else you’d like after this, but on the same line as the <code>#</code>. R will not evaluate it. When commenting your code, err on the side of too much! Also, you will see <code>()</code>, <code>[]</code>, and <code>{}</code> used in R code. The <code>()</code> indicates a function (almost always), the <code>[]</code> indicates indexing (grabbing values by the location), and the <code>{}</code> groups code that is meant to be run together and is usually used when programming functions in R.</p>
 </div>
 <div id="using-packages" class="section level2">
@@ -270,6 +270,7 @@ dataRetrieval::readNWISuv</code></pre>
 <li><a href="http://scicomp2014.edc.uri.edu/resources.html">Other Resources</a>: A list I helped compile for a URI Class.</li>
 <li><a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf">CRAN Cheatsheets</a>: A good cheat sheet from the official source</li>
 <li><a href="http://www.rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a>: Additional cheat sheets from RStudio. I am especially fond of the data wrangling one.</li>
+<li><a href="http://www.r-bloggers.com/">R-bloggers</a>: Central hub of content collected from bloggers who write about R.</li>
 </ul>
 </div>
 </div>
