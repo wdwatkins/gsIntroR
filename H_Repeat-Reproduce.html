@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">H. Repeat and Reproduce</h1>
 <h4 class="author"><em>Jeffrey W. Hollister</em></h4>
-<h4 class="date"><em>22 June, 2015</em></h4>
+<h4 class="date"><em>23 June, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -80,9 +80,17 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 </div>
 
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="G_Visualize.html">G. Visualize</a></td>
+<td align="left">—————————————–</td>
+<td align="left"><a href="I_Parting-Thoughts-and-Extra-Materials.html">I. Parting Thoughts</a></td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><a href="G_Visualize.html">Previous lesson</a>: Visualize the data.</li>
-<li><a href="I_Parting-Thoughts-and-Extra-Materials.html">Next lesson</a>: Parting thoughts.</li>
+<li><a href="0_Outline.html">Workshop Outline</a></li>
 </ul>
 <p>In theory, you now have a basic understanding of how to conduct a typical data analysis workflow in R. All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. To do this effectively we need to understand how to create reusable R code and create reproducible reports. This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
@@ -248,7 +256,7 @@ vec_time</code></pre>
 ##       0       0       0</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">loop_time</code></pre>
 <pre><code>##    user  system elapsed 
-##   13.14    0.00   13.14</code></pre>
+##   10.05    0.00   10.05</code></pre>
 <p>Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping. In general I agree that if there is an obvious vectorized/base solution (in this case simply adding the two vectors) use that. That being said, it isn’t always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up. With loops that write to an object and that object is getting re-sized, we may also know the final size of that object so we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#We will assume vectors of the same length...</span>
 add_vecs2&lt;-function(vec1,vec2){
@@ -261,7 +269,7 @@ add_vecs2&lt;-function(vec1,vec2){
 
 <span class="kw">system.time</span>(<span class="kw">add_vecs2</span>(large_vec1,large_vec2))</code></pre>
 <pre><code>##    user  system elapsed 
-##    0.15    0.00    0.17</code></pre>
+##    0.17    0.01    0.18</code></pre>
 <p>Now thats better. In short, if an obvious vector or primitive solution exists, use that. If those aren’t clear and you need to use a loop, don’t be afraid to use one. There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand. Personally, I think it is possible to go too far down the vectorized path. Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.</p>
 </div>
 <div id="return" class="section level3">
@@ -427,10 +435,15 @@ output: pdf_document
 <p>Creating a presentation is not much different. We just need a way to specify different slides.</p>
 <p>Repeat the steps from above, but this time instead of selecting “Document”, select “Presentation”. Only thing we need to know is that a second level header (i.e. <code>##</code>) is what specifies the title of the next slide. Any thing you put after that goes on that slide. Similar to before, play around with this, add a slide with some new text, new code and knit it. There you have it, a reproducible presentation.</p>
 <p>I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes. I have done that, but using a different method for creating slides by using the <code>slidify</code> package. An example of that presentation is in a talk I gave on <a href="http://jwhollister.com/epablogpresent">Social Media and Blogging</a>. It does take a bit more work to set this up. I am also not familar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.</p>
-<ul>
-<li><a href="G_Visualize.html">Previous lesson</a>: Visualize the data.</li>
-<li><a href="I_Parting-Thoughts-and-Extra-Materials.html">Next lesson</a>: Parting thoughts.</li>
-</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="G_Visualize.html">G. Visualize</a></td>
+<td align="left">—————————————–</td>
+<td align="left"><a href="I_Parting-Thoughts-and-Extra-Materials.html">I. Parting Thoughts</a></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
