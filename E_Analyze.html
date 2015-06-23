@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">E. Analyze: Base</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>22 June, 2015</em></h4>
+<h4 class="date"><em>23 June, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -69,9 +69,17 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </ul>
 </div>
 
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="D_Explore.html">D. Explore</a></td>
+<td align="left">—————————————–</td>
+<td align="left"><a href="F_Analyze.html">F. Analyze Packages</a></td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li><a href="D_Explore.html">Previous lesson</a>: Explore the data.</li>
-<li><a href="F_Analyze.html">Next lesson</a>: Analyze the data with other packages.</li>
+<li><a href="0_Outline.html">Workshop Outline</a></li>
 </ul>
 <p>The focus of this workshop hasn’t really been statistics, its been more about R, the language. But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place. So, we will spend a little bit of time on it. In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
@@ -102,13 +110,13 @@ xy_tt</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = -8.5819, df = 39.837, p-value = 1.354e-10
+## t = -6.1437, df = 33.363, p-value = 6.051e-07
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -10.012189  -6.194859
+##  -9.161229 -4.604532
 ## sample estimates:
 ## mean of x mean of y 
-##  2.525154 10.628678</code></pre>
+##  2.321943  9.204824</code></pre>
 <p><code>t.test()</code> can also take a formula specification as input. I mentioned this briefly in the previous lesson. At it’s simplest a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign. For a t-test that is all we need to know.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lets pick another dataset, ToothGrowth.</span>
 <span class="co">#Looking at diff in tooth length by groups specified in supp</span>
@@ -240,10 +248,15 @@ lm_aq2&lt;-<span class="kw">lm</span>(Ozone~Temp+Wind+Solar.R,<span class="dt">d
 <li><p>First, lets take a look at the relationship between discharge, temperature specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites. Add a section to your script that tests for a difference in the mean value of across these between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implcations for the differences in sample sizes.</p></li>
 <li><p>Next, lets build some linear models that build a linear model to be used to predict phosphorus concentrations across all GAGES-II sites in NM. Chose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen.</p></li>
 </ol>
-<ul>
-<li><a href="D_Explore.html">Previous lesson</a>: Explore the data.</li>
-<li><a href="F_Analyze.html">Next lesson</a>: Analyze the data with other packages.</li>
-</ul>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="D_Explore.html">D. Explore</a></td>
+<td align="left">—————————————–</td>
+<td align="left"><a href="F_Analyze.html">F. Analyze Packages</a></td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
