@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">A. Introduction to R: The basics</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
-<h4 class="date"><em>23 June, 2015</em></h4>
+<h4 class="date"><em>07 July, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -152,27 +152,27 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Random normal numbers</span>
 <span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">2</span>)</code></pre>
-<pre><code>##   [1]  9.136781 10.626605  7.477995  9.251293  8.641678  8.109772 10.646046
-##   [8]  9.920672  8.090882 12.665066  8.213671 10.108630  8.613464 13.309700
-##  [15]  6.683985  8.304592 11.730318  8.084191  8.556228  7.991549 12.279216
-##  [22] 11.896419  9.231005  8.955434  7.284691 14.695209 11.759576 10.919787
-##  [29] 11.094626 11.742311  8.479268 11.130824  9.432913 12.696141 13.179176
-##  [36]  8.969510  9.315478  9.464653 10.106390 12.117107 10.342862  9.232345
-##  [43]  5.582401  7.101800  5.131496 13.778827  7.136251 11.818072  9.593460
-##  [50]  7.486052  8.814764 11.637463 11.014396 11.203397 13.845029  8.891874
-##  [57] 10.531078  8.883974 10.933617  8.360549 11.840520  6.619252  9.809941
-##  [64]  5.940625  9.161992  6.897873  8.266743  8.741725 11.688155 11.364385
-##  [71]  9.951994 15.057500 11.375908  9.280285  9.819370 11.958638  8.261873
-##  [78]  8.380670  9.427554 11.572958  8.403917  7.529856 11.630030  7.650853
-##  [85]  9.367303  9.858980  9.242580  6.748852  9.747345  9.808098  8.717001
-##  [92]  8.983375 10.305112  8.247550  9.007620 12.715503  9.429609 13.183000
-##  [99]  8.558783 10.178760</code></pre>
+<pre><code>##   [1]  8.410558 14.446063 12.093610 15.068330  7.002925 13.418513 10.430628
+##   [8] 11.367022  5.268755 10.972067  9.536933 11.435432 10.545020 11.429472
+##  [15] 14.292820 12.898599  9.144704  9.983141  9.410932 12.027596  7.342721
+##  [22] 10.552517 11.358219 12.698533 14.137969 10.364386  8.508120 11.688481
+##  [29]  8.856632  9.112935 11.607013  7.070152 12.053839  9.290075 11.543587
+##  [36]  8.895229  8.691168  8.635784  9.376545 12.205391  9.417618 13.099772
+##  [43] 12.725579 10.472604  7.278573  8.603214  9.935694 10.868664 10.894721
+##  [50]  9.542978 11.611684  7.471830 12.253828  7.098516  8.999976  6.866497
+##  [57] 13.687783 10.304782 12.152610  6.756505 13.719384 13.782597 11.361851
+##  [64]  9.794640 13.601158 12.858718  9.678794  9.817819 12.626921 11.945121
+##  [71] 12.435632  7.879824  7.867096 10.264916 13.258543  9.226201  9.418796
+##  [78]  7.170726  8.215361 11.010839  9.193795 10.256600 11.577031  9.101984
+##  [85] 10.440955  7.863061  8.625242 10.246390  9.098225 10.061024 10.449165
+##  [92]  8.081854 11.353515  8.421282 10.677167  8.360388  9.510642  9.038313
+##  [99] 11.286049 10.145857</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Mean</span>
 <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] 0.1816987</code></pre>
+<pre><code>## [1] -0.0213184</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Sum</span>
 <span class="kw">sum</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] 5.827302</code></pre>
+<pre><code>## [1] 11.44512</code></pre>
 <p>A few side notes. The <code>#</code> indicates a comment. You can put whatever else you’d like after this, but on the same line as the <code>#</code>. R will not evaluate it. When commenting your code, err on the side of too much! Also, you will see <code>()</code>, <code>[]</code>, and <code>{}</code> used in R code. The <code>()</code> indicates a function (almost always), the <code>[]</code> indicates indexing (grabbing values by the location), and the <code>{}</code> groups code that is meant to be run together and is usually used when programming functions in R.</p>
 </div>
 <div id="using-packages" class="section level2">
@@ -197,9 +197,9 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <p>One source of confusion that many have is when they cannot access functions from a package that they just installed. This is because getting to this point requires an extra step, loading (or attaching) the package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Add libraries to your R Session</span>
 <span class="kw">library</span>(<span class="st">&quot;dataRetrieval&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;EGRET&quot;</span>)
-
-<span class="co">#You can also access functions without loading by using package::function</span>
+<span class="kw">library</span>(<span class="st">&quot;EGRET&quot;</span>)</code></pre>
+<pre><code>## This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information. Although this software program has been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S. Government as to the accuracy and functioning of the program and related program material nor shall the fact of distribution constitute any such warranty, and no responsibility is assumed by the USGS in connection therewith.</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#You can also access functions without loading by using package::function</span>
 dataRetrieval::readNWISuv</code></pre>
 <pre><code>## function (siteNumbers, parameterCd, startDate = &quot;&quot;, endDate = &quot;&quot;, 
 ##     tz = &quot;&quot;) 
