@@ -89,7 +89,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 3. Create a new project. In the window, select "New Directory", then "Empty Project" .  Name it "usgs_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "lesson1.R". 
+4. Create a new "R Script" in the Source Pane (click the icon with the green plus symbol below "File"), save that file into your newly created project and name it "lesson1.R". 
 
 5. Download [Lesson 1 R Code](/introR/rmd_posts/2015-01-14-01-Introduction.R) and save it to your project.
 
