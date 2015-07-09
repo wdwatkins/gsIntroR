@@ -220,7 +220,7 @@ Let's first create a simple scatterplot.
 
 ```{r themes_examp}
 scatter_p<-ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-              geom_point(aes(colour=Species, shape=Species))
+              geom_point(aes(color=Species, shape=Species))
 scatter_p
 ```
 
@@ -231,7 +231,7 @@ scatter_p_base<-scatter_p +
   theme(panel.background = element_blank(), 
         panel.grid = element_blank(),
         panel.border = element_rect(fill = NA),
-        text=element_text(family="Times",colour="red",size=24))
+        text=element_text(family="Times",color="red",size=24))
 scatter_p_base
 ```
 
@@ -249,14 +249,14 @@ Let's build on one of these and try to create a more polished plot.  We will sta
 ```{r themes_examp_polished}
 #Now Let's start over, with some new colors and regression lines
 scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-              geom_point(aes(colour=Species, shape=Species)) +
-              stat_smooth(method="lm", aes(colour=Species)) +
-              scale_colour_manual(breaks = iris$Species,
+              geom_point(aes(color=Species, shape=Species)) +
+              stat_smooth(method="lm", aes(color=Species)) +
+              scale_color_manual(breaks = iris$Species,
                                   values= c("steelblue1",
                                             "sienna",
                                             "springgreen3")) + 
               theme_classic(18,"Times") +
-              theme(text=element_text(colour="slategray")) +
+              theme(text=element_text(color="slategray")) +
               labs(title="Iris Petal Morphology Relationship",
                      x="Petal Length", y="Petal Width")
               
@@ -284,7 +284,7 @@ From Exercise 1 you should have a good start on a plot.  Let's tweak this some.
 
 1. Add a new section then:
 2. Change up the theme of your plot.  This is your plot, so experiment.  Experiment with fonts, colors, backgrounds, etc.  Remember that all of the things you can change are listed in the help (`help("theme")`).  Also the various `element_xxx()` functions will be needed, try `??element_` .
-2. If you have time, try to edit the colors of your points using `scale_colour_manual()`.
+2. If you have time, try to edit the colors of your points using `scale_color_manual()`.
 3. When you get the plot to a point where you are happy, save the plot to a file.  Use a dpi and file format of your liking.
 
 ##Cool stuff, help and examples
