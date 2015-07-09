@@ -1,4 +1,4 @@
-## ----setup, echo=FALSE, warning=FALSE------------------------------------
+## ----setup, echo=FALSE, warning=FALSE, message=FALSE---------------------
 options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
 
 if(!require("ggplot2")){
@@ -7,9 +7,7 @@ if(!require("ggplot2")){
 if(!require("dplyr")){
   install.packages("dplyr")
 }
-if(!require("randomForest")){
-  install.packages("randomForest")
-}
+
 library("ggplot2")
 library("dplyr")
 
@@ -23,7 +21,7 @@ titles <- c("Workshop Outline","A. Introduction",
              "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
              "H. Repeat and Reproduce", "I. Parting Thoughts")
 
-pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+pages <- paste0(c("Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",
              "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
              ".html")
@@ -110,7 +108,7 @@ iris_meanpl_bar
 
 ## ----themes_examp--------------------------------------------------------
 scatter_p<-ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-              geom_point(aes(colour=Species, shape=Species))
+              geom_point(aes(color=Species, shape=Species))
 scatter_p
 
 ## ----themes_examp_custom-------------------------------------------------
@@ -118,7 +116,7 @@ scatter_p_base<-scatter_p +
   theme(panel.background = element_blank(), 
         panel.grid = element_blank(),
         panel.border = element_rect(fill = NA),
-        text=element_text(family="Times",colour="red",size=24))
+        text=element_text(family="Times",color="red",size=24))
 scatter_p_base
 
 ## ----themes_examp_stock--------------------------------------------------
@@ -128,14 +126,14 @@ scatter_p + theme_classic()
 ## ----themes_examp_polished-----------------------------------------------
 #Now Let's start over, with some new colors and regression lines
 scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-              geom_point(aes(colour=Species, shape=Species)) +
-              stat_smooth(method="lm", aes(colour=Species)) +
-              scale_colour_manual(breaks = iris$Species,
+              geom_point(aes(color=Species, shape=Species)) +
+              stat_smooth(method="lm", aes(color=Species)) +
+              scale_color_manual(breaks = iris$Species,
                                   values= c("steelblue1",
                                             "sienna",
                                             "springgreen3")) + 
               theme_classic(18,"Times") +
-              theme(text=element_text(colour="slategray")) +
+              theme(text=element_text(color="slategray")) +
               labs(title="Iris Petal Morphology Relationship",
                      x="Petal Length", y="Petal Width")
               
@@ -146,7 +144,7 @@ scatter_polished
 #  #Save as jpg, with 600dpi, and set width and height
 #  #Many other options in the help
 #  ggsave(plot=scatter_polished,
-#         file="Fig1.jpg",dpi=600,width=8, heigh=5)
+#         file="Fig1.jpg",dpi=600,width=8, height=5)
 #  #Save as PDF
 #  ggsave(plot=scatter_polished,
 #         file="Fig1.pdf")

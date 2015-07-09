@@ -27,23 +27,17 @@
 <div id="header">
 <h1 class="title">I. Parting Thoughts</h1>
 <h4 class="author"><em>Jeffrey W. Hollister</em></h4>
-<h4 class="date"><em>07 July, 2015</em></h4>
+<h4 class="date"><em>09 July, 2015</em></h4>
 </div>
 
 <div id="TOC">
 <ul>
 <li><a href="#parting-thoughts">Parting Thoughts</a></li>
-<li><a href="#nuts-and-bolts">Nuts and Bolts</a><ul>
-<li><a href="#github-pages-and-jekyll">Github Pages and Jekyll</a></li>
-<li><a href="#r-markdown-knitr-and-make">R, Markdown, <code>knitr</code>, and make</a></li>
-<li><a href="#creative-commons-zero">Creative Commons Zero</a></li>
-</ul></li>
-<li><a href="#epa-disclaimer">EPA Disclaimer</a></li>
 </ul>
 </div>
 
 <ul>
-<li><a href="0_Outline.html">Workshop Outline</a></li>
+<li><a href="Outline.html">Workshop Outline</a></li>
 </ul>
 <table>
 <tbody>
@@ -53,57 +47,11 @@
 </tr>
 </tbody>
 </table>
-<p>Having now presented these materials to multiple groups of eager USEPA students, I wanted to add one last post to the site with some parting thoughts. But before I do that, I wanted to, as promised, put up my code for each of the exercises. There are many ways to successfully complete the exercises so your code will very likely be different than what I have presented here. That being said the answers should not be different (except randomForest).</p>
-<ul>
-<li><a href="/introR/exercises/nla_analysis.R">Jeff’s nla_anlaysis.R</a></li>
-</ul>
+<p>Having now presented these materials to multiple groups of eager USGS students, I wanted to add one last post to the site with some parting thoughts. There are many ways to successfully complete the exercises so your code will very likely be different than what I have presented here. That being said the answers should not be different (except randomForest).</p>
 <div id="parting-thoughts" class="section level2">
 <h2>Parting Thoughts</h2>
 <p>It is impossible to become proficient at anything over the course of two days and R certainly is not an exception to this. What I do hope this workshop and/or website has provided is a starting point. The only way to get better with R is to keep using it. The best way I know of to do this is to keep reading, taking workshops, and trying to solve problems with R. A diversity of approaches is not only a good idea but with something as broad as R I think it required. And, you will always pick up new tricks.</p>
 <p>In addition to an immersion approach, another REALLY good thing to do is to find a problem that you need to solve and force yourself to solve it with R. I know most everyone has had many years experience with data analysis with other software. When you have this background, it is certainly easy to fall back on what you know, but use this opportunity to not only get something done, but make sure you allow additional time to also learn R. A warning though, I would not recommend going cold turkey and just diving into R. Ramp up slowly over the next year or so and try to keep solving one more problem with R. This allows you to keep working while also slowly building your profeciency. In short, slow and steady.</p>
-</div>
-<div id="nuts-and-bolts" class="section level2">
-<h2>Nuts and Bolts</h2>
-<p>The nuts and bolts of putting this site together is interesting, I think, in and of itself. In case anyone is interested in this, I provide some of those details here.</p>
-<div id="github-pages-and-jekyll" class="section level3">
-<h3>Github Pages and Jekyll</h3>
-<p>This site and all of the source code used to generate it live on <a href="https://github.com">Github</a>. The source lives in the <a href="https://github.com/usepa/introR">introR repository</a> and the site is at <a href="http://usepa.github.io/introR">usepa.github.io/introR</a>. This little trick of hosting a site from Github is through the use of the <code>gh-pages</code> branch. Any <code>html</code> you place here gets served from a site with <code>user.github.io/repoName</code> as the URL. You can put plain html there and it will work fine, but Github provides some other fun tools, most notably <a href="http://jekyllrb.com/">Jekyll</a>. What this allows you to do is use templates for the general look and feel of the site and then write the page completely in markdown. With some magic metadata and templates your site gets built and served with all things in the right place! It certainly has a bit of a learning curve, but once you get the site templates figured out and get a handle on the general strucutre of a Jekyll site it works quite qell.</p>
-</div>
-<div id="r-markdown-knitr-and-make" class="section level3">
-<h3>R, Markdown, <code>knitr</code>, and make</h3>
-<p>As I mentioned, Jekyll likes markdown. But for a site like this one I also want a good deal of R to be included. This requires that we use R, markdown and the <code>knitr</code> package to process the R code and spit out markdown files that Jekyll then uses to build the site. The basic workflow for the site was this.</p>
-<ol style="list-style-type: decimal">
-<li>Author a post in markdown with your code chunks included.<br /></li>
-<li>Process your .Rmd (an R Markdown file) with <code>knitr::knit</code>. This will spit out a markdown file (.md) with your R code processed and spit back out the the .md file</li>
-<li>Get your generated .md files into the proper place and let Jekyll do its thing.</li>
-</ol>
-<p>This is basically what happened with this site, but since there were many posts and each were written overn time with LOTS of edits I needed a way to easily run this workflow multiple times. To accomplish this I added a makefile. The makefile will take care of the knitting of any changed files and move my files where they need to go. I addeded a section to the makefile to deal with the version control which committed my changes and pushed them up to Github (I am sure this is probably a version controll no-no, but it worked ok for me).</p>
-<p>So my new workflow was</p>
-<ol style="list-style-type: decimal">
-<li>Author in Rmd</li>
-<li><code>make</code></li>
-<li><code>make git</code></li>
-</ol>
-<p>Site built!</p>
-</div>
-<div id="creative-commons-zero" class="section level3">
-<h3>Creative Commons Zero</h3>
-<p>All of this materials is not mine to keep. I have borrowed a lot of it from around the web and as a federal employee I cannot (nor do I want to) license my material. It is realeased under the <a href="https://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Zero</a> public domain dedication. This essentially means you can do anything you’d like with it! Attribution is not required, but appreciated.</p>
-<p>Lastly, this is on github and thus you are free to make additions and submit them back as pull requests. I will do my best to get to those in a timely fashion. If you do this, please see the <a href="https://github.com/USEPA/introR/blob/master/README.md">README</a> and in particular the disclaimer. Some important stuff there. And just to make sure, the disclaimer is below for your reading pleasure!</p>
-</div>
-</div>
-<div id="epa-disclaimer" class="section level2">
-<h2>EPA Disclaimer</h2>
-<p>The United States Environmental Protection Agency (EPA) GitHub project code is provided on an “as is” basis and the user assumes responsibility for its use. EPA has relinquished control of the information and no longer has responsibility to protect the integrity , confidentiality, or availability of the information. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recomendation or favoring by EPA. The EPA seal and logo shall not be used in any manner to imply endorsement of any commercial product or activity by EPA or the United States Government.</p>
-<p>By submitting a pull request, you make an agreement with EPA that you will not submit a claim of compensation for services rendered to EPA or any other federal agency. Further, you agree not to charge the time you spend developing software code related to this project to any federal grant or cooperative agreement.</p>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left"><a href="H_Repeat-Reproduce.html">H. Repeat and Reproduce</a></td>
-<td align="left">—————————————–</td>
-</tr>
-</tbody>
-</table>
 </div>
 
 
