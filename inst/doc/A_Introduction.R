@@ -10,7 +10,7 @@ titles <- c("Workshop Outline","A. Introduction",
              "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
              "H. Repeat and Reproduce", "I. Parting Thoughts")
 
-pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+pages <- paste0(c("Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",
              "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
              ".html")
@@ -25,17 +25,17 @@ kable(t(directions))
 
 ## ----Exercise1, echo=FALSE-----------------------------------------------
 
-## ----function_examples---------------------------------------------------
-#Print
-print("hello world!")
-#A sequence
-seq(1,10)
-#Random normal numbers
-rnorm(100,mean=10,sd=2)
-#Mean
-mean(rnorm(100))
-#Sum
-sum(rnorm(100))
+## ----function_examples, eval=FALSE---------------------------------------
+#  #Print
+#  print("hello world!")
+#  #A sequence
+#  seq(1,10)
+#  #Random normal numbers
+#  rnorm(100,mean=10,sd=2)
+#  #Mean
+#  mean(rnorm(100))
+#  #Sum
+#  sum(rnorm(100))
 
 ## ----install_package, eval=FALSE-----------------------------------------
 #  #Install dataRetrieval and EGRET

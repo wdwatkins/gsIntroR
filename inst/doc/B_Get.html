@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">B. Get</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
-<h4 class="date"><em>07 July, 2015</em></h4>
+<h4 class="date"><em>09 July, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -81,7 +81,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </div>
 
 <ul>
-<li><a href="0_Outline.html">Workshop Outline</a></li>
+<li><a href="Outline.html">Workshop Outline</a></li>
 </ul>
 <table>
 <tbody>
@@ -130,30 +130,18 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>As I mentioned above, the console and using R interactively is very powerful. We will do this quite a bit. Let’s spend a little time playing around in the console and learn a few new functions.</p>
 <p>R can be used as a calculator and a way to compare values. Some examples of the basic operators:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A really powerful calculator!</span>
-<span class="dv">1+1</span> <span class="co">#Add</span></code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10-4</span> <span class="co">#Subtract</span></code></pre>
-<pre><code>## [1] 6</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span>*<span class="dv">2</span> <span class="co">#Multiply</span></code></pre>
-<pre><code>## [1] 6</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span>^<span class="dv">3</span> <span class="co">#Exponents</span></code></pre>
-<pre><code>## [1] 27</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">100</span>/<span class="dv">10</span> <span class="co">#Divide</span></code></pre>
-<pre><code>## [1] 10</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span>%%<span class="dv">2</span> <span class="co">#Modulus</span></code></pre>
-<pre><code>## [1] 1</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span>&gt;<span class="dv">2</span> <span class="co">#Greater than</span></code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">4</span>&lt;<span class="dv">5</span> <span class="co">#Less than</span></code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span>&lt;=<span class="dv">5</span> <span class="co">#Less than or equal</span></code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">8</span>&gt;=<span class="dv">2</span> <span class="co">#Greater than or equal</span></code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span>==<span class="dv">2</span> <span class="co">#Equality: notice that it is TWO equal signs!</span></code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span>!=<span class="dv">7</span> <span class="co">#Not Equals</span></code></pre>
-<pre><code>## [1] TRUE</code></pre>
+<span class="dv">1+1</span> <span class="co">#Add</span>
+<span class="dv">10-4</span> <span class="co">#Subtract</span>
+<span class="dv">3</span>*<span class="dv">2</span> <span class="co">#Multiply</span>
+<span class="dv">3</span>^<span class="dv">3</span> <span class="co">#Exponents</span>
+<span class="dv">100</span>/<span class="dv">10</span> <span class="co">#Divide</span>
+<span class="dv">5</span>%%<span class="dv">2</span> <span class="co">#Modulus</span>
+<span class="dv">5</span>&gt;<span class="dv">2</span> <span class="co">#Greater than</span>
+<span class="dv">4</span>&lt;<span class="dv">5</span> <span class="co">#Less than</span>
+<span class="dv">5</span>&lt;=<span class="dv">5</span> <span class="co">#Less than or equal</span>
+<span class="dv">8</span>&gt;=<span class="dv">2</span> <span class="co">#Greater than or equal</span>
+<span class="dv">2</span>==<span class="dv">2</span> <span class="co">#Equality: notice that it is TWO equal signs!</span>
+<span class="dv">5</span>!=<span class="dv">7</span> <span class="co">#Not Equals</span></code></pre>
 <p>That’s neat, but so what…</p>
 <p>Well, it could be interesting to do something with those values and save them for re-use. We can do that with objects (everything in R is an object) and use the assignment operator, <code>&lt;-</code>. Know that object names cannot start with a number, contain spaces, or (most) special characters. Underscore and periods are allowed.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Numeric assignment</span>
@@ -190,7 +178,7 @@ a2</code></pre>
 <span class="kw">save.image</span>(<span class="st">&quot;lesson2.RData&quot;</span>) 
 <span class="co">#Saves just the a and y objects to a file called lesson2_ay.RData</span>
 <span class="kw">save</span>(a,y,<span class="dt">file=</span><span class="st">&quot;lesson2_ay.RData&quot;</span>)</code></pre>
-<p>This is probably a good spot to bring up quotes vs no quotes around arguments in a function. This is a very common stumbling block. The general rule is that no quotes are used only when referring to an object that currently exists. Quotes are used in all other cases. For instance in <code>save(a,y,file=&quot;lesson2_ay.RData&quot;)</code> the objects <code>a</code> and <code>y</code> are not quoted becuase they are objects in the workspace. <code>file</code> is an argument of save and arguments are never quoted. We quote the name of the file “lesson2_ay.RData” becuase it is not an R object but the name of a file to be created. You will likely still have some issues with this. My recomendation is to think about if it is an object in your R workspace or not. If so, no quotes! This isn’t foolproof, but works well most of the time.</p>
+<p>This is probably a good spot to bring up quotes vs no quotes around arguments in a function. This is a very common stumbling block. The general rule is that no quotes are used only when referring to an object that currently exists. Quotes are used in all other cases. For instance in <code>save(a,y,file=&quot;lesson2_ay.RData&quot;)</code> the objects <code>a</code> and <code>y</code> are not quoted because they are objects in the workspace. <code>file</code> is an argument of save and arguments are never quoted. We quote the name of the file “lesson2_ay.RData” because it is not an R object but the name of a file to be created. You will likely still have some issues with this. My recommendation is to think about if it is an object in your R workspace or not. If so, no quotes! This isn’t foolproof, but works well most of the time.</p>
 <p>Next thing you might want to do is navigate around your files and directories.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#See the current directory</span>
 <span class="kw">getwd</span>()
@@ -533,7 +521,7 @@ examp_list</code></pre>
 <h2>Reading data into R</h2>
 <p>All of the examples so far have relied on entering data directly into the console or a script. That mode is certainly useful for demonstrating data structures, but would be a nightmare if you were dealing with a real dataset. What we generally want to do is read in data from a file or from a database that resides on your local machine or on the web. There are a gazillion ways that this can be accomplished, right now, we are going to work with one, <code>read.csv()</code>. If there is time later, we may talk about some others.</p>
 <p><code>read.csv()</code> is a specialized version of <code>read.table()</code> that focuses on, big surprise here, <code>.csv</code> files. This command assumes a header row with column names and that the delimiter is a comma. The expected<br />no data value is <code>NA</code> and by default, strings are converted to factors (this can trip people up).</p>
-<p>Source files for <code>read.csv()</code> can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like <code>mydf &lt;- read.csv(&quot;C:/path/to/local/file.csv&quot;)</code>. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes (“/”), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash (“\”). This is becuase the single backslash in an escape character that is used to indicate things like newlines or tabs. Doesn’t really matter which one you use, I would just select one and be consistent.</p>
+<p>Source files for <code>read.csv()</code> can either be on a local hard drive or, and this is pretty cool, on the web. We will be using the later for our examples and exercises. If you had a local file it would be accessed like <code>mydf &lt;- read.csv(&quot;C:/path/to/local/file.csv&quot;)</code>. As an aside, paths and use of forward vs back slash is important. R is looking for forward slashes (“/”), or unix-like paths. You can use these in place of the back slash and be fine. You can use a back slash but it needs to be a double back slash (“\”). This is because the single backslash in an escape character that is used to indicate things like newlines or tabs. Doesn’t really matter which one you use, I would just select one and be consistent.</p>
 <p>For now we are going to be focusing on grabbing data from a website, which just requires using an URL in the <code>read.csv()</code> function.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Grab data from the web</span>
 web_df &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://usgs-r.github.io/introR/figure/example.csv&quot;</span>)

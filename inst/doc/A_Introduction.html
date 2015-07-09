@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">A. Introduction to R: The basics</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
-<h4 class="date"><em>07 July, 2015</em></h4>
+<h4 class="date"><em>09 July, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -81,12 +81,12 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </div>
 
 <ul>
-<li><a href="0_Outline.html">Workshop Outline</a></li>
+<li><a href="Outline.html">Workshop Outline</a></li>
 </ul>
 <table>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="0_Outline.html">Workshop Outline</a></td>
+<td align="left"><a href="Outline.html">Workshop Outline</a></td>
 <td align="left">—————————————–</td>
 <td align="left"><a href="B_Get.html">B. Get</a></td>
 </tr>
@@ -95,7 +95,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>Over the course of the next 2.5 days we are going to walk through a typical data analysis workflow in R. But, with this first lesson we are going to focus on making sure everything is working and getting some basic orientation in R. The real fun will start in the lessons to come.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
 <h2>Quick Links to Exercises and R code</h2>
-<p>My goal is to have this workshop be as hands-on and itneractive as possible. I encourage you to get to know the people sitting next to you. Throughout the workshop, I encourage you to ask questions and get help from those around you.</p>
+<p>My goal is to have this workshop be as hands-on and interactive as possible. I encourage you to get to know the people sitting next to you. Throughout the workshop, I encourage you to ask questions and get help from those around you.</p>
 <p>To be hands-on, there are exercises throughout. For each lesson, I will provide a list of links near the top of the post so that you can skip all the prose and jump straight to the lessons. So, here are the links for Lesson 1.</p>
 <ul>
 <li><a href="#exercise-1">Exercise 1</a>: RStudio Introduction.</li>
@@ -135,44 +135,25 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <ol style="list-style-type: decimal">
 <li><p>Start RStudio: To start both R and RStudio requires only firing up RStudio. RStudio should be available from All Programs at the Start Menu. Fire up RStudio. You should have done this already (see <a href="/introR/2015/01/14/00-Before-The-Workshop/">post 00</a>).</p></li>
 <li><p>Take a few minutes to look around RStudio. Find the Console Pane. Find Global and Project Options (hint: look in Tools). Look at the Environment, History Pane. Look at the Files, Plots, Packages … pane.</p></li>
-<li><p>Create a new project. Name it “usgs_workshop”. We will use this for the rest of the workshop.</p></li>
-<li><p>Create a new “R Script”&quot; in the Source Pane, save that file into your newly created project and name it “lesson1.R”.</p></li>
+<li><p>Create a new project. In the window, select “New Directory”, then “Empty Project” . Name it “usgs_workshop”. We will use this for the rest of the workshop.</p></li>
+<li><p>Create a new “R Script” in the Source Pane (click the icon with the green plus symbol below “File”), save that file into your newly created project and name it “lesson1.R”.</p></li>
 <li><p>Download <a href="/introR/rmd_posts/2015-01-14-01-Introduction.R">Lesson 1 R Code</a> and save it to your project.</p></li>
 </ol>
 </div>
 <div id="using-functions" class="section level2">
 <h2>Using functions</h2>
 <p>R is built off of functions and most of everything you do uses a function.</p>
-<p>The basic syntax of function follows the form: <code>function_name(arg1, arg2, ...)</code>. With the base install, you will gain access to many. For instance:</p>
+<p>The basic syntax of function follows the form: <code>function_name(arg1, arg2, ...)</code>. With the base install, you will gain access to many. Try evaluating the following functions (copy and paste into the command line in the Console pane, then hit enter):</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Print</span>
-<span class="kw">print</span>(<span class="st">&quot;hello world!&quot;</span>)</code></pre>
-<pre><code>## [1] &quot;hello world!&quot;</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A sequence</span>
-<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)</code></pre>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Random normal numbers</span>
-<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">2</span>)</code></pre>
-<pre><code>##   [1]  8.410558 14.446063 12.093610 15.068330  7.002925 13.418513 10.430628
-##   [8] 11.367022  5.268755 10.972067  9.536933 11.435432 10.545020 11.429472
-##  [15] 14.292820 12.898599  9.144704  9.983141  9.410932 12.027596  7.342721
-##  [22] 10.552517 11.358219 12.698533 14.137969 10.364386  8.508120 11.688481
-##  [29]  8.856632  9.112935 11.607013  7.070152 12.053839  9.290075 11.543587
-##  [36]  8.895229  8.691168  8.635784  9.376545 12.205391  9.417618 13.099772
-##  [43] 12.725579 10.472604  7.278573  8.603214  9.935694 10.868664 10.894721
-##  [50]  9.542978 11.611684  7.471830 12.253828  7.098516  8.999976  6.866497
-##  [57] 13.687783 10.304782 12.152610  6.756505 13.719384 13.782597 11.361851
-##  [64]  9.794640 13.601158 12.858718  9.678794  9.817819 12.626921 11.945121
-##  [71] 12.435632  7.879824  7.867096 10.264916 13.258543  9.226201  9.418796
-##  [78]  7.170726  8.215361 11.010839  9.193795 10.256600 11.577031  9.101984
-##  [85] 10.440955  7.863061  8.625242 10.246390  9.098225 10.061024 10.449165
-##  [92]  8.081854 11.353515  8.421282 10.677167  8.360388  9.510642  9.038313
-##  [99] 11.286049 10.145857</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Mean</span>
-<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] -0.0213184</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Sum</span>
+<span class="kw">print</span>(<span class="st">&quot;hello world!&quot;</span>)
+<span class="co">#A sequence</span>
+<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)
+<span class="co">#Random normal numbers</span>
+<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">2</span>)
+<span class="co">#Mean</span>
+<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))
+<span class="co">#Sum</span>
 <span class="kw">sum</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</code></pre>
-<pre><code>## [1] 11.44512</code></pre>
 <p>A few side notes. The <code>#</code> indicates a comment. You can put whatever else you’d like after this, but on the same line as the <code>#</code>. R will not evaluate it. When commenting your code, err on the side of too much! Also, you will see <code>()</code>, <code>[]</code>, and <code>{}</code> used in R code. The <code>()</code> indicates a function (almost always), the <code>[]</code> indicates indexing (grabbing values by the location), and the <code>{}</code> groups code that is meant to be run together and is usually used when programming functions in R.</p>
 </div>
 <div id="using-packages" class="section level2">
@@ -197,9 +178,9 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <p>One source of confusion that many have is when they cannot access functions from a package that they just installed. This is because getting to this point requires an extra step, loading (or attaching) the package.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Add libraries to your R Session</span>
 <span class="kw">library</span>(<span class="st">&quot;dataRetrieval&quot;</span>)
-<span class="kw">library</span>(<span class="st">&quot;EGRET&quot;</span>)</code></pre>
-<pre><code>## This information is preliminary or provisional and is subject to revision. It is being provided to meet the need for timely best science. The information has not received final approval by the U.S. Geological Survey (USGS) and is provided on the condition that neither the USGS nor the U.S. Government shall be held liable for any damages resulting from the authorized or unauthorized use of the information. Although this software program has been used by the USGS, no warranty, expressed or implied, is made by the USGS or the U.S. Government as to the accuracy and functioning of the program and related program material nor shall the fact of distribution constitute any such warranty, and no responsibility is assumed by the USGS in connection therewith.</code></pre>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#You can also access functions without loading by using package::function</span>
+<span class="kw">library</span>(<span class="st">&quot;EGRET&quot;</span>)
+
+<span class="co">#You can also access functions without loading by using package::function</span>
 dataRetrieval::readNWISuv</code></pre>
 <pre><code>## function (siteNumbers, parameterCd, startDate = &quot;&quot;, endDate = &quot;&quot;, 
 ##     tz = &quot;&quot;) 
@@ -223,7 +204,7 @@ dataRetrieval::readNWISuv</code></pre>
 
 <span class="co">#Update, may take a while if you have many packages installed</span>
 <span class="kw">update.packages</span>()</code></pre>
-<p>Lastly, a quick note on pacakges and libraries. You will often hear people use the terms interchangably. This is not correct. A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand. A library is, more or less, where you packages are stored. You have a path to that library and this is where R puts new packages that you install (e.g. via <code>install.packages()</code>). These two terms are related, but most certainly different. Apologies up front if I slip and use one when I actually mean the other…</p>
+<p>Lastly, a quick note on packages and libraries. You will often hear people use the terms interchangably. This is not correct. A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand. A library is, more or less, where you packages are stored. You have a path to that library and this is where R puts new packages that you install (e.g. via <code>install.packages()</code>). These two terms are related, but most certainly different. Apologies up front if I slip and use one when I actually mean the other…</p>
 </div>
 </div>
 <div id="help" class="section level2">
@@ -284,12 +265,12 @@ dataRetrieval::readNWISuv</code></pre>
 <li>Open up a <a href="http://cran.r-project.org/web/views/">task view</a> of your choosing. Select a package and install it.</li>
 <li>Load the package into R.</li>
 <li>Open the help for the package.</li>
-<li>Save all these functions inside your “lesson1.R” script. Run the script using the “Run” button at the top right of the editor.</li>
+<li>Save all these functions inside your “lesson1.R” script. Run the script using the “Run” button at the top right of the editor. <em>Note: the “Run” button will only run code on the current line of your cursor or code that is highlighted.</em></li>
 </ol>
 <table>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="0_Outline.html">Workshop Outline</a></td>
+<td align="left"><a href="Outline.html">Workshop Outline</a></td>
 <td align="left">—————————————–</td>
 <td align="left"><a href="B_Get.html">B. Get</a></td>
 </tr>

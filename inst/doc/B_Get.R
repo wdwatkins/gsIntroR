@@ -10,7 +10,7 @@ titles <- c("Workshop Outline","A. Introduction",
              "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
              "H. Repeat and Reproduce", "I. Parting Thoughts")
 
-pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+pages <- paste0(c("Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",
              "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
              ".html")
@@ -23,20 +23,20 @@ directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]
 directions <- c(directions[1],"-----------------------------------------",directions[2])
 kable(t(directions))
 
-## ----operators_consoloe--------------------------------------------------
-#A really powerful calculator!
-1+1 #Add
-10-4 #Subtract
-3*2 #Multiply
-3^3 #Exponents
-100/10 #Divide
-5%%2 #Modulus
-5>2 #Greater than
-4<5 #Less than
-5<=5 #Less than or equal
-8>=2 #Greater than or equal
-2==2 #Equality: notice that it is TWO equal signs!
-5!=7 #Not Equals
+## ----operators_consoloe, eval=FALSE, echo=TRUE---------------------------
+#  #A really powerful calculator!
+#  1+1 #Add
+#  10-4 #Subtract
+#  3*2 #Multiply
+#  3^3 #Exponents
+#  100/10 #Divide
+#  5%%2 #Modulus
+#  5>2 #Greater than
+#  4<5 #Less than
+#  5<=5 #Less than or equal
+#  8>=2 #Greater than or equal
+#  2==2 #Equality: notice that it is TWO equal signs!
+#  5!=7 #Not Equals
 
 ## ----assignment_operator-------------------------------------------------
 #Numeric assignment
