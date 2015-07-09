@@ -82,7 +82,7 @@ hw()
 
 Well that's nice...  Not really useful, but shows the main components, `function()`, and the `{}` which are really the only new things.
 
-It would be a bit better if it were more flexible.  We can do that becuase we can specify our own arguments to use within the body of the function.  For example,
+It would be a bit better if it were more flexible.  We can do that because we can specify our own arguments to use within the body of the function.  For example,
 
 ```{r function2_create}
 p<-function(my_text){
@@ -175,7 +175,7 @@ sum_vec(1:10)
 
 Again a bit of a silly example since all it is doing is looping through a list of values and summing it.  In reality you would just use `sum()`.  This also highlights the fact that loops in R can be slow compared to vector operations and/or primitive operations (see Hadley's section on [Primitive functions](http://adv-r.had.co.nz/Functions.html#function-components)).  
 
-Let's dig a bit more into this issue with another example (using the `sum()` example is a bit unfair since `sum()` is actually implemented in C).  This time, let's look at adding two vectors together.  We haven't touched on this yet, but R is really good at dealing with this kind of operation.  It is what people mean when they talk about "vectorized" operations.  For instance:
+Let's dig a bit more into this issue with another example.  This time, let's look at adding two vectors together.  We haven't touched on this yet, but R is really good at dealing with this kind of operation.  It is what people mean when they talk about "vectorized" operations.  For instance:
 
 
 ```{r for_examp_print}
@@ -363,7 +363,7 @@ By itself Markdown is pretty cool, but doesn't really provide any value added to
 
 In short, these three tools allow us to write up documents, embed code via "code chunks", run that code and render the final document with nicely formatted text, results, figures etc into a final format of our choosing.  We can create `.html`, `.docx`, `.pdf`, ...  The benefit of doing this is that all of our data and code are a part of the document.  I share my source document, then anyone can reproduce all of our calculations.  For instance, I can make a manuscript that looks like this:
 
-[![Rendered Manuscript](figure/rendered.jpg)]figure/manuscript.pdf)
+[![Rendered Manuscript](figure/rendered.jpg)](figure/manuscript.pdf)
 
 from a source markdown document that looks like:
 
@@ -416,7 +416,7 @@ In this document we can see a couple of things.  First at the top we see:
     title: "My First Reproducible Document"
     author: "Jeff W. Hollister"
     date: "1/6/2015"
-    output: pdf_document
+    output: html_document
     ---
 
 This is the YAML(YAML Ain't Markup Language) header or front-matter.  It is metadata about the document that can be very useful.  For our purposes we don't need to know anything more about this.  Below that you see text, code chunks, and if it were included some markdown.  At its core this is all we need for a reproducible document.  We can now take this document, pass it through `knitr::knit()` (remember this syntax from the first lesson?) and pandoc and get our output.  We can do this from the console and/or shell, or we can use RStudio.  
