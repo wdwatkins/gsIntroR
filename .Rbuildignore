@@ -1,4 +1,3 @@
-vignettes/figure
 appveyor.yml
 .travis.yml
 .gitignore
