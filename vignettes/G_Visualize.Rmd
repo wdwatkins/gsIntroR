@@ -24,9 +24,7 @@ if(!require("ggplot2")){
 if(!require("dplyr")){
   install.packages("dplyr")
 }
-if(!require("randomForest")){
-  install.packages("randomForest")
-}
+
 library("ggplot2")
 library("dplyr")
 
@@ -201,13 +199,28 @@ iris_meanpl_bar
 ##Exercise 1
 Let's now build some plots with `ggplot2`
 
-1. Add another section to the script to hold this code.
+1. Add another section to the script to hold this code:
 
-2. Try out a simple scatterplot, boxplot, and histogram on any of the data in our `nla_data` data frame.
+```{r get_nla, echo=TRUE, warning=FALSE, purl=FALSE, message=FALSE}
+wq_url<-"http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_WaterQuality_20091123.csv"
+site_url<-"http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_SampledLakeInformation_20091113.csv"
+nla_wq<-read.csv(wq_url)
+nla_sites<-read.csv(site_url)
+nla_sites_subset<-subset(nla_sites,select=c(SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
+  																					WSA_ECO9, NUT_REG, NUTREG_NAME, 
+																						LAKE_ORIGIN, RT_NLA))
+nla_wq_subset<-subset(nla_wq,select=c(SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
+																			PTL, CHLA, SECMEAN))
+nla_wq_subset<-subset(subset(nla_wq_subset,subset=VISIT_NO==1),
+											subset=SITE_TYPE=="PROB_Lake")
+nla_data<-merge(nla_wq_subset,nla_sites_subset,by="SITE_ID",all.x=TRUE)
+```
 
-2. Build a bar plot of the mean CHLA for each of the values in WSA_ECO9.
+2. Try out a simple scatterplot, boxplot, and histogram on any data in the `nla_data` data frame.
 
-3. Lastly, build a scatter plot showing the relationship between PTL and CHLA (`log10()` transform both) with each LAKE_ORIGIN value a different color.  For some optional fun add in a regression line for each value of LAKE_ORIGIN.
+3. Build a bar plot of the mean CHLA for each of the values in WSA_ECO9.
+
+4. Lastly, build a scatter plot showing the relationship between PTL and CHLA (`log10()` transform both) with each LAKE_ORIGIN value a different color.  For some optional fun add in a regression line for each value of LAKE_ORIGIN.
 
 
 ##Customizing and saving `ggplot2` plots
@@ -304,22 +317,6 @@ p + facet_grid(vs ~ am)
 ```
 
 And a parting example using the NLA data.
-
-```{r get_nla, echo=FALSE, warning=FALSE, purl=FALSE, message=FALSE}
-wq_url<-"http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_WaterQuality_20091123.csv"
-site_url<-"http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_SampledLakeInformation_20091113.csv"
-nla_wq<-read.csv(wq_url)
-nla_sites<-read.csv(site_url)
-nla_sites_subset<-subset(nla_sites,select=c(SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
-  																					WSA_ECO9, NUT_REG, NUTREG_NAME, 
-																						LAKE_ORIGIN, RT_NLA))
-nla_wq_subset<-subset(nla_wq,select=c(SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
-																			PTL, CHLA, SECMEAN))
-nla_wq_subset<-subset(subset(nla_wq_subset,subset=VISIT_NO==1),
-											subset=SITE_TYPE=="PROB_Lake")
-nla_data<-merge(nla_wq_subset,nla_sites_subset,by="SITE_ID",all.x=TRUE)
-```
-
 
 ```{r facet_grid_nla, warning=FALSE, message=FALSE}
 tp_chla <- ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) + geom_point()
