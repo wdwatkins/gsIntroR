@@ -297,6 +297,27 @@ first_last<-paste(first, last)
 first_last
 ```
 
+### Factors
+
+Factors are special vectors that represent categorical data. Factors can be ordered or unordered and are often important with modelling functions such as `lm()` and `glm()` (think dummy variables) and also in plot methods.
+
+Factors are pretty much integers that have labels on them.  While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings. Some string methods will coerce factors to strings, while others will throw an error.
+
+Factors may be ordered (e.g., low, medium, high) or unordered (e.g. male, female).
+
+Factors can be created with `factor()`. Input is a character vector.
+
+```{r factor_examples}
+#An unordered factor
+yn <- factor(c("yes", "no", "no", "yes", "yes"))
+yn
+
+#An ordered factor
+lmh <- factor (c("high","high","low","medium","low","medium","high"),
+               levels=c("low","medium","high"),ordered=TRUE )
+lmh
+```
+
 ### Data frames
 
 Data frames are the data structure you will most often use when doing data analysis.  They are the most spreadsheet like data structure in R, but unlike spreadsheets there are some rules that must be followed. This is a good thing!
@@ -309,7 +330,7 @@ So one way to create a data frame is from some vectors and the `data.frame()` co
 numbers <- c(1:26,NA)
 lettersNew <- c(NA,letters) #letters is a special object available from base R
 logical <- c(rep(TRUE,13),NA,rep(FALSE,13))
-examp_df <- data.frame(lettersNew,numbers,logical)
+examp_df <- data.frame(lettersNew,numbers,logical, stringsAsFactors = FALSE)
 ```
 
 Now that we have this data frame we probably want to do something with it.  We can examine it in many ways.
@@ -335,28 +356,8 @@ summary(examp_df)
 na.omit(examp_df)
 ```
 
-### Factors and Lists
 
-Factors are special vectors that represent categorical data. Factors can be ordered or unordered and are often important with modelling functions such as `lm()` and `glm()` (think dummy variables) and also in plot methods.
-
-Factors are pretty much integers that have labels on them.  While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings. Some string methods will coerce factors to strings, while others will throw an error.
-
-Factors may be ordered (e.g., low, medium, high) or unordered (e.g. male, female).
-
-Factors can be created with `factor()`. Input is a character vector.
-
-```{r factor_examples}
-#An unordered factor
-yn <- factor(c("yes", "no", "no", "yes", "yes"))
-yn
-
-#An ordered factor
-lmh <- factor (c("high","high","low","medium","low","medium","high"),
-               levels=c("low","medium","high"),ordered=TRUE )
-lmh
-```
-
-### List
+### Lists
 
 Lists are actually a special type of vector, but it is probably best to think of them as their own thing.  Lists can contain multiple items, of multiple types, and of multiple structures.  They are very versatile and often used inside functions or as an output of functions.  
 
@@ -407,6 +408,14 @@ first_sheet<-read.csv("example.csv")
 #Did it work?
 first_sheet
 
+```
+
+You can also save objects in your R workspace as csv files. 
+
+```{r write.csv examp, eval=FALSE}
+write.table(web_df, file = "example_data_frame.csv", sep=",")
+# or
+write.csv(web_df, file="example_data_frame.csv")
 ```
 
 ##Reading NWIS data into R
