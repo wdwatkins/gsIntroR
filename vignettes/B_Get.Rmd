@@ -130,6 +130,8 @@ save.image("lesson2.RData")
 save(a,y,file="lesson2_ay.RData")
 ```
 
+A note about saving your workspace: This should not be something you do regularly because your script should contain code that can easily recreate all of the objects in your workspace. 
+
 This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and arguments are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
 
 Next thing you might want to do is navigate around your files and directories.
@@ -443,15 +445,14 @@ So now we have a basic feel on how to work in R, how data is dealt with, and how
 ```
 
 ##Exercise 2
-From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some more data, look at that data, and be able to describe some basic information about that dataset.  The data we will use are phosphorus data observed at sites included with the Geospatial Attributes of Gages for Evaluating Streamflow, version II (GAGES-II) sites from New Mexico. Navigate to the abstract on the [GAGES-II dataset](http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml) metadata page for additional information on GAGES-II sites and site metadata. 
+For this exercise we are going to grab some more data, look at that data, and be able to describe some basic information about that dataset. The data we will use will come from NWIS via dataRetrieval. 
 
 1. Create a new script in RStudio.  Name it "usgs_analysis.R"
-2. As you write the script comment as you go.
-3. Add commands to create two data frames: One named `gages_sites` that contains all the data in the [conterm_basinid.csv](/introR/rmd_posts/all_gages_ii_data/conterm_basinid.csv) file, and another named `gages_cover` that contains all the data in the [conterm_lc06_basin.csv](/introR/rmd_posts/all_gages_ii_data/conterm_lc06_basin.csv) file. 
-4. Add commands to your script that will provides details on the structure (hint: `str`) of each newly created data frame.
-5. Take a look at the variable description table [here on github](https://github.com/USGS-R/introR/blob/gh-pages/rmd_posts/all_gages_ii_data/variable_descriptions.csv) to understand the column headers.
+2. As you write the script comment as you go. Also, be sure to use the help files for the dataRetrieval package to help you identify arguments and functions that you need to use. 
+3. Using a site number of your choice (or 01010000 if you can't think of one), create two data frames: one with phosphorus data (P Code = 00665), and one with discharge (P Code = 00060).  
+4. Add commands to your script that will provides details on the structure (hint: `str`) of each newly created data frame. Are the data frames the same size?
 6. Run the script and make sure it doesn't throw any errors and you do in fact get the two data frames.
-7. If you still have some time, explore the data frames using some of the commands we covered.  This part does not need to be included in the script.
+7. If you still have some time, explore the data frames using some of the commands we covered. Or, explore more dataRetrieval functions and arguments.
 
 ```{r echo=FALSE}
 kable(t(directions))
