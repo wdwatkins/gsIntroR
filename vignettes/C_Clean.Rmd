@@ -245,7 +245,7 @@ In this exercise we are going to practice merging our Gages data. You will remem
 
 1. This is the only task we have for this exercise.  Add to your script a line (or more if you need it) to create a new data frame, `gages_data`, that is a merge of `gages_sites_nm` and `gages_cover_subset`, but with only lines in `gages_sites_nm` preserved in the output.  The column to merge on is "STAID"
 2. This data frame may have some `NA` values.  For the purposes of these lessons, it is better to remove these.  Add another line to your code and create a data frame that removes all NA values from `gages_data`.
-2. If that goes quickly, feel free to explore `rbind()` some.
+3. If that goes quickly, feel free to explore `rbind()` some.
 
 ##Modify and Summarize
 Now back to `dplyr`.  One area where it really shines is in modifying and summarizing.   We will do more here than we did with base, but first lets walk through one of the examples we did previously, aggregating.  We can do this with `group_by()` and  `summarize()`.

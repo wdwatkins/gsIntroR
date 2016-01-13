@@ -1,0 +1,6 @@
+* text=auto
+*.R text
+*.txt text
+*.csv text
+*.md text
+*.Rmd text
