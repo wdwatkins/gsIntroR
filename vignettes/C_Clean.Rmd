@@ -59,6 +59,7 @@ Before we jump into the lesson, quick links and lesson goals are:
 - [Exercise 1](#exercise-1): Subsetting the Gages data with `dplyr`
 - [Exercise 2](#exercise-2): Merge two Gages data files together.
 - [Exercise 3](#exercise-3): Using `dplyr` to modify and summarize the Gages.
+- [Exercise 4](#exercise-4): Writing functions and control structures
 
 
 ##Lesson Goals
@@ -67,6 +68,8 @@ Before we jump into the lesson, quick links and lesson goals are:
 - Use `merge()` to combine data frames by a common key.
 - Do some basic reshaping and summarizing data frames.
 - Know what pipes are and why you might want to use them
+- Understand how to create your own functions
+- Be able to use basic programming control structures
 
 ##What is `dplyr`? 
 
