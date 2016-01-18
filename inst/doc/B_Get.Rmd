@@ -130,6 +130,8 @@ save.image("lesson2.RData")
 save(a,y,file="lesson2_ay.RData")
 ```
 
+A note about saving your workspace: This should not be something you do regularly because your script should contain code that can easily recreate all of the objects in your workspace. 
+
 This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and arguments are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
 
 Next thing you might want to do is navigate around your files and directories.
@@ -297,6 +299,27 @@ first_last<-paste(first, last)
 first_last
 ```
 
+### Factors
+
+Factors are special vectors that represent categorical data. Factors can be ordered or unordered and are often important with modelling functions such as `lm()` and `glm()` (think dummy variables) and also in plot methods.
+
+Factors are pretty much integers that have labels on them.  While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings. Some string methods will coerce factors to strings, while others will throw an error.
+
+Factors may be ordered (e.g., low, medium, high) or unordered (e.g. male, female).
+
+Factors can be created with `factor()`. Input is a character vector.
+
+```{r factor_examples}
+#An unordered factor
+yn <- factor(c("yes", "no", "no", "yes", "yes"))
+yn
+
+#An ordered factor
+lmh <- factor (c("high","high","low","medium","low","medium","high"),
+               levels=c("low","medium","high"),ordered=TRUE )
+lmh
+```
+
 ### Data frames
 
 Data frames are the data structure you will most often use when doing data analysis.  They are the most spreadsheet like data structure in R, but unlike spreadsheets there are some rules that must be followed. This is a good thing!
@@ -309,7 +332,7 @@ So one way to create a data frame is from some vectors and the `data.frame()` co
 numbers <- c(1:26,NA)
 lettersNew <- c(NA,letters) #letters is a special object available from base R
 logical <- c(rep(TRUE,13),NA,rep(FALSE,13))
-examp_df <- data.frame(lettersNew,numbers,logical)
+examp_df <- data.frame(lettersNew,numbers,logical, stringsAsFactors = FALSE)
 ```
 
 Now that we have this data frame we probably want to do something with it.  We can examine it in many ways.
@@ -335,28 +358,8 @@ summary(examp_df)
 na.omit(examp_df)
 ```
 
-### Factors and Lists
 
-Factors are special vectors that represent categorical data. Factors can be ordered or unordered and are often important with modelling functions such as `lm()` and `glm()` (think dummy variables) and also in plot methods.
-
-Factors are pretty much integers that have labels on them.  While factors look (and often behave) like character vectors, they are actually integers under the hood, and you need to be careful when treating them like strings. Some string methods will coerce factors to strings, while others will throw an error.
-
-Factors may be ordered (e.g., low, medium, high) or unordered (e.g. male, female).
-
-Factors can be created with `factor()`. Input is a character vector.
-
-```{r factor_examples}
-#An unordered factor
-yn <- factor(c("yes", "no", "no", "yes", "yes"))
-yn
-
-#An ordered factor
-lmh <- factor (c("high","high","low","medium","low","medium","high"),
-               levels=c("low","medium","high"),ordered=TRUE )
-lmh
-```
-
-### List
+### Lists
 
 Lists are actually a special type of vector, but it is probably best to think of them as their own thing.  Lists can contain multiple items, of multiple types, and of multiple structures.  They are very versatile and often used inside functions or as an output of functions.  
 
@@ -409,6 +412,14 @@ first_sheet
 
 ```
 
+You can also save objects in your R workspace as csv files. 
+
+```{r write.csv examp, eval=FALSE}
+write.table(web_df, file = "example_data_frame.csv", sep=",")
+# or
+write.csv(web_df, file="example_data_frame.csv")
+```
+
 ##Reading NWIS data into R
 
 The USGS has created an R package to directly link NWIS with R. It is called `dataRetrieval`. With it, you can quickly and easily get NWIS data into R. Go ahead and experiment with it.
@@ -434,15 +445,15 @@ So now we have a basic feel on how to work in R, how data is dealt with, and how
 ```
 
 ##Exercise 2
-From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some more data, look at that data, and be able to describe some basic information about that dataset.  The data we will use are phosphorus data observed at sites included with the Geospatial Attributes of Gages for Evaluating Streamflow, version II (GAGES-II) sites from New Mexico. Navigate to the abstract on the [GAGES-II dataset](http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml) metadata page for additional information on GAGES-II sites and site metadata. 
+From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some more data, look at that data, and be able to describe some basic information about that dataset. The data we will use are phosphorus data observed at sites included with the Geospatial Attributes of Gages for Evaluating Streamflow, version II (GAGES-II) sites from New Mexico. Navigate to the abstract on the [GAGES-II dataset](http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml) metadata page for additional information on GAGES-II sites and site metadata.
 
-1. Create a new script in RStudio.  Name it "usgs_analysis.R"
+1. Create a new script in RStudio. Name it “usgs_analysis.R”
 2. As you write the script comment as you go.
-3. Add commands to create two data frames: One named `gages_sites` that contains all the data in the [conterm_basinid.csv](/introR/rmd_posts/all_gages_ii_data/conterm_basinid.csv) file, and another named `gages_cover` that contains all the data in the [conterm_lc06_basin.csv](/introR/rmd_posts/all_gages_ii_data/conterm_lc06_basin.csv) file. 
-4. Add commands to your script that will provides details on the structure (hint: `str`) of each newly created data frame.
+3. Add commands to create two data frames: One named `gages_sites` that contains all the data in the [conterm_basinid.csv](/introR/rmd_posts/all_gages_ii_data/conterm_basinid.csv) file, and another named `gages_cover` that contains all the data in the [conterm_lc06_basin.csv](/introR/rmd_posts/all_gages_ii_data/conterm_lc06_basin.csv) file.
+4. Add commands to your script that will provides details on the structure (hint: str) of each newly created data frame.
 5. Take a look at the variable description table [here on github](https://github.com/USGS-R/introR/blob/gh-pages/rmd_posts/all_gages_ii_data/variable_descriptions.csv) to understand the column headers.
-6. Run the script and make sure it doesn't throw any errors and you do in fact get the two data frames.
-7. If you still have some time, explore the data frames using some of the commands we covered.  This part does not need to be included in the script.
+6. Run the script and make sure it doesn’t throw any errors and you do in fact get the two data frames.
+7. If you still have some time, explore the data frames using some of the commands we covered. This part does not need to be included in the script.
 
 ```{r echo=FALSE}
 kable(t(directions))

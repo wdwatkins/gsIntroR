@@ -36,7 +36,8 @@ kable(t(directions))
 
 ## ----ggplot_install, eval=FALSE------------------------------------------
 #  install.packages("ggplot2")
-#  library("ggplot2")
+#  library(ggplot2)
+#  library(dplyr)
 
 ## ----ggplot_examp--------------------------------------------------------
 # aes() are the "aesthetics" info.  When you simply add the x and y
@@ -116,7 +117,7 @@ scatter_p_base<-scatter_p +
   theme(panel.background = element_blank(), 
         panel.grid = element_blank(),
         panel.border = element_rect(fill = NA),
-        text=element_text(family="Times",color="red",size=24))
+        text=element_text(family="serif",color="red",size=24))
 scatter_p_base
 
 ## ----themes_examp_stock--------------------------------------------------
@@ -132,12 +133,11 @@ scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
                                   values= c("steelblue1",
                                             "sienna",
                                             "springgreen3")) + 
-              theme_classic(18,"Times") +
+              theme_classic(18,"serif") +
               theme(text=element_text(color="slategray")) +
               labs(title="Iris Petal Morphology Relationship",
                      x="Petal Length", y="Petal Width")
               
-
 scatter_polished 
 
 ## ----ggsave_examp, eval=FALSE--------------------------------------------

@@ -1,0 +1,166 @@
+---
+title: "G. Visualize - Advanced plotting with base R"
+author: Lindsay R. Carr
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    fig_width: 6
+    fig_height: 6
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{G. Visualize - base}
+  \usepackage[utf8]{inputenc}
+---
+
+Earlier, there was an introduction to simple plots using the base R features. This section will expand on base R plotting, and highlight its more advanced functions. 
+
+##Quick Links to Exercises and R code
+- [Exercise 1](#exercise-1): Create plots using a number of styles and graphical parameters.
+- [Exercise 2](#exercise-2): Save an image with multiple plots using secondary axes and log scales.
+
+##Lesson Goals
+- Be able to add styles to the plot (colors, linetypes, par arguments, etc)
+- Become familar with additional plotting features (symbols, legends, multiple axes)
+- Create multiple plots in one graphic device
+- Output plots to files
+
+###Plot Styles
+So far we have learned to plot data using scatter plots, boxplots, and histograms for exploratory purposes. But what if you wanted to present this data to others? Usually, that would require some work on its style, and base R plotting has a many features that can make this process easy. 
+
+First, let's start with two sets of random data and plot them using different colors and point types. 
+
+- `pch` is a number that corresponds to a point type. 
+- `col` can be a character string or hexadecimal color (#RRGGBB)
+- you can use the function `colors()` to get a list of R colors
+
+```{r pch_col_examp}
+#use runif to generate a vector of n random numbers between min and max
+data1 <- data.frame(x=1:75, y=runif(n=25, min=0, max=75)) 
+data2 <- data.frame(x=1:75, y=runif(25, 0, 75))
+
+#Now, plot two different sets of points in different colors
+plot(data1$x, data1$y, pch=16, col='#FF5034')
+points(data2$x, data2$y, pch=16, col='skyblue')
+```
+
+Similarly, you can change linetypes (`lty`), linewidths (`lwd`), point size (`cex`). These all refer to graphical parameters and there are many more. Use `?par` to read about the others.  
+
+Graphical parameters also apply to the overall graph. For instance, `las` is used to give the orientation of the axes labels - parallel or perpendicular to the axis, always horizontal, or always vertical. Plot margins can also be set using `par` arguments. 
+
+- use `las` to change the axis labels orientation
+- `tck` changes the tick length (negative is outside of the plot region)
+- `bg` can change the entire graphics device background color
+
+```{r par_example}
+par(las=2, tck=0.01, bg="darkseagreen")
+plot(data1$x, data1$y, pch=6)
+```
+
+###Legends
+
+Legends are an obvious necessity for publishing plots built in R. Adding legends is a straightforward process: use the `legend()` function and include vectors of the legend names (`legend`), colors, point/line types, and also the location of the legend (`x`). Including a title is optional. Additional arguments used to customize legends can be found in the help file (`?legend`). Below, is a simple example: 
+
+```{r legend_example}
+#plot the same plot using to illustrate color and point type
+plot(data1$x, data1$y, pch=16, col='#FF5034')
+points(data2$x, data2$y, pch=16, col='skyblue')
+
+#add a legend
+legend(x="topright", legend=c("My data1 points", "my data2 points"),
+       pch=16, col=c('#FF5034', 'skyblue'), title="Legend")
+```
+
+###Additional Plotting Features
+
+R base plotting offers features other than points and lines, such as symbols, rectangles, polygons, and curves. Their usage is illustrated in the example below. 
+
+```{r add_features_example}
+#plot formulas using curve()
+curve(x^2, from=0, to=10)
+curve(sin(x), from=-pi, to=pi)
+
+#plot rectangles or polygons
+plot(1:15, c(1:7, 9.5, 9:15), type='l')
+rect(xleft=6, xright=10, ybottom=5, ytop=11, density=5, col="orange")
+polygon(x=c(2,3,4), y=c(2,6,2), col="lightgreen", border=NA)
+
+#use symbols to plot circles (and more) based on data
+x <- runif(25, 0, 25)
+y <- runif(25, 0, 25)
+radii <- runif(25, 0, 10)
+cols <- colors()[round(runif(25, 0, 500))]
+symbols(x, y, circles = radii, bg = cols)
+
+```
+
+
+
+##Exercise 1
+
+1. Copy and paste the following code to have a data frame of USGS phosphorus data. 
+
+```{r warning = FALSE, message = FALSE}
+library(dataRetrieval)
+# Gather NWIS data:
+P_site1 <- readNWISqw("01656960", parameterCd = "00665")
+P_site2 <- readNWISqw("01656725", parameterCd = "00665")
+
+```
+
+2. Using the base R plotting features just discussed, plot a timeseries (see dates column "sample_dt") for two different sites phosphorus data (see column "result_va"). Show the different timeseries in different colors, linetypes, or linewidths. Include a legend. 
+
+3. Add a rectangle to the plot to highlight some of the data. Try to add diagonal lines or make the fill color transparent. Also, try to include this rectangle in the legend; this is can be challenging (hint: use "NA" when a legend item doesn't use the argument)!   
+
+###Axes
+
+You can also customize your plot axes using the `axis()` function and specifying which axis by using the `side=` argument. Add ticks at specific values, and add second x and y axes (side=3 or side=4). To make a log-scale axis, use the argument `log=` and specify the x or y axis.   
+
+```{r axis_example}
+xData <- 1:50
+yData <- runif(50, min=1, max=10000)
+
+#add a second y axis
+plot(xData, yData, pch=20)
+axis(side=3, at=seq(1,50, by=0.5))
+
+#log the y-axis
+plot(xData, yData, pch=20, log='y')
+axis(side=4) #this axis is also logged
+
+```
+
+
+###Multiple Plots in One Graphics Device
+
+It is often useful to have multiple plots shown in one image. There are a few ways to accomplish this: par arguments mfcol or mfrow, `layout`, or `split.screen`. We are only going to discuss `layout`. 
+
+To use layout, you must first create a matrix specifying the location of each plot. For instance, if you want plot 1 above the second plot, you would set up this matrix: `matrix(c(1,2), 2, 1)`. If you wanted a gap in between your two plots, you could say "0", meaning no plot will be in that location: `matrix(c(1,0,2), 3, 1)`. Then you simply use the function `layout()` with your matrix as the function argument. 
+
+```{r multiple_plots_example}
+#use the built-in r data, "iris"
+
+layout_matrix <- matrix(c(1:4), nrow=2, ncol=2, byrow=TRUE)
+layout(layout_matrix)
+
+#four boxplots:
+plot1 <- plot(iris$Species, iris$Sepal.Width, ylab="Sepal Width")
+plot2 <- plot(iris$Species, iris$Sepal.Length, ylab="Sepal Length")
+plot3 <- plot(iris$Species, iris$Petal.Width, ylab="Petal Width")
+plot4 <- plot(iris$Species, iris$Petal.Length, ylab="Petal Length")
+
+```
+
+
+###Saving Plots
+
+It is very simple to save your plots as images. In RStudio's "Plots" window, you can select the "Export" drop down and say "Save as Image" or "Save as PDF". Alternatively, you can use the following functions: `png()`, `jpeg()`, `pdf()`, `svg()`, and the list goes on. To use, just specify what the file name or file path (there are other arguments if you need something more specific, look at `?png`). 
+
+In order to view the image you just saved, you will have to make sure that this image isn't open as a current device. To do so, use `dev.off()`. The default is to turn off the most current device, but you can specify which device by using the argument `which = ` inside the function. 
+
+##Exercise 2
+1. Make a plot with at least one secondary axis, make a second plot with at least one log-scale axes. Try and use some of the graphical parameters that was discussed in the first part of this lesson!
+2. Using `layout`, plot the second image below the first. Leave an empty plotting region next to the second plot, but have the first span the whole device. 
+3. Save this image as a png.
+
+

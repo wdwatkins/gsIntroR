@@ -1,5 +1,5 @@
 ---
-title: "G. Visualize"
+title: "G. Visualize: Advanced plotting with ggplot2"
 author: Jeffrey W. Hollister
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -9,7 +9,7 @@ output:
     fig_height: 6
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{G. Visualize}
+  %\VignetteIndexEntry{G. Visualize - ggplot2}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -71,7 +71,8 @@ Before we start developing some graphics, we need to do a bit of package mainten
 
 ```{r ggplot_install, eval=FALSE}
 install.packages("ggplot2")
-library("ggplot2")
+library(ggplot2)
+library(dplyr)
 ```
 
 First thing we need to do is to create our ggplot object.  Everything we do will build off of this object.  The bare minimum for this is the data (handily, `ggplot()` is expecting a data frame) and `aes()`, or the aesthetics layers.  Oddly (at least to me), this is the main place you specify your x and y data values.
@@ -202,15 +203,15 @@ Let's now build some plots with `ggplot2`
 1. Add another section to the script to hold this code:
 
 ```{r get_nla, echo=TRUE, warning=FALSE, purl=FALSE, message=FALSE}
-wq_url<-"http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_WaterQuality_20091123.csv"
-site_url<-"http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_SampledLakeInformation_20091113.csv"
+wq_url<-"http://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv"
+site_url<-"http://www.epa.gov/sites/production/files/2014-01/nla2007_sampledlakeinformation_20091113.csv"
 nla_wq<-read.csv(wq_url)
 nla_sites<-read.csv(site_url)
 nla_sites_subset<-subset(nla_sites,select=c(SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
   																					WSA_ECO9, NUT_REG, NUTREG_NAME, 
 																						LAKE_ORIGIN, RT_NLA))
 nla_wq_subset<-subset(nla_wq,select=c(SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
-																			PTL, CHLA, SECMEAN))
+																			PTL, CHLA))
 nla_wq_subset<-subset(subset(nla_wq_subset,subset=VISIT_NO==1),
 											subset=SITE_TYPE=="PROB_Lake")
 nla_data<-merge(nla_wq_subset,nla_sites_subset,by="SITE_ID",all.x=TRUE)
@@ -244,7 +245,7 @@ scatter_p_base<-scatter_p +
   theme(panel.background = element_blank(), 
         panel.grid = element_blank(),
         panel.border = element_rect(fill = NA),
-        text=element_text(family="Times",color="red",size=24))
+        text=element_text(family="serif",color="red",size=24))
 scatter_p_base
 ```
 
@@ -268,12 +269,11 @@ scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
                                   values= c("steelblue1",
                                             "sienna",
                                             "springgreen3")) + 
-              theme_classic(18,"Times") +
+              theme_classic(18,"serif") +
               theme(text=element_text(color="slategray")) +
               labs(title="Iris Petal Morphology Relationship",
                      x="Petal Length", y="Petal Width")
               
-
 scatter_polished 
 ```
 
