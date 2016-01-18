@@ -202,15 +202,15 @@ Let's now build some plots with `ggplot2`
 1. Add another section to the script to hold this code:
 
 ```{r get_nla, echo=TRUE, warning=FALSE, purl=FALSE, message=FALSE}
-wq_url<-"http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_WaterQuality_20091123.csv"
-site_url<-"http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_SampledLakeInformation_20091113.csv"
+wq_url<-"http://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv"
+site_url<-"http://www.epa.gov/sites/production/files/2014-01/nla2007_sampledlakeinformation_20091113.csv"
 nla_wq<-read.csv(wq_url)
 nla_sites<-read.csv(site_url)
 nla_sites_subset<-subset(nla_sites,select=c(SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
   																					WSA_ECO9, NUT_REG, NUTREG_NAME, 
 																						LAKE_ORIGIN, RT_NLA))
 nla_wq_subset<-subset(nla_wq,select=c(SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
-																			PTL, CHLA, SECMEAN))
+																			PTL, CHLA))
 nla_wq_subset<-subset(subset(nla_wq_subset,subset=VISIT_NO==1),
 											subset=SITE_TYPE=="PROB_Lake")
 nla_data<-merge(nla_wq_subset,nla_sites_subset,by="SITE_ID",all.x=TRUE)
