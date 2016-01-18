@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">G. Visualize</h1>
 <h4 class="author"><em>Jeffrey W. Hollister</em></h4>
-<h4 class="date"><em>07 July, 2015</em></h4>
+<h4 class="date"><em>09 July, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -78,17 +78,8 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </div>
 
 <ul>
-<li><a href="0_Outline.html">Workshop Outline</a></li>
+<li><a href="Outline.html">Workshop Outline</a></li>
 </ul>
-<pre><code>## Loading required package: randomForest
-## randomForest 4.6-10
-## Type rfNews() to see new features/changes/bug fixes.
-## 
-## Attaching package: 'randomForest'
-## 
-## The following object is masked from 'package:dplyr':
-## 
-##     combine</code></pre>
 <table>
 <tbody>
 <tr class="odd">
@@ -205,8 +196,22 @@ iris_meanpl_bar</code></pre>
 <h2>Exercise 1</h2>
 <p>Let’s now build some plots with <code>ggplot2</code></p>
 <ol style="list-style-type: decimal">
-<li><p>Add another section to the script to hold this code.</p></li>
-<li><p>Try out a simple scatterplot, boxplot, and histogram on any of the data in our <code>nla_data</code> data frame.</p></li>
+<li>Add another section to the script to hold this code:</li>
+</ol>
+<pre class="sourceCode r"><code class="sourceCode r">wq_url&lt;-<span class="st">&quot;http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_WaterQuality_20091123.csv&quot;</span>
+site_url&lt;-<span class="st">&quot;http://water.epa.gov/type/lakes/assessmonitor/lakessurvey/upload/NLA2007_SampledLakeInformation_20091113.csv&quot;</span>
+nla_wq&lt;-<span class="kw">read.csv</span>(wq_url)
+nla_sites&lt;-<span class="kw">read.csv</span>(site_url)
+nla_sites_subset&lt;-<span class="kw">subset</span>(nla_sites,<span class="dt">select=</span><span class="kw">c</span>(SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
+                                                                                    WSA_ECO9, NUT_REG, NUTREG_NAME, 
+                                                                                        LAKE_ORIGIN, RT_NLA))
+nla_wq_subset&lt;-<span class="kw">subset</span>(nla_wq,<span class="dt">select=</span><span class="kw">c</span>(SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, 
+                                                                            PTL, CHLA, SECMEAN))
+nla_wq_subset&lt;-<span class="kw">subset</span>(<span class="kw">subset</span>(nla_wq_subset,<span class="dt">subset=</span>VISIT_NO==<span class="dv">1</span>),
+                                            <span class="dt">subset=</span>SITE_TYPE==<span class="st">&quot;PROB_Lake&quot;</span>)
+nla_data&lt;-<span class="kw">merge</span>(nla_wq_subset,nla_sites_subset,<span class="dt">by=</span><span class="st">&quot;SITE_ID&quot;</span>,<span class="dt">all.x=</span><span class="ot">TRUE</span>)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Try out a simple scatterplot, boxplot, and histogram on any data in the <code>nla_data</code> data frame.</p></li>
 <li><p>Build a bar plot of the mean CHLA for each of the values in WSA_ECO9.</p></li>
 <li><p>Lastly, build a scatter plot showing the relationship between PTL and CHLA (<code>log10()</code> transform both) with each LAKE_ORIGIN value a different color. For some optional fun add in a regression line for each value of LAKE_ORIGIN.</p></li>
 </ol>
@@ -216,10 +221,10 @@ iris_meanpl_bar</code></pre>
 <p>So, not bad, but they all look the same. With a bit more dithering, the plots would be our own and be publication ready.</p>
 <div id="themes" class="section level3">
 <h3>Themes</h3>
-<p>I am certain there are some opinions (good and bad) about the default look and feel of a <code>ggplot2</code> plot. Personally, I think it is an improvement over <code>base</code>, but generally not what I want for my plots. The <code>theme()</code> function (and related functions), give us the ability to completely customize the plot. A great place to start with this is the <a href="http://docs.ggplot2.org/dev/vignettes/themes.html">themes vignette</a> within <code>ggplot2</code> We could spend a whole day just on this, so for this class we are going to look at the very basics and then use some of the canned themes.</p>
+<p>I am certain there are some opinions (good and bad) about the default look and feel of a <code>ggplot2</code> plot. Personally, I think it is an improvement over <code>base</code>, but generally not what I want for my plots. The <code>theme()</code> function (and related functions), give us the ability to completely customize the plot. A great place to start with this is the <a href="http://docs.ggplot2.org/dev/vignettes/themes.html">themes vignette</a> within <code>ggplot2</code>. We could spend a whole day just on this, so for this class we are going to look at the very basics and then use some of the canned themes.</p>
 <p>Let’s first create a simple scatterplot.</p>
 <pre class="sourceCode r"><code class="sourceCode r">scatter_p&lt;-<span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Petal.Width,<span class="dt">y=</span>Petal.Length)) +
-<span class="st">              </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>Species, <span class="dt">shape=</span>Species))
+<span class="st">              </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>Species, <span class="dt">shape=</span>Species))
 scatter_p</code></pre>
 <p><img src="data:image/png;base64,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" /></p>
 <p>Nothing new there. Let’s now edit some of this theme by dropping the grey background and the grid, and changing our font.</p>
@@ -227,7 +232,7 @@ scatter_p</code></pre>
 <span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.background =</span> <span class="kw">element_blank</span>(), 
         <span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(),
         <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>),
-        <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">family=</span><span class="st">&quot;Times&quot;</span>,<span class="dt">colour=</span><span class="st">&quot;red&quot;</span>,<span class="dt">size=</span><span class="dv">24</span>))
+        <span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">family=</span><span class="st">&quot;Times&quot;</span>,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>,<span class="dt">size=</span><span class="dv">24</span>))
 scatter_p_base</code></pre>
 <pre><code>## Warning in grid.Call(L_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
 ## font family not found in Windows font database</code></pre>
@@ -263,14 +268,14 @@ scatter_p_base</code></pre>
 <p>Let’s build on one of these and try to create a more polished plot. We will start from scratch and add in some custom colors too.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Now Let's start over, with some new colors and regression lines</span>
 scatter_polished &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris,<span class="kw">aes</span>(<span class="dt">x=</span>Petal.Width,<span class="dt">y=</span>Petal.Length)) +
-<span class="st">              </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>Species, <span class="dt">shape=</span>Species)) +
-<span class="st">              </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="kw">aes</span>(<span class="dt">colour=</span>Species)) +
-<span class="st">              </span><span class="kw">scale_colour_manual</span>(<span class="dt">breaks =</span> iris$Species,
+<span class="st">              </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>Species, <span class="dt">shape=</span>Species)) +
+<span class="st">              </span><span class="kw">stat_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>, <span class="kw">aes</span>(<span class="dt">color=</span>Species)) +
+<span class="st">              </span><span class="kw">scale_color_manual</span>(<span class="dt">breaks =</span> iris$Species,
                                   <span class="dt">values=</span> <span class="kw">c</span>(<span class="st">&quot;steelblue1&quot;</span>,
                                             <span class="st">&quot;sienna&quot;</span>,
                                             <span class="st">&quot;springgreen3&quot;</span>)) +<span class="st"> </span>
 <span class="st">              </span><span class="kw">theme_classic</span>(<span class="dv">18</span>,<span class="st">&quot;Times&quot;</span>) +
-<span class="st">              </span><span class="kw">theme</span>(<span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">colour=</span><span class="st">&quot;slategray&quot;</span>)) +
+<span class="st">              </span><span class="kw">theme</span>(<span class="dt">text=</span><span class="kw">element_text</span>(<span class="dt">color=</span><span class="st">&quot;slategray&quot;</span>)) +
 <span class="st">              </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Iris Petal Morphology Relationship&quot;</span>,
                      <span class="dt">x=</span><span class="st">&quot;Petal Length&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Petal Width&quot;</span>)
               
@@ -313,7 +318,7 @@ scatter_polished </code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Save as jpg, with 600dpi, and set width and height</span>
 <span class="co">#Many other options in the help</span>
 <span class="kw">ggsave</span>(<span class="dt">plot=</span>scatter_polished,
-       <span class="dt">file=</span><span class="st">&quot;Fig1.jpg&quot;</span>,<span class="dt">dpi=</span><span class="dv">600</span>,<span class="dt">width=</span><span class="dv">8</span>, <span class="dt">heigh=</span><span class="dv">5</span>)
+       <span class="dt">file=</span><span class="st">&quot;Fig1.jpg&quot;</span>,<span class="dt">dpi=</span><span class="dv">600</span>,<span class="dt">width=</span><span class="dv">8</span>, <span class="dt">height=</span><span class="dv">5</span>)
 <span class="co">#Save as PDF</span>
 <span class="kw">ggsave</span>(<span class="dt">plot=</span>scatter_polished,
        <span class="dt">file=</span><span class="st">&quot;Fig1.pdf&quot;</span>)</code></pre>
@@ -323,9 +328,8 @@ scatter_polished </code></pre>
 <h2>Exercise 2</h2>
 <p>From Exercise 1 you should have a good start on a plot. Let’s tweak this some.</p>
 <ol style="list-style-type: decimal">
-<li>Add a new section then:</li>
 <li>Change up the theme of your plot. This is your plot, so experiment. Experiment with fonts, colors, backgrounds, etc. Remember that all of the things you can change are listed in the help (<code>help(&quot;theme&quot;)</code>). Also the various <code>element_xxx()</code> functions will be needed, try <code>??element_</code> .</li>
-<li>If you have time, try to edit the colors of your points using <code>scale_colour_manual()</code>.</li>
+<li>If you have time, try to edit the colors of your points using <code>scale_color_manual()</code>.</li>
 <li>When you get the plot to a point where you are happy, save the plot to a file. Use a dpi and file format of your liking.</li>
 </ol>
 </div>

@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">D. Explore</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>07 July, 2015</em></h4>
+<h4 class="date"><em>09 July, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -68,7 +68,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </div>
 
 <ul>
-<li><a href="0_Outline.html">Workshop Outline</a></li>
+<li><a href="Outline.html">Workshop Outline</a></li>
 </ul>
 <table>
 <tbody>
@@ -116,7 +116,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>If you want to look at the range, use <code>range()</code>, but it is looking for a vector as input.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">range</span>(iris$Petal.Length)</code></pre>
 <pre><code>## [1] 1.0 6.9</code></pre>
-<p>The interquatile range can be easily grabbed with <code>IQR()</code>, again a vector is the input.</p>
+<p>The interquartile range can be easily grabbed with <code>IQR()</code>, again a vector is the input.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(iris$Sepal.Width)</code></pre>
 <pre><code>## [1] 0.5</code></pre>
 <p>Lastly, quantiles, at specific points, can be returned with, well, <code>quantile()</code>.</p>
@@ -132,7 +132,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h2>Exercise 1</h2>
 <p>Next, we’re going to explore the distribution of the NM phosphorus data using base R statistical functions</p>
 <ol style="list-style-type: decimal">
-<li>For this first part, explore each of the functions above (<code>summary()</code>, <code>range()</code>, <code>IQR()</code>, and <code>quantile()</code>) and get to know more about the NWIS water variables we collected and merged into our ‘gages_data_wq’ data frame. Specifically, you’ll want to focus on the ‘results_xx’ variables within the ‘gages_data_wq’ data frame Hint: Use the $ operator to index a particular columns of this data frame using the functions above.</li>
+<li>For this first part, explore each of the functions above (<code>summary()</code>, <code>range()</code>, <code>IQR()</code>, and <code>quantile()</code>) and get to know more about the NWIS water variables we collected and merged into our ‘gages_data_wq’ data frame. Specifically, you’ll want to focus on the ‘results_xx’ variables within the ‘gages_data_wq’ data frame. Hint: Use the $ operator to index a particular columns of this data frame using the functions above.</li>
 </ol>
 <p>OPTIONAL: Next lets continue to add to our script. This time we will be combining some of the past lessons with this one. Our goal is to create a summary statistics data frame of <code>gages_data_wq</code>. What we want is a data frame that has min, max, mean, median, IQR, and quartiles for each of the four varaibles measured at ‘gages’ sites in NM that we pulled from NWIS. This may seem a bit daunting, but if we break it apart it gets a bit easier. This is a base R solution.</p>
 <ol start="2" style="list-style-type: decimal">

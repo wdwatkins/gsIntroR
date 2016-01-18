@@ -1,4 +1,4 @@
-## ----setup, echo=FALSE, warning=FALSE------------------------------------
+## ----setup, echo=FALSE, warning=FALSE, message=FALSE---------------------
 options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
 
 if(!require("dplyr")){
@@ -16,7 +16,7 @@ titles <- c("Workshop Outline","A. Introduction",
              "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
              "H. Repeat and Reproduce", "I. Parting Thoughts")
 
-pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+pages <- paste0(c("Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",
              "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
              ".html")

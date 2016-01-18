@@ -13,7 +13,7 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-- [Workshop Outline](0_Outline.html)
+- [Workshop Outline](Outline.html)
 
 ```{r setup, echo=FALSE, warning=FALSE}
 options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
@@ -36,7 +36,7 @@ titles <- c("Workshop Outline","A. Introduction",
              "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
              "H. Repeat and Reproduce", "I. Parting Thoughts")
 
-pages <- paste0(c("0_Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
+pages <- paste0(c("Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
              "E_Analyze", "F_Analyze", "G_Visualize",
              "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
              ".html")
@@ -165,7 +165,7 @@ virginica_iris<-filter(iris,Species=="virginica")
 head(virginica_iris)
 ```
 
-But what if I wanted to select and filter?  There are three ways to do this: use intermediate steps, nested functions, or pipes.  With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function.  You can also nest functions (i.e. one function inside of another).  This is handy, but can be difficult to read if too many functions are nested as the process from inside out.  The last option, pipes, are a fairly recent addition to R.  Pipes in the unix/linux world are not new and allow you to chain commands together where the output of one command is the input to the next.  This provides a more natural way to read the commands in that they are executed in the way you conceptualize it and make the interpretation of the code a bit easier.  Pipes in R look like `%>%` and are made available via th `magrittr` package, which is installed as part of `dplyr`.  Let's try all three with the same analysis: selecting out a subset of columns but for only a single species.
+But what if I wanted to select and filter?  There are three ways to do this: use intermediate steps, nested functions, or pipes.  With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function.  You can also nest functions (i.e. one function inside of another).  This is handy, but can be difficult to read if too many functions are nested as the process from inside out.  The last option, pipes, are a fairly recent addition to R.  Pipes in the unix/linux world are not new and allow you to chain commands together where the output of one command is the input to the next.  This provides a more natural way to read the commands in that they are executed in the way you conceptualize it and make the interpretation of the code a bit easier.  Pipes in R look like `%>%` and are made available via the `magrittr` package, which is installed as part of `dplyr`.  Let's try all three with the same analysis: selecting out a subset of columns but for only a single species.
 
 ```{r combine_commands}
 #Intermediate data frames
@@ -198,7 +198,7 @@ This exercise is going to focus on using what we just covered on `dplyr` to star
 6. Last thing we are going to need to do is get a subset of the observations from `gages_sites_subset`. We only want streams where STATE equals "NM". Call it `gages_sites_nm`.
 
 ##Merging Data
-Joining data in `dplyr` is accomplished via the various `x_join()` commands (e.g., `inner_join`, `left_join`, `anti_join`, etc).  These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you.  If not then they aren't immediately intutive.  For our purposes, the base functions `rbind()` and `merge()` are more than adequate.  
+Joining data in `dplyr` is accomplished via the various `x_join()` commands (e.g., `inner_join`, `left_join`, `anti_join`, etc).  These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you.  If not then they aren't immediately intuitive.  For our purposes, the base functions `rbind()` and `merge()` are more than adequate.  
 
 We are going to talk about several different ways to do this.  First, let's add some new rows to a data frame.  This is very handy as you might have data collected and entered at one time, and then additional observations made later that need to be added.  So with `rbind()` we can stack two data frames with the same columns to store more observations.  
 
@@ -258,7 +258,7 @@ group_by(iris,Species)%>%
 
 There are many other functions in `dplyr` that are useful.  Much of what they do, can certainly be accomplished with base R, but not quite as intuitively.  Let's run through some examples with `arrange()`, `slice()`,  and `mutate()`.
 
-First `arrange()` will re-order a data frame based on the values of a columns.  It will take multiple columns and can be in descending or ascending order. I think `iris` is getting a bit tired, let's try a different stock data frame this time:  `mtcars`.  If you are interested you can try `data()` to see what is available.
+First `arrange()` will re-order a data frame based on the values in a specified column.  It will take multiple columns and can be in descending or ascending order. I think `iris` is getting a bit tired, let's try a different stock data frame this time:  `mtcars`.  If you are interested you can try `data()` to see what is available.
 
 ```{r arrange_example}
 head(mtcars)
@@ -310,11 +310,11 @@ Next, we're going to pull in and merge additional water data from NWIS for NM GA
 
 1)  Return to the code chunk in [Lesson 02 Get](B_Get.html#reading-nwis-data-into-r) that accesses NWIS data. Modify that code chunk and add it to your R script to access additional physical and water quality variables at FL sites: temperature ('00010'), discharge ('00060'), and specific conductance ('00095'). Save these data in data frames named using the variable name and state abbreviation. 
 
-2) Next, because we are just exploring here, let's make some assumptions about the variables we have just collected: (a) all of the measurements we have in the data frames are good (we don't want to throw any out because of comment codes indicating issues with the data) and, (b) the only three variables we care about in theis data frame are gage ID (a.k.a., 'site_no'), measurement date ('sample_dt'), and value of the measurement made ('results_va'). These assumptions may *not* hold for other analyses, but for the purposes of this exercise, we'll make them. Subset the four water measurement data frames to include only those three columns each. 
+2) Next, because we are just exploring here, let's make some assumptions about the variables we have just collected: (a) all of the measurements we have in the data frames are good (we don't want to throw any out because of comment codes indicating issues with the data) and, (b) the only three variables we care about in this data frame are gage ID (a.k.a., 'site_no'), measurement date ('sample_dt'), and value of the measurement made ('results_va'). These assumptions may *not* hold for other analyses, but for the purposes of this exercise, we'll make them. Subset the four water measurement data frames to include only those three columns each. 
 
 3) Rename the columns to prepare to merge the data with the 'gages_data' data frame. Remember, not all NWIS sites we have collected data from are GAGES-II sites, so we need to merge on a common variable- the columns across the 'gages_data' and the water variables that include the site ID should all be named consistently. Second, consider that 'results_va' columns are distinct across data frames. Re-name those columns prior to the merge so they reflect the variable included (e.g, 'results_temp').
 
-4) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have with a data frame that includes all rows and columns GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
+4) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have a data frame that includes all rows and columns for GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
 
 
 ```{r echo=FALSE}

@@ -53,7 +53,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title">E. Analyze: Base</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>07 July, 2015</em></h4>
+<h4 class="date"><em>09 July, 2015</em></h4>
 </div>
 
 <div id="TOC">
@@ -65,12 +65,12 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#correlation">Correlation</a></li>
 <li><a href="#linear-regression">Linear Regression</a></li>
 </ul></li>
-<li><a href="#excercise-1">Excercise 1</a></li>
+<li><a href="#exercise-1">Exercise 1</a></li>
 </ul>
 </div>
 
 <ul>
-<li><a href="0_Outline.html">Workshop Outline</a></li>
+<li><a href="Outline.html">Workshop Outline</a></li>
 </ul>
 <table>
 <tbody>
@@ -110,13 +110,13 @@ xy_tt</code></pre>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = -7.1958, df = 34.65, p-value = 2.266e-08
+## t = -5.9348, df = 39.9, p-value = 5.888e-07
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -9.117432 -5.103827
+##  -6.804321 -3.347056
 ## sample estimates:
 ## mean of x mean of y 
-##  2.911882 10.022512</code></pre>
+##  2.859660  7.935348</code></pre>
 <p><code>t.test()</code> can also take a formula specification as input. I mentioned this briefly in the previous lesson. At it’s simplest a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign. For a t-test that is all we need to know.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lets pick another dataset, ToothGrowth.</span>
 <span class="co">#Looking at diff in tooth length by groups specified in supp</span>
@@ -241,12 +241,12 @@ lm_aq2&lt;-<span class="kw">lm</span>(Ozone~Temp+Wind+Solar.R,<span class="dt">d
 <p>All of your standard modelling approaches (and then some) are available in R including typical variable selection techniques (e.g. stepwise with AIC) and logistic regression, which is implemented with the rest of the generalized linear models in <code>glm()</code>. Interaction terms can be specified directly in the model, but there are several ways to do so (x*y, x:y, x^y). Lastly, if you are interested in more involved or newer approaches these will be implemented (most likely) with additional packages and will not be available in base R or <code>stats</code>.</p>
 </div>
 </div>
-<div id="excercise-1" class="section level2">
-<h2>Excercise 1</h2>
+<div id="exercise-1" class="section level2">
+<h2>Exercise 1</h2>
 <p>For this exercise, let’s start to look at some of the statistical tests and relationships for NWIS data we collected for GAGES-II sites in NM. We have already plotted some of these variables together, so you may have an idea ahead of time about what the statistical tests might show.</p>
 <ol style="list-style-type: decimal">
-<li><p>First, lets take a look at the relationship between discharge, temperature specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites. Add a section to your script that tests for a difference in the mean value of across these between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implcations for the differences in sample sizes.</p></li>
-<li><p>Next, lets build some linear models that build a linear model to be used to predict phosphorus concentrations across all GAGES-II sites in NM. Chose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen.</p></li>
+<li><p>First, lets take a look at the relationship between discharge, temperature specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites. Add a section to your script that tests for a difference in the mean value across these parameters between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implications for the differences in sample sizes.</p></li>
+<li><p>Next, lets build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen.</p></li>
 </ol>
 <table>
 <tbody>
