@@ -1,25 +1,6 @@
-## ----setup, echo=FALSE, warning=FALSE------------------------------------
-options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
-
-pageNumber <- 5
-
-library(knitr)
-titles <- c("Workshop Outline","A. Introduction", 
-            "B. Get", "C. Clean", "D. Explore",
-             "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
-             "H. Repeat and Reproduce", "I. Parting Thoughts")
-
-pages <- paste0(c("Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
-             "E_Analyze", "F_Analyze", "G_Visualize",
-             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
-             ".html")
-markdownToPrint <- paste0("[",titles,"](",pages,")")
-
-dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
-
-directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]
-directions <- c(directions[1],"-----------------------------------------",directions[2])
-kable(t(directions))
+## ----setup, echo=FALSE---------------------------------------------------
+title="D. Explore"
+gsIntroR::navigation_array(title)
 
 ## ----summary_data_example------------------------------------------------
 summary(iris)
@@ -80,6 +61,5 @@ plot(aq_temp_ecdf)
 ## ----Exercise1, echo=FALSE-----------------------------------------------
 
 ## ----echo=FALSE----------------------------------------------------------
-kable(t(directions))
-
+gsIntroR::navigation_array(title)
 

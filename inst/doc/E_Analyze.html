@@ -71,7 +71,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">E. Analyze: Base</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>18 January, 2016</em></h4>
+<h4 class="date"><em>19 January, 2016</em></h4>
 </div>
 
 <div id="TOC">
@@ -87,15 +87,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 
-<ul>
-<li><a href="Outline.html">Workshop Outline</a></li>
-</ul>
 <table>
+<thead>
+<tr class="header">
+<th align="left">Previous Lesson</th>
+<th align="left">Current Lesson</th>
+<th align="left">Next Lesson</th>
+<th align="left">Workshop Outline</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="left"><a href="D_Explore.html">D. Explore</a></td>
-<td align="left">—————————————–</td>
-<td align="left"><a href="F_Analyze.html">F. Analyze Packages</a></td>
+<td align="left"><a href="E_Analyze.html">E. Analyze - base</a></td>
+<td align="left"><a href="F_Analyze.html">F. Analyze - packages</a></td>
+<td align="left"><a href="Outline.html">Workshop Outline</a></td>
 </tr>
 </tbody>
 </table>
@@ -128,13 +134,13 @@ xy_tt</code></pre></div>
 ##  Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = -11.849, df = 48.031, p-value = 7.301e-16
+## t = -7.5834, df = 37.108, p-value = 4.714e-09
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -9.410045 -6.679863
+##  -9.847124 -5.694896
 ## sample estimates:
 ## mean of x mean of y 
-##   2.40213  10.44708</code></pre>
+##  3.022597 10.793608</code></pre>
 <p><code>t.test()</code> can also take a formula specification as input. I mentioned this briefly in the previous lesson. At it’s simplest a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign. For a t-test that is all we need to know.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lets pick another dataset, ToothGrowth.</span>
 <span class="co">#Looking at diff in tooth length by groups specified in supp</span>
@@ -267,11 +273,20 @@ lm_aq2&lt;-<span class="kw">lm</span>(Ozone~Temp+Wind+Solar.R,<span class="dt">d
 <li><p>Next, lets build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen.</p></li>
 </ol>
 <table>
+<thead>
+<tr class="header">
+<th align="left">Previous Lesson</th>
+<th align="left">Current Lesson</th>
+<th align="left">Next Lesson</th>
+<th align="left">Workshop Outline</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="left"><a href="D_Explore.html">D. Explore</a></td>
-<td align="left">—————————————–</td>
-<td align="left"><a href="F_Analyze.html">F. Analyze Packages</a></td>
+<td align="left"><a href="E_Analyze.html">E. Analyze - base</a></td>
+<td align="left"><a href="F_Analyze.html">F. Analyze - packages</a></td>
+<td align="left"><a href="Outline.html">Workshop Outline</a></td>
 </tr>
 </tbody>
 </table>

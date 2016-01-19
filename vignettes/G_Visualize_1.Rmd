@@ -13,6 +13,11 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+```{r setup, echo=FALSE}
+title="G. Visualize - base"
+gsIntroR::navigation_array(title)
+```
+
 Earlier, there was an introduction to simple plots using the base R features. This section will expand on base R plotting, and highlight its more advanced functions. 
 
 ##Quick Links to Exercises and R code
@@ -164,3 +169,6 @@ In order to view the image you just saved, you will have to make sure that this 
 3. Save this image as a png.
 
 
+```{r echo=FALSE}
+gsIntroR::navigation_array(title)
+```

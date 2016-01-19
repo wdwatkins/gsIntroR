@@ -13,40 +13,9 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-- [Workshop Outline](Outline.html)
-
-```{r setup, echo=FALSE, warning=FALSE}
-options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
-if(!require("EGRET")){
-  install.packages("EGRET")
-}
-
-if(!require("XML")){
-  install.packages("XML")
-
-}
-library("XML")
-
-library(knitr)
-
-pageNumber <- 7
-
-titles <- c("Workshop Outline","A. Introduction", 
-            "B. Get", "C. Clean", "D. Explore",
-             "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
-             "H. Repeat and Reproduce", "I. Parting Thoughts")
-
-pages <- paste0(c("Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
-             "E_Analyze", "F_Analyze", "G_Visualize",
-             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
-             ".html")
-markdownToPrint <- paste0("[",titles,"](",pages,")")
-
-dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
-
-directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
-directions <- c(directions[1],"-----------------------------------------",directions[2])
-kable(t(directions))
+```{r setup, echo=FALSE}
+title="F. Analyze - packages"
+gsIntroR::navigation_array(title)
 ```
 
 
@@ -66,12 +35,14 @@ The 'EGRET' package expands and formalizes some of the flow and water quality an
 
 ```{r rf_actual_install, echo=FALSE, include=FALSE, purl=FALSE}
 if(!require("EGRET")){
+  options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
   install.packages("EGRET")
 }
 library("EGRET")
 ```
 
 ```{r rf_install, eval=FALSE}
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
 install.packages("EGRET")
 library("EGRET")
 help(package="EGRET")
@@ -157,7 +128,7 @@ Next, use 'EGRET' functions to take a look at how well WRTDS predicts inorganic 
 
 ##Learning a New Package
 
-As of `r format(Sys.Date(), "%b %d, %Y")`, there were `r nrow(readHTMLTable("http://cran.r-project.org/web/packages/available_packages_by_date.html")[[1]])` packages available on [CRAN](http://cran.r-project.org/web/packages/).  Given this diversity and since these packages are created and maintained by many different authors, the ways in which you can get help on a specific package and the quality of that assistance can vary greatly.  That being said, there are a few indicators of decent help for a given package.
+As of `r format(Sys.Date(), "%b %d, %Y")`, there were `r nrow(XML::readHTMLTable("http://cran.r-project.org/web/packages/available_packages_by_date.html")[[1]])` packages available on [CRAN](http://cran.r-project.org/web/packages/).  Given this diversity and since these packages are created and maintained by many different authors, the ways in which you can get help on a specific package and the quality of that assistance can vary greatly.  That being said, there are a few indicators of decent help for a given package.
 
 First, if a package has a vignette that is usually a good first place to start.  To list the vignettes for a given package you can use the `vignette()` function.  For instance:
 
@@ -178,7 +149,7 @@ Third, the last resort is of course [Google](http://www.google.com)!
 
 
 ```{r echo=FALSE}
-kable(t(directions))
+gsIntroR::navigation_array(title)
 ```
 
 

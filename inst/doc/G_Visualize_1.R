@@ -1,3 +1,7 @@
+## ----setup, echo=FALSE---------------------------------------------------
+title="G. Visualize - base"
+gsIntroR::navigation_array(title)
+
 ## ----pch_col_examp-------------------------------------------------------
 #use runif to generate a vector of n random numbers between min and max
 data1 <- data.frame(x=1:75, y=runif(n=25, min=0, max=75)) 
@@ -70,4 +74,7 @@ plot2 <- plot(iris$Species, iris$Sepal.Length, ylab="Sepal Length")
 plot3 <- plot(iris$Species, iris$Petal.Width, ylab="Petal Width")
 plot4 <- plot(iris$Species, iris$Petal.Length, ylab="Petal Length")
 
+
+## ----echo=FALSE----------------------------------------------------------
+gsIntroR::navigation_array(title)
 

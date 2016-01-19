@@ -1,5 +1,6 @@
 ## ----setup, echo=FALSE---------------------------------------------------
-title="Workshop Outline"
+set.seed(1)
+title="A. Introduction"
 gsIntroR::navigation_array(title)
 
 ## ----Exercise1, echo=FALSE-----------------------------------------------
