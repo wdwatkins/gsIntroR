@@ -13,32 +13,9 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-- [Workshop Outline](Outline.html)
-
-```{r setup, echo=FALSE, warning=FALSE}
-options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
-        
-library(knitr)
-
-pageNumber <- 2
-
-titles <- c("Workshop Outline","A. Introduction", 
-            "B. Get", "C. Clean", "D. Explore",
-             "E. Analyze Base", "F. Analyze Packages", "G. Visualize",
-             "H. Repeat and Reproduce", "I. Parting Thoughts")
-
-pages <- paste0(c("Outline","A_Introduction", "B_Get", "C_Clean", "D_Explore",
-             "E_Analyze", "F_Analyze", "G_Visualize",
-             "H_Repeat-Reproduce", "I_Parting-Thoughts-and-Extra-Materials"),
-             ".html")
-markdownToPrint <- paste0("[",titles,"](",pages,")")
-
-dfPages <- data.frame(titles,pages,markdownToPrint,stringsAsFactors = FALSE)
-
-directions <- dfPages$markdownToPrint[c(pageNumber-1,pageNumber+1)]  
-directions <- c(directions[1],"-----------------------------------------",directions[2])
-kable(t(directions))
-
+```{r setup, echo=FALSE}
+title="Workshop Outline"
+gsIntroR::navigation_array(title)
 ```
 
 
@@ -62,17 +39,17 @@ To be hands-on, there are exercises throughout. For each lesson, I will provide 
 - Know how to get help
 
 ##What is R and why use it
-R is an open source language and environment for data analysis, statistics, and visualization.  This is the typical definition.  I would argue that R has evolved a bit and is now, more and more, also a general purpose computing language.  It is very widely used in academia and industry for statistics, visualization, data science, and general purpose computation.  In short, the answer to the question to, "Can you do that in R" is almost always yes.  R may not be the best answer, but it is an accurate one.  
+R is an open source language and environment for data analysis, statistics, and visualization.  This is the typical definition.  I would argue that R has evolved a bit and is now, more and more, also a general purpose computing language.  It is very widely used in academia and industry for statistics, visualization, data science, and general purpose computation.  In short, the answer to the question to, "Can you do that in R" is almost always yes.  R may not be the best answer, but it is an excellent one.  
 
-The primary reason R is widely used is that it is free, has a large and vibrant community, it is easily extensible, and back to that question, yes you can do that in R!  More to the point, in the environmental sciences R is able to handle any data management, analysis or visualization task that you would need to accomplish and it has capabilities to provide a fully reproducible analysis. 
+The primary reason R is widely used is that it is free, has a large and vibrant community, it is easily extensible, and back to that question, yes you can do that in R!  More to the point, in the environmental sciences R is able to handle any task in data management, analysis, or visualization that you would need to accomplish, and it can provide a fully reproducible analysis. 
 
-Lastly, R has almost become the standard for any data analysis or visualization task.  A great site [r4stats.com](http://r4stats.com) has an [article](http://r4stats.com/articles/popularity/) on data analysis software popularity that is kept up to date on the relative popularity of different languages.  One striking figure is the comparison of links to the main pages of the different languages:
+Lastly, R has become the standard for any data analysis or visualization task in many fields.  A great site [r4stats.com](http://r4stats.com) has an [article](http://r4stats.com/articles/popularity/) on data analysis software popularity that is kept up to date on the relative popularity of different languages.  One striking figure is the comparison of Google Scholar hits for each of the most popular languages:
 
-[![r4stats.com web site link graph](http://r4stats.files.wordpress.com/2012/04/fig_8_websitelinks.png?w=640&h=689)](http://r4stats.com/articles/popularity/)
+[![r4stats.com web site link graph](http://i1.wp.com/datasciencepopularity.com/wp-content/uploads/2015/05/fig_2f_scholarlyimpactallstat21.png)](http://r4stats.com/articles/popularity/)
 
 <caption align="bottom">source: r4stats.com - The Popularity of Data Analysis Software </caption>
 
-If you read this article you certainly get the sense that R is one of the top languages and trends all favor its continued growth while other popular software (SAS, SPSS, etc.) are seeing decline.
+If you read this article you certainly get the sense that R is one of the top statistical languages and is on track to overtake the two leading proprietary software options (SAS, SPSS) in the next few years.
 
 ##Getting R and RStudio going
 Over the last several years, RStudio has become a very popular IDE (integrated development environment) for R.  In addition to interacting with the R Console, RStudio has many extras built in including version control integration, package building, reproducible research, de-bugging, and built-in text editor with smart highlighting and code completion.  This is the environment we will be using for the two days and should set you up for continued learning with R.
@@ -83,11 +60,11 @@ Over the last several years, RStudio has become a very popular IDE (integrated d
 ##Exercise 1
 This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-1. Start RStudio: To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. You should have done this already (see [post 00](/introR/2015/01/14/00-Before-The-Workshop/)).
+1. Start RStudio: To start both R and RStudio only requires firing up RStudio.RStudio should be available from All Programs at the Start Menu.  Fire up RStudio.
 
-2. Take a few minutes to look around RStudio.  Find the Console Pane. Find Global and Project Options (hint: look in Tools).  Look at the Environment, History Pane.  Look at the Files, Plots, Packages ... pane.
+2. Take a few minutes to look around RStudio. Find the Console Pane. Find Global and Project Options (hint: look in Tools). Look at the Environment, History Pane.  Look at the Files, Plots, Packages ... pane.
 
-3. Create a new project. In the window, select "New Directory", then "Empty Project" .  Name it "usgs_workshop".  We will use this for the rest of the workshop.
+3. Create a new project. Select File | New Project....  Name it "usgs_r_workshop".  We will use this for the rest of the workshop.
 
 4. Create a new "R Script" in the Source Pane (click the icon with the green plus symbol below "File"), save that file into your newly created project and name it "lesson1.R". 
 
@@ -109,24 +86,27 @@ mean(rnorm(100))
 sum(rnorm(100))
 ```
 
-A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
+A few side notes.  The `#` indicates a comment.  You can put whatever else you'd like after this, but on the same line as the `#`.  R will not evaluate it.  When commenting your code, err on the side of too much!  Also, you will see `()`, `[]`, and `{}` used in R code.  The `()` indicates a function (almost always), the `[]` indicates indexing (grabbing values by the location in a vector, matrix, etc.), and the `{}` groups code that is meant to be run together and is usually used when programming functions in R.
 
 ##Using packages
 The base install of R is quite powerful, but you will soon have a need or desire to go beyond this.  Packages provide this ability.  They are a standardized method for extending R with new methods, techniques, and programming functionality.  There is a lot to say about packages regarding finding them, using them, etc., but for now let's focus just on the basics.  
 
 ###CRAN & GRAN
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later). For some USGS specific packages that aren't of interest to the public, we have created [GRAN, the Geological survey R Archive Network](http://owi.usgs.gov/R/gran.html). 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later). For some USGS specific packages that aren't of interest to the public, we have created [GRAN, the Geological survey R Archive Network](http://owi.usgs.gov/R/gran.html). We specify that we want packages from either archive network like this:
+
+```{r set_repos, eval=FALSE}
+options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
+```
 
 ###Installing packages
 When a package gets installed, that means the source (or packaged binary for Windows) is downloaded and put into your library.  A default library location is set for you so no need to worry about that.  In fact on Windows most of this is pretty automatic.  Let's give it a shot.
-
 
 ```{r install_package, eval=FALSE}
 #Install dataRetrieval and EGRET
 install.packages("dataRetrieval")
 install.packages("EGRET")
 
-#You can also put more than one in like
+#You can also put more than one in
 install.packages(c("dplyr","ggplot2"))
 ```
 
@@ -140,26 +120,9 @@ library("EGRET")
 
 #You can also access functions without loading by using package::function
 dataRetrieval::readNWISuv
-
 ```
 
 You will often see people use `require()` to load a package. It is better form to not do this. For a more detailed explanation of why `library()` and not `require()` see [Yihui Xie's post on the subject](http://yihui.name/en/2014/07/library-vs-require/.)
-
-###Some other useful commands
-There are a lot of other commands that help you navigate packages
-
-```{r other_packages, eval=FALSE}
-#See what is installed
-installed.packages()
-
-#What packages are available?
-available.packages()
-
-#Update, may take a while if you have many packages installed
-update.packages()
-```
-
-Lastly, a quick note on packages and libraries.  You will often hear people use the terms interchangably.  This is not correct.  A package is what is submitted to CRAN, it is what contains a group of functions that address a common problem, and it is what has allowed R to expand.  A library is, more or less, where you packages are stored.  You have a path to that library and this is where R puts new packages that you install (e.g. via `install.packages()`).  These two terms are related, but most certainly different.  Apologies up front if I slip and use one when I actually mean the other...
 
 ##Help!
 Being able to find help and interpret that help is probably one of the most important skills for learning a new language.  R is no different. Help on functions and packages can be accessed directly from R, can be found on CRAN and other official R resources, searched on Google, found on StackOverflow, or from any number of fantastic online resources. I will cover a few of these here. 
@@ -175,8 +138,11 @@ help(package="dplyr") #Help on the package `dplyr`
 
 #Don't know the exact name or just part of it
 apropos("print") #Returns all available functions with "print" in the name
-??print #Shortcut, but also searches demos and vignettes in a formatted page
+??"print" #Returns fuzzy matches to the text. Also searches demos and vignettes in a formatted page
 
+#Explore what's loaded
+ls("package:stats") #Lists all functions in the stats package (which is always loaded)
+#'pri'-TAB #press the Tab key as you're typing to see a list of possible word completions
 ```
 
 One nice way to explore the features of a package is to see a list of all the functions. In the lower right-hand corner, there is a "Packages" tab. From this tab, if you click on the name of a package, you will get a list of all the documentation for that package. 
@@ -192,7 +158,7 @@ This is very helpful if you've forgotten the name of a function or just want to 
 In addition to help from within R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/).
 
 - [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
-- [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology): A special interest group for use of R in ecology.  Less daunting the the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).  One of the moderators is great, the other is a bit of a jerk (it's me).
+- [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology): A special interest group for use of R in ecology.  Less daunting than the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).
 - [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
@@ -202,13 +168,13 @@ While the resources already mentioned are useful, often the quickest way is to j
 One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of.
 
 ###Other Resources
-As I mention earlier, there are TOO many resources to mention and everyone has their favorites.  Below are just a few that I like.
+There are too many resources to mention and everyone has their favorites.  Below are just a few that I like.
 
-- [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
+- [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction.
 - [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's new book.  Gets into more advanced topics, but also covers the basics in a great way.
 - [Why R is Hard To Learn](http://r4stats.com/articles/why-r-is-hard-to-learn/): Long and detailed blog post discussing some of the challenges people often face when learning R.
 - [Other Resources](http://scicomp2014.edc.uri.edu/resources.html): A list I helped compile for a URI Class.
-- [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
+- [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source.
 - [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.
 - [R-bloggers](http://www.r-bloggers.com/): Central hub of content collected from bloggers who write about R. 
 
@@ -229,6 +195,5 @@ For this second exercise we are going to get used to using some basic functions,
 
 
 ```{r echo=FALSE}
-kable(t(directions))
-
+gsIntroR::navigation_array(title)
 ```
