@@ -86,7 +86,7 @@ quantile(iris$Sepal.Length, probs=(c(0.025,0.975)))
 ```
 
 ##Exercise 1
-Next, we're going to explore the distribution of the NM phosphorus data using base R statistical functions
+Next, we're going to explore the distribution of the FL (or whichever state you chose) phosphorus data using base R statistical functions.
 
 1. For this first part, explore each of the functions above (`summary()`, `range()`, `IQR()`, and `quantile()`) and get to know more about the NWIS water variables we collected and merged into our 'gages_data_wq' data frame.  Specifically, you'll want to focus on the 'results_xx' variables within the 'gages_data_wq' data frame. Hint: Use the $ operator to index a particular columns of this data frame using the functions above. 
 

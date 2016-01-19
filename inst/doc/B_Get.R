@@ -147,11 +147,21 @@ last<-c("Bunny", "Fudd","Le Pew", "Leghorn")
 first_last<-paste(first, last)
 first_last
 
+## ----factor_examples-----------------------------------------------------
+#An unordered factor
+yn <- factor(c("yes", "no", "no", "yes", "yes"))
+yn
+
+#An ordered factor
+lmh <- factor (c("high","high","low","medium","low","medium","high"),
+               levels=c("low","medium","high"),ordered=TRUE )
+lmh
+
 ## ----create_data_frame---------------------------------------------------
 numbers <- c(1:26,NA)
 lettersNew <- c(NA,letters) #letters is a special object available from base R
 logical <- c(rep(TRUE,13),NA,rep(FALSE,13))
-examp_df <- data.frame(lettersNew,numbers,logical)
+examp_df <- data.frame(lettersNew,numbers,logical, stringsAsFactors = FALSE)
 
 ## ----examine_data_frame--------------------------------------------------
 #See the first 6 rows
@@ -172,16 +182,6 @@ ncol(examp_df)
 summary(examp_df)
 #remove NA
 na.omit(examp_df)
-
-## ----factor_examples-----------------------------------------------------
-#An unordered factor
-yn <- factor(c("yes", "no", "no", "yes", "yes"))
-yn
-
-#An ordered factor
-lmh <- factor (c("high","high","low","medium","low","medium","high"),
-               levels=c("low","medium","high"),ordered=TRUE )
-lmh
 
 ## ----list_examples-------------------------------------------------------
 examp_list<-list(letters=c("x","y","z"),
@@ -204,6 +204,11 @@ summary(web_df)
 #  #Did it work?
 #  first_sheet
 #  
+
+## ----write.csv examp, eval=FALSE-----------------------------------------
+#  write.table(web_df, file = "example_data_frame.csv", sep=",")
+#  # or
+#  write.csv(web_df, file="example_data_frame.csv")
 
 ## ----dataRetrievalExample, eval=FALSE------------------------------------
 #  library(dataRetrieval)
