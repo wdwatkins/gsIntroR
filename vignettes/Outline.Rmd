@@ -51,8 +51,6 @@ Each step of the workflow has a written component (blog post) describing the top
 - Reshape
 - Modify
 - Pipes
-- Functions
-- Programing with R
 
 #### Break (2:45 pm - 3:00 pm)
 
@@ -88,6 +86,8 @@ Each step of the workflow has a written component (blog post) describing the top
 
 ### [08 - Repeat (2:45 pm - 4:30 pm)](H_Repeat-Reproduce.html)
 
+- Functions
+- Programing with R
 - Reproducible Research with RStudio (R Markdown)
 
 ## Day 3
