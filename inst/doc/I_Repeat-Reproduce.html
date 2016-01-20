@@ -11,7 +11,7 @@
 <meta name="author" content="Jeffrey W. Hollister" />
 
 
-<title>H. Repeat and Reproduce</title>
+<title>I. Repeat and Reproduce</title>
 
 
 
@@ -69,7 +69,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 <div id="header">
-<h1 class="title">H. Repeat and Reproduce</h1>
+<h1 class="title">I. Repeat and Reproduce</h1>
 <h4 class="author"><em>Jeffrey W. Hollister</em></h4>
 <h4 class="date"><em>19 January, 2016</em></h4>
 </div>
@@ -109,9 +109,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="G_Visualize.html">G. Visualize - ggplot2</a></td>
-<td align="left"><a href="H_Repeat-Reproduce.html">H. Repeat and Reproduce</a></td>
-<td align="left"><a href="I_Parting-Thoughts-and-Extra-Materials.html">I. Parting Thoughts</a></td>
+<td align="left"><a href="H_Visualize.html">H. Visualize - ggplot2</a></td>
+<td align="left"><a href="I_Repeat-Reproduce.html">I. Repeat and Reproduce</a></td>
+<td align="left"><a href="J_Parting-Thoughts-and-Extra-Materials.html">J. Parting Thoughts</a></td>
 <td align="left"><a href="Outline.html">Workshop Outline</a></td>
 </tr>
 </tbody>
@@ -281,7 +281,7 @@ vec_time</code></pre></div>
 ##       0       0       0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loop_time</code></pre></div>
 <pre><code>##    user  system elapsed 
-##    7.56    0.00    7.63</code></pre>
+##    8.80    0.00    8.83</code></pre>
 <p>Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping. In general I agree that if there is an obvious vectorized/base solution (in this case simply adding the two vectors) use that. That being said, it isn’t always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up. With loops that write to an object and that object is getting re-sized, we may also know the final size of that object so we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#We will assume vectors of the same length...</span>
 add_vecs2&lt;-function(vec1,vec2){
@@ -294,7 +294,7 @@ add_vecs2&lt;-function(vec1,vec2){
 
 <span class="kw">system.time</span>(<span class="kw">add_vecs2</span>(large_vec1,large_vec2))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##    0.17    0.00    0.18</code></pre>
+##    0.17    0.00    0.20</code></pre>
 <p>Now thats better. In short, if an obvious vector or primitive solution exists, use that. If those aren’t clear and you need to use a loop, don’t be afraid to use one. There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand. Personally, I think it is possible to go too far down the vectorized path. Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.</p>
 </div>
 <div id="return" class="section level3">
@@ -471,9 +471,9 @@ output: html_document
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="G_Visualize.html">G. Visualize - ggplot2</a></td>
-<td align="left"><a href="H_Repeat-Reproduce.html">H. Repeat and Reproduce</a></td>
-<td align="left"><a href="I_Parting-Thoughts-and-Extra-Materials.html">I. Parting Thoughts</a></td>
+<td align="left"><a href="H_Visualize.html">H. Visualize - ggplot2</a></td>
+<td align="left"><a href="I_Repeat-Reproduce.html">I. Repeat and Reproduce</a></td>
+<td align="left"><a href="J_Parting-Thoughts-and-Extra-Materials.html">J. Parting Thoughts</a></td>
 <td align="left"><a href="Outline.html">Workshop Outline</a></td>
 </tr>
 </tbody>

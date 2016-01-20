@@ -1,140 +1,79 @@
 ## ----setup, echo=FALSE---------------------------------------------------
-title="G. Visualize - ggplot2"
+title="G. Visualize - base"
 gsIntroR::navigation_array(title)
 
-## ----ggplot_install, eval=2:3--------------------------------------------
-install.packages("ggplot2")
-library(ggplot2)
-library(dplyr)
+## ----pch_col_examp-------------------------------------------------------
+#use runif to generate a vector of n random numbers between min and max
+data1 <- data.frame(x=1:75, y=runif(n=25, min=0, max=75)) 
+data2 <- data.frame(x=1:75, y=runif(25, 0, 75))
 
-## ----ggplot_examp--------------------------------------------------------
-# aes() are the "aesthetics" info.  When you simply add the x and y
-# that can seem a bit of a confusing term.  You also use aes() to 
-# change color, shape, size etc. of some items 
-iris_gg <- ggplot(iris,aes(x=Petal.Length,y=Petal.Width))
+#Now, plot two different sets of points in different colors
+plot(data1$x, data1$y, pch=16, col='#FF5034')
+points(data2$x, data2$y, pch=16, col='skyblue')
 
-## ----points_examp--------------------------------------------------------
-#Different syntax than you are used to
-iris_gg + geom_point()
+## ----par_example---------------------------------------------------------
+par(las=2, tck=0.01, bg="darkseagreen")
+plot(data1$x, data1$y, pch=6)
 
-#This too can be saved to an object
-iris_scatter<-iris_gg + geom_point()
+## ----legend_example------------------------------------------------------
+#plot the same plot using to illustrate color and point type
+plot(data1$x, data1$y, pch=16, col='#FF5034')
+points(data2$x, data2$y, pch=16, col='skyblue')
 
-#Call it to create the plot
-iris_scatter
+#add a legend
+legend(x="topright", legend=c("My data1 points", "my data2 points"),
+       pch=16, col=c('#FF5034', 'skyblue'), title="Legend")
 
-## ----iris_labels---------------------------------------------------------
-iris_scatter <- iris_scatter +
-  labs(title="Iris Petal Morphology Relationship",
-       x="Petal Length", y="Petal Width")
-iris_scatter
+## ----add_features_example------------------------------------------------
+#plot formulas using curve()
+curve(x^2, from=0, to=10)
+curve(sin(x), from=-pi, to=pi)
 
-## ----iris_colors---------------------------------------------------------
-iris_scatter <- iris_scatter +
-  geom_point(aes(color=Species, shape=Species),size=5)
-iris_scatter
+#plot rectangles or polygons
+plot(1:15, c(1:7, 9.5, 9:15), type='l')
+rect(xleft=6, xright=10, ybottom=5, ytop=11, density=5, col="orange")
+polygon(x=c(2,3,4), y=c(2,6,2), col="lightgreen", border=NA)
 
-## ----iris_loess----------------------------------------------------------
-iris_scatter_loess <- iris_scatter +
-  geom_smooth()
-iris_scatter_loess
+#use symbols to plot circles (and more) based on data
+x <- runif(25, 0, 25)
+y <- runif(25, 0, 25)
+radii <- runif(25, 0, 10)
+cols <- colors()[round(runif(25, 0, 500))]
+symbols(x, y, circles = radii, bg = cols)
 
-## ----iris_lm-------------------------------------------------------------
-iris_scatter_lm <- iris_scatter +
-  geom_smooth(method="lm")
-iris_scatter_lm
 
-## ----iris_lm_groups------------------------------------------------------
-iris_scatter_lm_group<-iris_scatter+
-  geom_smooth(method="lm", 
-              aes(group=Species))
-iris_scatter_lm_group
+## ----warning = FALSE, message = FALSE------------------------------------
+library(dataRetrieval)
+# Gather NWIS data:
+P_site1 <- readNWISqw("01656960", parameterCd = "00665")
+P_site2 <- readNWISqw("01656725", parameterCd = "00665")
 
-## ----iris_lm_color-------------------------------------------------------
-iris_scatter_lm_color<-iris_scatter+
-  geom_smooth(method="lm", 
-              aes(color=Species))
-iris_scatter_lm_color
 
-## ----gg_box_examp--------------------------------------------------------
-ggplot(iris,aes(x=Species,y=Sepal.Width)) +
-  geom_boxplot()
+## ----axis_example--------------------------------------------------------
+xData <- 1:50
+yData <- runif(50, min=1, max=10000)
 
-## ----gg_hist_examp-------------------------------------------------------
-ggplot(iris,aes(x=Sepal.Width))+
-  geom_histogram(binwidth=0.25)
+#add a second y axis
+plot(xData, yData, pch=20)
+axis(side=3, at=seq(1,50, by=0.5))
 
-## ----gg_bar_examp2-------------------------------------------------------
-iris_species_mean<-group_by(iris,Species) %>%
-  summarize(mean_pl=mean(Petal.Length))
-iris_meanpl_bar<-ggplot(iris_species_mean,aes(x=Species,y=mean_pl))+
-  geom_bar(stat="identity")
-iris_meanpl_bar
+#log the y-axis
+plot(xData, yData, pch=20, log='y')
+axis(side=4) #this axis is also logged
 
-## ----Exercise1, echo=FALSE-----------------------------------------------
 
-## ----themes_examp--------------------------------------------------------
-scatter_p <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-  geom_point(aes(color=Species, shape=Species))
-scatter_p
+## ----multiple_plots_example----------------------------------------------
+#use the built-in r data, "iris"
 
-## ----themes_examp_custom-------------------------------------------------
-scatter_p_base <- scatter_p + 
-  theme(panel.background = element_blank(), 
-        panel.grid = element_blank(),
-        panel.border = element_rect(fill = NA),
-        text=element_text(family="serif",color="red",size=24))
-scatter_p_base
+layout_matrix <- matrix(c(1:4), nrow=2, ncol=2, byrow=TRUE)
+layout(layout_matrix)
 
-## ----themes_examp_stock--------------------------------------------------
-scatter_p + theme_bw()
-scatter_p + theme_classic()
+#four boxplots:
+plot1 <- plot(iris$Species, iris$Sepal.Width, ylab="Sepal Width")
+plot2 <- plot(iris$Species, iris$Sepal.Length, ylab="Sepal Length")
+plot3 <- plot(iris$Species, iris$Petal.Width, ylab="Petal Width")
+plot4 <- plot(iris$Species, iris$Petal.Length, ylab="Petal Length")
 
-## ----themes_examp_polished-----------------------------------------------
-#Now Let's start over, with some new colors and regression lines
-scatter_polished <- ggplot(iris,aes(x=Petal.Width,y=Petal.Length)) +
-  geom_point(aes(color=Species, shape=Species)) +
-  stat_smooth(method="lm", aes(color=Species)) +
-  scale_color_manual(breaks = iris$Species,
-                     values= c("steelblue1",
-                               "sienna",
-                               "springgreen3")) + 
-  theme_classic(18,"serif") +
-  theme(text=element_text(color="slategray")) +
-  labs(title="Iris Petal Morphology Relationship",
-       x="Petal Length", y="Petal Width")
-
-scatter_polished 
-
-## ----ggsave_examp, eval=FALSE--------------------------------------------
-#  #Save as jpg, with 600dpi, and set width and height
-#  #Many other options in the help
-#  ggsave(plot=scatter_polished,
-#         file="Fig1.jpg",dpi=600,width=8, height=5)
-#  #Save as PDF
-#  ggsave(plot=scatter_polished,
-#         file="Fig1.pdf")
-
-## ----Exercise2, echo=FALSE-----------------------------------------------
-
-## ----facet_grid_example--------------------------------------------------
-#From the examples in H. Wickham. ggplot2: elegant graphics for data analysis. 
-#Springer New York, 2009. 
-#In particular the facet_grid help.
-p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-# With one variable
-p + facet_grid(cyl ~ .)
-# With two variables
-p + facet_grid(vs ~ am)
-
-## ----facet_grid_nla, warning=FALSE, message=FALSE------------------------
-tp_chla <- ggplot(nla_data,aes(x=log10(PTL),y=log10(CHLA))) + geom_point(na.rm = TRUE)
-
-tp_chla + facet_grid(RT_NLA ~ .)
-
-tp_chla +
-  stat_smooth(na.rm = TRUE) +
-  facet_grid(RT_NLA ~ LAKE_ORIGIN)
 
 ## ----echo=FALSE----------------------------------------------------------
 gsIntroR::navigation_array(title)

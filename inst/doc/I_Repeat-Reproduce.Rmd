@@ -1,5 +1,5 @@
 ---
-title: "H. Repeat and Reproduce"
+title: "I. Repeat and Reproduce"
 author: Jeffrey W. Hollister
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -9,12 +9,12 @@ output:
     fig_height: 6
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{H. Repeat and Reproduce}
+  %\VignetteIndexEntry{I. Repeat and Reproduce}
   \usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, echo=FALSE}
-title="H. Repeat and Reproduce"
+title="I. Repeat and Reproduce"
 gsIntroR::navigation_array(title)
 ```
 

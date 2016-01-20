@@ -66,25 +66,25 @@ Each step of the workflow has a written component (blog post) describing the top
 
 - Base statistics
 
-### [06 - Analyze: Contributed Package (9:30 am - 10:45 am)](F_Analyze.html)
+### [06 - Analyze: Using Packages (9:30 am - 10:45 am)](F_Analyze.html)
 
 - Contributed Packages - dataRetrieval and EGRET
 
 #### Break (10:45 am - 11:00 am)
 
-### [07 - Visualize: Base (11:00 pm - 12:00 pm)](G_Visualize_1.html)
+### [07 - Visualize: Base (11:00 pm - 12:00 pm)](G_Visualize.html)
 
 - Advanced plotting with base R
 
 #### Lunch (12:00 pm - 1:00 pm)
 
-### [07 - Visualize: ggplot2 (1:00 pm - 2:30 pm)](G_Visualize.html)
+### [08 - Visualize: ggplot2 (1:00 pm - 2:30 pm)](H_Visualize.html)
 
 - Advanced plotting with ggplot2
 
 #### Break (2:30 pm - 2:45 pm)
 
-### [08 - Repeat (2:45 pm - 4:30 pm)](H_Repeat-Reproduce.html)
+### [09 - Repeat (2:45 pm - 4:30 pm)](I_Repeat-Reproduce.html)
 
 - Functions
 - Programing with R
@@ -92,7 +92,7 @@ Each step of the workflow has a written component (blog post) describing the top
 
 ## Day 3
 
-### [09 - Practice (8:30 am - 10:30 am)]
+### [10 - Practice (8:30 am - 10:30 am)]
 
 - USGS R packages
 - Work on projects (group/individual)

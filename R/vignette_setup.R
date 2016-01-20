@@ -11,10 +11,10 @@ navigation_array <- function(title) {
     D_Explore="D. Explore",
     E_Analyze="E. Analyze - base", 
     F_Analyze="F. Analyze - packages", 
-    G_Visualize_1="G. Visualize - base",
-    G_Visualize="G. Visualize - ggplot2",
-    "H_Repeat-Reproduce"="H. Repeat and Reproduce", 
-    "I_Parting-Thoughts-and-Extra-Materials"="I. Parting Thoughts")
+    G_Visualize="G. Visualize - base",
+    H_Visualize="H. Visualize - ggplot2",
+    "I_Repeat-Reproduce"="I. Repeat and Reproduce", 
+    "J_Parting-Thoughts-and-Extra-Materials"="J. Parting Thoughts")
   pageNumber <- grep(title, titles)
   
   markdownToPrint <- paste0("[",titles,"](",names(titles),".html)")

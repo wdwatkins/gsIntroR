@@ -1,5 +1,5 @@
 ## ----setup, echo=FALSE---------------------------------------------------
-title="I. Parting Thoughts"
+title="J. Parting Thoughts"
 gsIntroR::navigation_array(title)
 
 ## ----echo=FALSE----------------------------------------------------------

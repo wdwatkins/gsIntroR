@@ -1,5 +1,5 @@
 ---
-title: "I. Parting Thoughts"
+title: "J. Parting Thoughts"
 author: Jeffrey W. Hollister
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -9,13 +9,13 @@ output:
     fig_height: 6
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{I. Parting Thoughts}
+  %\VignetteIndexEntry{J. Parting Thoughts}
   \usepackage[utf8]{inputenc}
 ---
 
 
 ```{r setup, echo=FALSE}
-title="I. Parting Thoughts"
+title="J. Parting Thoughts"
 gsIntroR::navigation_array(title)
 ```
 
