@@ -46,7 +46,7 @@ pop_ttest
 `t.test()` can also take a formula specification as input. In R, a formula takes the form of `y ~ x`.  The tilde is used in place of the equals sign, the dependent variable is on the left, and the independent variable[s] are on the right.  For a t-test that is all we need to know.
 
 ```{r ttest_formula_examp}
-#Lets pick another dataset, ToothGrowth (see ?ToothGrowth)
+#Let's pick another dataset, ToothGrowth (see ?ToothGrowth)
 #Compare tooth lengths between groups given different supplements
 rbind(head(ToothGrowth), tail(ToothGrowth))
 t.test(ToothGrowth$len ~ ToothGrowth$supp)
@@ -93,9 +93,9 @@ All of your standard modelling approaches (and then some) are available in R, in
 ##Exercise 1
 For this exercise, let's start to look at some of the statistical tests and relationships for NWIS data we collected for GAGES-II sites in NM. We have already plotted some of these variables together, so you may have an idea ahead of time about what the statistical tests might show. 
 
-1. First, lets take a look at the relationship between discharge, temperature, specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites.  Add a section to your script that tests for a difference in the mean value across these parameters between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implications for the differences in sample sizes. 
+1. First, let's take a look at the relationship between discharge, temperature, specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites.  Add a section to your script that tests for a difference in the mean value across these parameters between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implications for the differences in sample sizes. 
 
-2. Next, lets build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen. 
+2. Next, let's build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least two, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen. 
 
 
 

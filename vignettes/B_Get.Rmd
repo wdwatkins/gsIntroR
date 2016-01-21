@@ -386,7 +386,7 @@ first_sheet
 ```
 
 A common issue in reading in data is getting the column formats right. For example, the `first_sheet$Names` column is a factor by default (can you confirm this?). If you want it to be a character column instead, you can prevent it ever becoming a factor with the `stringsAsFactors` argument to `read.csv`, `data.frame`, and other data.frame-making functions:
-```{r}
+```{r, eval=FALSE}
 str(read.csv("example.csv"))
 str(read.csv("example.csv", stringsAsFactors=FALSE))
 ```

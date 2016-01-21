@@ -71,7 +71,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">A. Introduction to R: The basics</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
-<h4 class="date"><em>19 January, 2016</em></h4>
+<h4 class="date"><em>21 January, 2016</em></h4>
 </div>
 
 <div id="TOC">
@@ -159,7 +159,7 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <li><p>Start RStudio: To start both R and RStudio only requires firing up RStudio.RStudio should be available from All Programs at the Start Menu. Fire up RStudio.</p></li>
 <li><p>Take a few minutes to look around RStudio. Find the Console Pane. Find Global and Project Options (hint: look in Tools). Look at the Environment, History Pane. Look at the Files, Plots, Packages … pane.</p></li>
 <li><p>Create a new project. Select File | New Project…. Name it “usgs_r_workshop”. We will use this for the rest of the workshop.</p></li>
-<li><p>Create a new “R Script” in the Source Pane (click the icon with the green plus symbol below “File”), save that file into your newly created project and name it “lesson1.R”.</p></li>
+<li><p>Create a new “R Script” in the Source Pane (click the icon with the green plus symbol below “File”), save that file into your newly created project and name it “lessonA.R”.</p></li>
 </ol>
 </div>
 <div id="using-functions" class="section level2">
@@ -169,9 +169,9 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Print</span>
 <span class="kw">print</span>(<span class="st">&quot;hello world!&quot;</span>)
 <span class="co">#A sequence</span>
-<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)
+<span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>)
 <span class="co">#Random normal numbers</span>
-<span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">2</span>)
+<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dt">mean=</span><span class="dv">10</span>, <span class="dt">sd=</span><span class="dv">2</span>)
 <span class="co">#Mean</span>
 <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))
 <span class="co">#Sum</span>
@@ -184,7 +184,7 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <div id="cran-gran" class="section level3">
 <h3>CRAN &amp; GRAN</h3>
 <p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). For some USGS specific packages that aren’t of interest to the public, we have created <a href="http://owi.usgs.gov/R/gran.html">GRAN, the Geological survey R Archive Network</a>. We specify that we want packages from either archive network like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">repos=</span><span class="kw">c</span>(<span class="st">&quot;http://cran.rstudio.com/&quot;</span>,<span class="st">&quot;http://owi.usgs.gov/R&quot;</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">repos=</span><span class="kw">c</span>(<span class="st">&quot;https://cran.rstudio.com/&quot;</span>, <span class="st">&quot;http://owi.usgs.gov/R&quot;</span>))</code></pre></div>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>
@@ -194,7 +194,7 @@ source: r4stats.com - The Popularity of Data Analysis Software
 <span class="kw">install.packages</span>(<span class="st">&quot;EGRET&quot;</span>)
 
 <span class="co">#You can also put more than one in</span>
-<span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;dplyr&quot;</span>,<span class="st">&quot;ggplot2&quot;</span>))</code></pre></div>
+<span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>))</code></pre></div>
 </div>
 <div id="loading-packages" class="section level3">
 <h3>Loading packages</h3>
@@ -273,13 +273,13 @@ dataRetrieval::readNWISuv</code></pre></div>
 <h2>Exercise 2</h2>
 <p>For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages. Use the green stickies when you have completed, and red stickies if you are running into problems.</p>
 <ol style="list-style-type: decimal">
-<li>If it is not already open, open the “lesson1.R” file you created in Exercise 1. Enter your commands into this script.</li>
+<li>If it is not already open, open the “lessonA.R” file you created in Exercise 1. Enter your commands into this script. As you go, place your cursor on a line and run that line by pressing Ctrl+Enter (or Cmd+Enter on Macs) or clicking the Run button at the top right of the editor window. <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADUAAAAXCAYAAACrggdNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANDSURBVFhH3VdNT1NBFJ1/4O9o/w3txkQTY1yY4EZdCW3igg2JMcZEE8MGtW3SGAMb4kIX8iGCPB6SiB9BBNGSCEWFvvf6jdd7Z+Z2po9WaoBFO8npnbn3zJl7Oq/kITy/BF6xDF5AsQQ+Qua6OC/2/QB6Db1rquAXmxAmMbqFJ5gko2eKdo5iN/GaTWFU8wC2tndhYfkdTM4tIhwZX1pRzR3krEBuO6+FjU5Yz86fNk+a4oS94ZWzDDu7P+GoQRziKh0+5LBeM06Xh6YU0WxSRbqRTgfdGu87kz3XUo/QvG597knwGjelkoZIj1ang74A1iBTbMzWU+s09AkBwkJfqhWvuSd73glPFAKd4KjxPzdFX4AUDtRNGWNGTyGFpiIwsIhzOi8VQ2MxeHSIR70ovXb9/YunHz+bpCKbmlj50xY0bBOt0KxLN4WmHM7RmkzxnGsE/QU4Vm2QvgR1w5FBV/NMzyriHwofXfryFaOoQHMEm3o4/UuCTITnNFoZCYM1fd3cIN4UneskoiAiCViQ52awFsUa8agXm0s1NBNLKy19wynJU1q2D+FTUiPQ706EqfmTuSnWU2dQo9ZvCps052pTLvdDXF4rgwmXtYiLhhtc1lcQAb4MkmhQ4ohAx2yqkzE176q9CNuQrScjNhPDRqm5oLgEiYiAWIbPtWuU47U91zp4c6ZGfN5D9TKIIn4UyxpYkBFz029c3fLRYxpN8T42FNZT0TQjc0tJiIg4pCUPTUaVSVnLxPE2Nbds7QvrsD6fgRAl/GBQguKPnR0Yf/Zct3z0yI5PwOa3HJRQmAyF9cxcNZPEZjjvJvF3FU2CS2tpRD+a8bjiLpl9CTk3a1WryHNZjyDKlSooVBqYmZ2DB6NpWF1b1223H59W12D4zn148nQMb6YEBc+HvYKH72Qe/q/jy8clrF/GRlqde1I8UalWIYztfB4c9y08zo7B7XsjkBwahv7rN+D8pStw9sJluNh/Fa4N3IShW3dhZDQDkzOv4cv6BuTxlWnj6ya8//ARzX6G77kt+L23b7TxUPuctjgmT1SrNajWalBBUJRrhFzreQNdwhO1Wh16DaJer0OvQRwcHECvQbyYmoXewiz8BXh1Vlql9ZLPAAAAAElFTkSuQmCC" alt="Run Button" /></li>
 <li>Use the <code>print</code> function to print something to the screen.</li>
 <li>Combine <code>mean</code> and <code>rnorm</code> to return the mean value of a set of random numbers.</li>
 <li>Open up a <a href="http://cran.r-project.org/web/views/">task view</a> of your choosing. Select a package and install it.</li>
 <li>Load the package into R.</li>
 <li>Open the help for the package.</li>
-<li>Save all these functions inside your “lesson1.R” script. Run the script using the “Run” button at the top right of the editor. <em>Note: the “Run” button will only run code on the current line of your cursor or code that is highlighted.</em></li>
+<li>Save all these commands inside your “lessonA.R” script. Comment out any lines that install packages - this only needs to be done once per computer. Run the whole script again using the “Source” button at the top right of the editor. Then run just a few lines at once by highlighting those lines with your mouse, then pressing the Run button or Ctrl+Enter (Cmd+Enter). What’s the difference between (1) clicking Source and (2) selecting all lines then clicking Run?</li>
 </ol>
 <table>
 <thead>

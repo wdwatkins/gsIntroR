@@ -58,7 +58,7 @@ quantile(iris$Sepal.Length)
 I use quantile quite a bit, as it provides a bit more flexibility because you can specify the probabilities you want to return.
 
 ```{r quantile_probs_examp}
-quantile(iris$Sepal.Length, probs=(c(0.025,0.975)))
+quantile(iris$Sepal.Length, probs=(c(0.025, 0.975)))
 ```
 
 ```{r Exercise1, echo=FALSE}
@@ -67,28 +67,32 @@ quantile(iris$Sepal.Length, probs=(c(0.025,0.975)))
 ##Exercise 1
 Next, we're going to explore the distribution of the FL (or whichever state you chose) phosphorus data using base R statistical functions.
 
-1. For this first part, explore each of the functions above (`summary()`, `range()`, `IQR()`, and `quantile()`) and get to know more about the NWIS water variables we collected and merged into our 'gages_data_wq' data frame.  Specifically, you'll want to focus on the 'results_xx' variables within the 'gages_data_wq' data frame. Hint: Use the $ operator to index a particular columns of this data frame using the functions above. 
+1. For this first part, explore each of the functions above (`summary()`, `range()`, `IQR()`, and `quantile()`) and get to know more about the NWIS water variables we collected and merged into our 'gages_data_wq' data frame.  Specifically, you'll want to focus on the 'results_xx' variables within the 'gages_data_wq' data frame. Hint: Use the $ operator to index a particular column of this data frame, then pass just that column to the functions above. 
 
-OPTIONAL: Next lets continue to add to our script.  This time we will be combining some of the past lessons with this one.  Our goal is to create a summary statistics data frame of `gages_data_wq`.  What we want is a data frame that has min, max, mean, median, IQR, and quartiles for each of the four varaibles measured at 'gages' sites in NM that we pulled from NWIS.  This may seem a bit daunting, but if we break it apart it gets a bit easier. This is a base R solution. 
+2. OPTIONAL: Next lets continue to add to our script.  This time we will be combining some of the past lessons with this one. Our goal is to create a summary statistics data frame of `gages_data_wq`.  What we want is a data frame that has min, max, mean, median, IQR, and quartiles for each of the four variables measured at 'gages' sites in NM that we pulled from NWIS.  This may seem a bit daunting, but if we break it apart it gets a bit easier. This is a base R solution. 
 
-2. Create a separate vector for each of the water quality variables.  The vector should be of length 7. You can choose the name of the vector; choose something descriptive that would be obvious to your neighbor if you shared the script or data frame. 
+2a. Create a separate vector of summary statistics for each of the water quality variables.  The vector should be of length 7. You can choose the name of the vector; choose something descriptive that would be obvious to your neighbor if you shared the script or data frame. 
 
-3. Make sure your column names AND row names make sense.
+2b. Combine the four vectors into a single 4-row, 7-column data.frame.
+
+2c. Make sure the row names and column names all make sense.
+
 
 ##Basic Visualization
-Exploratory data analysis tends to be a little bit about stats and a lot about visualization.  Later we are going to go into more detail on `ggplot2` which is becoming the gold standard of viz in R, but for now we will look at some of the simple, yet very useful, plots that come with base R.  I find these to be great ways to quickly explore data.  
+Exploratory data analysis tends to be a little bit about stats and a lot about visualization.  Later we are going to go into more detail on advanced plotting with both base R and `ggplot2`, but for now we will look at some of the simple, yet very useful, plots that come with base R. I find these to be great ways to quickly explore data.  
 
 The workhorse function for plotting data in R is `plot()`.  With this one command you can create almost any plot you can conceive of, but for this workshop we are just going to look at the very basics of the function.  The most common way to use `plot()` is for scatterplots.  Let's look at the `mtcars` data.
 
 ```{r plot_examp}
-plot(mtcars$hp,mtcars$qsec)
+plot(mtcars$hp, mtcars$qsec)
 ```
 
-Hey, a plot!  Not bad.  Let's customize a bit because those axis labels aren't terribly useful and we need a title. For that we can use the `main`, `xlab`, and `ylab` arguments.
+Hey, a plot! Not bad. Let's customize a bit because those axis labels aren't terribly useful and we need a title. For that we can use the `main`, `xlab`, and `ylab` arguments.
 
 ```{r plot_examp_2}
-plot(mtcars$hp,mtcars$qsec,main="Changes in Quartermile time as function of horsepower",
-     xlab="Total Horsepower",ylab="Quartermile Time (secs)")
+plot(mtcars$hp, mtcars$qsec,
+     main="Changes in Quartermile time as function of horsepower",
+     xlab="Total Horsepower", ylab="Quartermile Time (secs)")
 ```
 
 Not sure if this will apply to everyone, but I use scatterplots ALL the time.  So, for me I could almost (not really) stop here.  But lets move on.  Let's say we want to look at more than just one relationship at a time with a pairs plot.  Again, `plot()` is our friend.  If you pass a data frame to `plot()` instead of an x and y vector it will plot all possible pairs.  Be careful though, as too many columns will produce an unintelligble plot.  Let's go back to `iris`.
@@ -102,22 +106,22 @@ Last thing I will show with plot is how to add a line.  The one I use most often
 We can add a horizontal line and vertical line easily with this as follows:
 
 ```{r abline_examp}
-plot(iris$Petal.Width,iris$Petal.Length, main="Petal Dimensions")
+plot(iris$Petal.Width, iris$Petal.Length, main="Petal Dimensions")
 #horizontal line at specified y value
 abline(h=4)
 #a vertical line
 abline(v=1.5)
 #Line with a slope and intercept
-abline(0,1)
+abline(0, 1)
 ```
 
-This is useful if you have a known value that you want to compare to your data.  Next example is putting a regression line on the plot.  We haven't talked about regression in R yet, but this example is simple enough I think we can get away with introducing it.  
+This is useful if you have a known value that you want to compare to your data.  Next example is putting a regression line on the plot.  We haven't talked about regression in R yet, but this example is simple enough I think we can get away with introducing it.
 
 ```{r abline_examp_lm}
-plot(iris$Petal.Width,iris$Petal.Length, main="Petal Dimensions")
-#abline accepts a liner model object as input
+plot(iris$Petal.Width, iris$Petal.Length, main="Petal Dimensions")
+#abline accepts a linear model object as input
 #linear model is done with lm, and uses a formula as input
-abline(lm(Petal.Length~Petal.Width,data=iris))
+abline(lm(Petal.Length ~ Petal.Width, data=iris))
 ```
 
 So, we detoured a bit.  Let's get back to a few more examples of exploratory plots.  We will look at boxplots, histograms, and cumulative distribution functions then call it quits on the exploratory analyis (and the first day, whew!)
@@ -125,26 +129,26 @@ So, we detoured a bit.  Let's get back to a few more examples of exploratory plo
 Two great ways to use boxplots are straight up and then by groups in a factor. For this we will use `boxplot()` and in this case it is looking for a vector as input. Sticking with `iris`:
 
 ```{r boxplot_examp}
-boxplot(iris$Petal.Length, main="Boxplot of Petal Length",ylab="Length(cm)")
+boxplot(iris$Petal.Length, main="Boxplot of Petal Length", ylab="Length(cm)")
 ```
 
-As plots go, well, um, not great.  Let's try it with a bit more info and create a boxplot for each of the groups.
+As plots go, well, um, not great.  Let's try it with a bit more info and create a boxplot for each of the groups. Note the use of another R formula.
 
 ```{r boxplot_grps_examp}
-boxplot(iris$Petal.Length~iris$Species, main="Boxplot of Petal Length by Species",ylab="Length(cm)")
+boxplot(iris$Petal.Length ~ iris$Species, main="Boxplot of Petal Length by Species", ylab="Length(cm)")
 ```
 
 Lastly, let's look at two other ways to plot our distributions.  First, histograms.
 
 ```{r base_hist_examp}
 hist(iris$Sepal.Length)
-hist(airquality$Temp,breaks=10)
+hist(airquality$Temp, breaks=10)
 ```
 
 And finally, cumulative distribution functions.  Since CDF's are actually a function of the distribution we need to get that function first.  This requires that we combine `plot()` and `ecdf()`, the emprical CDF function.
 
 ```{r cdf_examp}
-aq_temp_ecdf<-ecdf(airquality$Temp)
+aq_temp_ecdf <- ecdf(airquality$Temp)
 plot(aq_temp_ecdf)
 ```
 
@@ -152,13 +156,16 @@ plot(aq_temp_ecdf)
 ```
 
 ##Exercise 2
-Similar to before let's first just play around with some basic exploratory data visualization using water quality data in your newly created 'gages_data_wq' data frame.
+Similar to before let's first just play around with some basic exploratory data visualization using water quality data in your newly created `gages_data_wq` data frame.
 
 1. Try out each of the plotting commands discussed above and explore any of the data in our `gages_data_wq` data frame.
 
 2. Let's add another section to the script to create a pairs plot of the NM data physical and water quality we have collected so far (phosphorus, discharge, temperature, and specific conductance).
 
-3. Lastly, add a boxplot of discharge that shows a boxplot for [NSIP Sentinel](http://water.usgs.gov/nsip/federalneeds.html) ('NSIP_SENTINEL') sites versus non-Sentinel sites. Feel free to try and log transform the discharge data (not required).
+3. Try a boxplot of discharge that compares [NSIP Sentinel](http://water.usgs.gov/nsip/federalneeds.html) sites versus non-Sentinel sites. Feel free to try and log transform the discharge data, too. You can label sites in `gages_data_wq` as Sentinels or Non-Sentinels with the following line of code, which uses the `gages_nsip:
+```r
+gages_data_wq$is_sentinel <- gages_data_wq$site_no %in% gages_nsip$SITE_NO[gages_nsip$SENTINEL_S == 1]
+```
 
 
 ```{r echo=FALSE}

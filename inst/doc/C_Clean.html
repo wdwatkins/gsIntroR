@@ -71,7 +71,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">C. Clean</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Luke Winslow</em></h4>
-<h4 class="date"><em>19 January, 2016</em></h4>
+<h4 class="date"><em>21 January, 2016</em></h4>
 </div>
 
 <div id="TOC">
@@ -107,7 +107,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>In this third lesson we are going to start working on maninpulating and cleaning up our data frames. We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze. However, in reality, I’d argue, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in R. We will show the basics of subsetting, merging, modifying, and sumarizing data and our examples will all use Hadley Wickham and Romain Francois’ <code>dplyr</code> package. There are many ways to do this type of work in R, many of which are available from base R, but I heard from many (AED colleagues and Hadley himself!) focusing on one way to do this is best, so <code>dplyr</code> it is!</p>
+<p>In this third lesson we are going to start working on maninpulating and cleaning up our data frames. We are spending some time on this because, in my experience, most data analysis and statistics classes seem to assume that 95% of the time spent working with data is on the analysis and interpretation of that analysis and little time is spent getting data ready to analyze. However, in reality, the time spent is flipped with most time spent on cleaning up data and significantly less time on the analysis. We will just be scratching the surface of the many ways you can work with data in R. We will show the basics of subsetting, merging, modifying, and sumarizing data and our examples will all use Hadley Wickham and Romain Francois’ <code>dplyr</code> package. There are many ways to do this type of work in R, many of which are available from base R, but I heard from many (AED colleagues and Hadley himself!) focusing on one way to do this is best, so <code>dplyr</code> it is!</p>
 <p>Before we jump into the lesson, quick links and lesson goals are:</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
 <h2>Quick Links to Exercises and R code</h2>
@@ -115,7 +115,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="#exercise-1">Exercise 1</a>: Subsetting the Gages data with <code>dplyr</code></li>
 <li><a href="#exercise-2">Exercise 2</a>: Merge two Gages data files together.</li>
 <li><a href="#exercise-3">Exercise 3</a>: Using <code>dplyr</code> to modify and summarize the Gages.</li>
-<li><a href="#exercise-4">Exercise 4</a>: Writing functions and control structures</li>
 </ul>
 </div>
 <div id="lesson-goals" class="section level2">
@@ -123,15 +122,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <ul>
 <li>Show and tell on using base R for data manipulation</li>
 <li>Better understand data cleaning through use of <code>dplyr</code></li>
-<li>Use <code>merge()</code> to combine data frames by a common key.</li>
-<li>Do some basic reshaping and summarizing data frames.</li>
+<li>Use <code>merge()</code> to combine data frames by a common key</li>
+<li>Do some basic reshaping and summarizing data frames</li>
 <li>Know what pipes are and why you might want to use them</li>
 </ul>
 </div>
 <div id="what-is-dplyr" class="section level2">
 <h2>What is <code>dplyr</code>?</h2>
-<p>The package <code>dplyr</code> is a fairly new (2014) package that tries to provide easy tools for the most common data manipulation tasks. It is built to work directly with data frames. The thinking behind it was largely inspired by the package <code>plyr</code> which has been in use for some time but suffered from being slow in some cases. <code>dplyr</code> addresses this by porting much of the computation to C++. An additional feature is the ability to work with data stored directly in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned.</p>
-<p>This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R. There is a lot of great info on <code>dplyr</code>. If you have an interest, I’d encourage you to look more. The vignettes are particulary good.</p>
+<p>The package <code>dplyr</code> is a fairly new (2014) package that tries to provide easy tools for the most common data manipulation tasks. It is built to work directly with data frames. The thinking behind it was largely inspired by the package <code>plyr</code> which has been in use for some time but suffered from being slow in some cases. <code>dplyr</code> addresses this by porting much of the computation to C++. The result is a fast package that gets a lot done with very little code from you.</p>
+<p>An additional feature is the ability to work with data stored directly in an external database. The benefits of doing this are that the data can be managed natively in a relational database, queries can be conducted on that database, and only the results of the query returned. This addresses a common problem with R in that all operations are conducted in memory and thus the amount of data you can work with is limited by available memory. The database connections essentially remove that limitation in that you can have a database of many 100s GB, conduct queries on it directly and pull back just what you need for analysis in R.</p>
+<p>There is a lot of great info on <code>dplyr</code>. If you have an interest, I’d encourage you to look more. The vignettes are particulary good.</p>
 <ul>
 <li><a href="https://github.com/hadley/dplyr"><code>dplyr</code> GitHub repo</a></li>
 <li><a href="http://cran.rstudio.com/web/packages/dplyr/">CRAN page: vignettes here</a></li>
@@ -139,9 +139,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="subsetting-in-base-r" class="section level2">
 <h2>Subsetting in base R</h2>
-<p>In base R you can use a indexing to select out rows and columns. You will see this quite often in other peoples’ code, so I want to at least show it to you.</p>
+<p>In base R you can use a indexing to select out rows and columns. You will see this quite often in other people’s code, so I want to at least show it to you.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Create a vector</span>
-x&lt;-<span class="kw">c</span>(<span class="dv">10</span>:<span class="dv">19</span>)
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>:<span class="dv">19</span>)
 x</code></pre></div>
 <pre><code>##  [1] 10 11 12 13 14 15 16 17 18 19</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Positive indexing returns just the value in the ith place</span>
@@ -161,9 +161,9 @@ x[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">6</span>,
 x[<span class="kw">c</span>(<span class="ot">TRUE</span>,<span class="ot">FALSE</span>)]</code></pre></div>
 <pre><code>## [1] 10 12 14 16 18</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Can even get fancy</span>
-x[x%%<span class="dv">2</span>==<span class="dv">0</span>]</code></pre></div>
+x[x %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">0</span>]</code></pre></div>
 <pre><code>## [1] 10 12 14 16 18</code></pre>
-<p>You can also index a data frame or select individual columns of a data frame. Since a data frame has two dimensions, you need to specify an index for both the row and the column. You can specify both and get a single value like <code>data_frame[row,column]</code>,specify just the row and the get the whole row back like <code>data_frame[row,]</code> or get just the column with <code>data_frame[,column]</code>. These examples show that.</p>
+<p>You can also index a data frame or select individual columns of a data frame. Since a data frame has two dimensions, you need to specify an index for both the row and the column. You can specify both and get a single value like <code>data_frame[row,column]</code>, specify just the row and the get the whole row back like <code>data_frame[row,]</code> or get just the column with <code>data_frame[,column]</code>. These examples show that.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Let's use one of the stock data frames in R, iris</span>
 <span class="kw">head</span>(iris)</code></pre></div>
 <pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -232,16 +232,16 @@ iris$Petal.Length</code></pre></div>
 ## 5          1.4  setosa
 ## 6          1.7  setosa</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Now we can combine what we have seen to do some more complex queries</span>
-<span class="co">#Lets get all the data for Species with a petal length greater than 6</span>
-big_iris&lt;-iris[iris$Petal.Length&gt;=<span class="dv">6</span>,]
-<span class="kw">head</span>(big_iris)</code></pre></div>
-<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
-## 101          6.3         3.3          6.0         2.5 virginica
-## 106          7.6         3.0          6.6         2.1 virginica
-## 108          7.3         2.9          6.3         1.8 virginica
-## 110          7.2         3.6          6.1         2.5 virginica
-## 118          7.7         3.8          6.7         2.2 virginica
-## 119          7.7         2.6          6.9         2.3 virginica</code></pre>
+<span class="co">#Get all the data for flowers with a petal length less than 2</span>
+little_iris&lt;-iris[iris$Petal.Length&lt;=<span class="dv">2</span>,]
+<span class="kw">head</span>(little_iris)</code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Or maybe we want just the sepal widths of the virginica species</span>
 virginica_iris&lt;-iris$Sepal.Width[iris$Species==<span class="st">&quot;virginica&quot;</span>]
 <span class="kw">head</span>(virginica_iris)</code></pre></div>
@@ -279,8 +279,8 @@ virginica_iris&lt;-<span class="kw">filter</span>(iris,Species==<span class="st"
 <p>But what if I wanted to select and filter? There are three ways to do this: use intermediate steps, nested functions, or pipes. With the intermediate steps, you essentially create a temporary data frame and use that as input to the next function. You can also nest functions (i.e. one function inside of another). This is handy, but can be difficult to read if too many functions are nested as the process from inside out. The last option, pipes, are a fairly recent addition to R. Pipes in the unix/linux world are not new and allow you to chain commands together where the output of one command is the input to the next. This provides a more natural way to read the commands in that they are executed in the way you conceptualize it and make the interpretation of the code a bit easier. Pipes in R look like <code>%&gt;%</code> and are made available via the <code>magrittr</code> package, which is installed as part of <code>dplyr</code>. Let’s try all three with the same analysis: selecting out a subset of columns but for only a single species.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Intermediate data frames</span>
 <span class="co">#Select First: note the order of the output, neat too!</span>
-dplyr_big_iris_tmp1&lt;-<span class="kw">select</span>(iris,Species,Sepal.Length,Petal.Length)
-dplyr_big_iris_tmp&lt;-<span class="kw">filter</span>(dplyr_big_iris_tmp1,Petal.Length&gt;=<span class="dv">6</span>)
+dplyr_big_iris_tmp1 &lt;-<span class="st"> </span><span class="kw">select</span>(iris, Species, Sepal.Length, Petal.Length)
+dplyr_big_iris_tmp &lt;-<span class="st"> </span><span class="kw">filter</span>(dplyr_big_iris_tmp1, Petal.Length&gt;=<span class="dv">6</span>)
 <span class="kw">head</span>(dplyr_big_iris_tmp)</code></pre></div>
 <pre><code>##     Species Sepal.Length Petal.Length
 ## 1 virginica          6.3          6.0
@@ -290,7 +290,9 @@ dplyr_big_iris_tmp&lt;-<span class="kw">filter</span>(dplyr_big_iris_tmp1,Petal.
 ## 5 virginica          7.7          6.7
 ## 6 virginica          7.7          6.9</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Nested function</span>
-dplyr_big_iris_nest&lt;-<span class="kw">filter</span>(<span class="kw">select</span>(iris,Species,Sepal.Length,Petal.Length),Species==<span class="st">&quot;virginica&quot;</span>)
+dplyr_big_iris_nest &lt;-<span class="st"> </span><span class="kw">filter</span>(
+  <span class="kw">select</span>(iris,Species,Sepal.Length,Petal.Length),
+  Species==<span class="st">&quot;virginica&quot;</span>)
 <span class="kw">head</span>(dplyr_big_iris_nest)</code></pre></div>
 <pre><code>##     Species Sepal.Length Petal.Length
 ## 1 virginica          6.3          6.0
@@ -300,7 +302,8 @@ dplyr_big_iris_nest&lt;-<span class="kw">filter</span>(<span class="kw">select</
 ## 5 virginica          6.5          5.8
 ## 6 virginica          7.6          6.6</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Pipes</span>
-dplyr_big_iris_pipe&lt;-<span class="kw">select</span>(iris,Species,Sepal.Length,Petal.Length) %&gt;%
+dplyr_big_iris_pipe &lt;-
+<span class="st">  </span><span class="kw">select</span>(iris,Species,Sepal.Length,Petal.Length) %&gt;%
 <span class="st">  </span><span class="kw">filter</span>(Species==<span class="st">&quot;virginica&quot;</span>)
 <span class="kw">head</span>(dplyr_big_iris_pipe)</code></pre></div>
 <pre><code>##     Species Sepal.Length Petal.Length
@@ -325,13 +328,13 @@ dplyr_big_iris_pipe&lt;-<span class="kw">select</span>(iris,Species,Sepal.Length
 </div>
 <div id="merging-data" class="section level2">
 <h2>Merging Data</h2>
-<p>Joining data in <code>dplyr</code> is accomplished via the various <code>x_join()</code> commands (e.g., <code>inner_join</code>, <code>left_join</code>, <code>anti_join</code>, etc). These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you. If not then they aren’t immediately intuitive. For our purposes, the base functions <code>rbind()</code> and <code>merge()</code> are more than adequate.</p>
+<p>Joining data in <code>dplyr</code> is accomplished via the various <code>x_join()</code> commands (e.g., <code>inner_join</code>, <code>left_join</code>, <code>anti_join</code>, etc). These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you. If not then they aren’t immediately intuitive. For our purposes, the base functions <code>rbind()</code> and <code>merge()</code> are adequate.</p>
 <p>We are going to talk about several different ways to do this. First, let’s add some new rows to a data frame. This is very handy as you might have data collected and entered at one time, and then additional observations made later that need to be added. So with <code>rbind()</code> we can stack two data frames with the same columns to store more observations.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Let's first create a new small example data.frame</span>
-rbind_df&lt;-<span class="kw">data.frame</span>(<span class="dt">a=</span><span class="dv">1</span>:<span class="dv">3</span>,<span class="dt">b=</span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>),<span class="dt">c=</span><span class="kw">c</span>(T,T,F),<span class="dt">d=</span><span class="kw">rnorm</span>(<span class="dv">3</span>))
+rbind_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a=</span><span class="dv">1</span>:<span class="dv">3</span>, <span class="dt">b=</span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>), <span class="dt">c=</span><span class="kw">c</span>(T,T,F), <span class="dt">d=</span><span class="kw">rnorm</span>(<span class="dv">3</span>))
 <span class="co">#Now an example df to add</span>
-rbind_df2&lt;-<span class="kw">data.frame</span>(<span class="dt">a=</span><span class="dv">10</span>:<span class="dv">12</span>,<span class="dt">b=</span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>),<span class="dt">c=</span><span class="kw">c</span>(F,F,F),<span class="dt">d=</span><span class="kw">rnorm</span>(<span class="dv">3</span>))
-rbind_df&lt;-<span class="kw">rbind</span>(rbind_df, rbind_df2)
+rbind_df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a=</span><span class="dv">10</span>:<span class="dv">12</span>, <span class="dt">b=</span><span class="kw">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>), <span class="dt">c=</span><span class="kw">c</span>(F,F,F), <span class="dt">d=</span><span class="kw">rnorm</span>(<span class="dv">3</span>))
+rbind_df &lt;-<span class="st"> </span><span class="kw">rbind</span>(rbind_df, rbind_df2)
 rbind_df</code></pre></div>
 <pre><code>##    a b     c           d
 ## 1  1 a  TRUE -0.96193342
@@ -343,9 +346,11 @@ rbind_df</code></pre></div>
 <p>Now something to think about. Could you add a vector as a new row? Why/Why not? When/When not?</p>
 <p>Let’s go back to the columns now. There are simple ways to add columns of the same length with observations in the same order to a data frame, but it is very common to have to datasets that are in different orders and have differing numbers of rows. What we want to do in that case is going to be more of a database type function and join two tables based on a common column. A common way to do that in base R is with <code>merge()</code>. So let’s contrive another example by creating a dataset to merge to <code>rbind_df</code> that we created above.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Contrived data frame</span>
-rbind_df_merge_me &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">a=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">6</span>,<span class="dv">23</span>),<span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">7</span>),<span class="dt">names=</span><span class="kw">c</span>(<span class="st">&quot;bob&quot;</span>,<span class="st">&quot;joe&quot;</span>,<span class="st">&quot;sue&quot;</span>,<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="st">&quot;jeff&quot;</span>,<span class="ot">NA</span>))
+rbind_df_merge_me &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">a=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">6</span>,<span class="dv">23</span>), <span class="dt">x=</span><span class="kw">rnorm</span>(<span class="dv">7</span>), 
+  <span class="dt">names=</span><span class="kw">c</span>(<span class="st">&quot;bob&quot;</span>,<span class="st">&quot;joe&quot;</span>,<span class="st">&quot;sue&quot;</span>,<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="st">&quot;jeff&quot;</span>,<span class="ot">NA</span>))
 <span class="co"># Create merge of matches</span>
-rbind_df_merge_match&lt;-<span class="kw">merge</span>(rbind_df,rbind_df_merge_me,<span class="dt">by=</span><span class="st">&quot;a&quot;</span>)
+rbind_df_merge_match &lt;-<span class="st"> </span><span class="kw">merge</span>(rbind_df, rbind_df_merge_me, <span class="dt">by=</span><span class="st">&quot;a&quot;</span>)
 rbind_df_merge_match</code></pre></div>
 <pre><code>##    a b     c          d           x names
 ## 1  1 a  TRUE -0.9619334  0.08541773   bob
@@ -353,7 +358,7 @@ rbind_df_merge_match</code></pre></div>
 ## 3 10 x FALSE -1.1521319 -1.21885742   sue
 ## 4 11 y FALSE  0.1957828  1.26736872  &lt;NA&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create merge of matches and all of the first data frame</span>
-rbind_df_merge_allx &lt;-<span class="st"> </span><span class="kw">merge</span>(rbind_df,rbind_df_merge_me,<span class="dt">by=</span><span class="st">&quot;a&quot;</span>,<span class="dt">all.x=</span><span class="ot">TRUE</span>)
+rbind_df_merge_allx &lt;-<span class="st"> </span><span class="kw">merge</span>(rbind_df, rbind_df_merge_me, <span class="dt">by=</span><span class="st">&quot;a&quot;</span>, <span class="dt">all.x=</span><span class="ot">TRUE</span>)
 rbind_df_merge_allx</code></pre></div>
 <pre><code>##    a b     c           d           x names
 ## 1  1 a  TRUE -0.96193342  0.08541773   bob
@@ -362,9 +367,8 @@ rbind_df_merge_allx</code></pre></div>
 ## 4 10 x FALSE -1.15213189 -1.21885742   sue
 ## 5 11 y FALSE  0.19578283  1.26736872  &lt;NA&gt;
 ## 6 12 z FALSE  0.03012394          NA  &lt;NA&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#dplyr is faster:</span>
-
-rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_join</span>(rbind_df,rbind_df_merge_me,<span class="dt">by=</span><span class="st">&quot;a&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dplyr is faster</span>
+rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_join</span>(rbind_df, rbind_df_merge_me, <span class="dt">by=</span><span class="st">&quot;a&quot;</span>)
 <span class="kw">all.equal</span>(rbind_df_merge_allx_dplyr, rbind_df_merge_allx)</code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
@@ -379,10 +383,11 @@ rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_jo
 </div>
 <div id="modify-and-summarize" class="section level2">
 <h2>Modify and Summarize</h2>
-<p>Now back to <code>dplyr</code>. One area where it really shines is in modifying and summarizing. We will do more here than we did with base, but first lets walk through one of the examples we did previously, aggregating. We can do this with <code>group_by()</code> and <code>summarize()</code>.</p>
+<p>Now back to <code>dplyr</code>. One area where it really shines is in modifying and summarizing. We will do more here than we did with base, but first let’s walk through one of the examples we did previously, aggregating. We can do this with <code>group_by()</code> and <code>summarize()</code>.</p>
 <p>First, we’ll look at an example of grouping a data frame and summarizing the data within those groups.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Chained with Pipes</span>
-<span class="kw">group_by</span>(iris,Species)%&gt;%
+iris %&gt;%
+<span class="st">  </span><span class="kw">group_by</span>(Species) %&gt;%
 <span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(Sepal.Length),
             <span class="kw">mean</span>(Sepal.Width),
             <span class="kw">mean</span>(Petal.Length),
@@ -405,8 +410,17 @@ rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_jo
 ## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
 ## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
 ## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># every function, including head(), can be chained</span>
+mtcars %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#ascending order is default</span>
-<span class="kw">head</span>(<span class="kw">arrange</span>(mtcars,mpg))</code></pre></div>
+<span class="kw">arrange</span>(mtcars, mpg) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
 <pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb
 ## 1 10.4   8  472 205 2.93 5.250 17.98  0  0    3    4
 ## 2 10.4   8  460 215 3.00 5.424 17.82  0  0    3    4
@@ -415,7 +429,7 @@ rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_jo
 ## 5 14.7   8  440 230 3.23 5.345 17.42  0  0    3    4
 ## 6 15.0   8  301 335 3.54 3.570 14.60  0  1    5    8</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#descending</span>
-<span class="kw">head</span>(<span class="kw">arrange</span>(mtcars,<span class="kw">desc</span>(mpg)))</code></pre></div>
+<span class="kw">arrange</span>(mtcars, <span class="kw">desc</span>(mpg)) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
 <pre><code>##    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## 1 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
 ## 2 32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
@@ -424,7 +438,7 @@ rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_jo
 ## 5 27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
 ## 6 26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#multiple columns: most cyl with best mpg at top</span>
-<span class="kw">head</span>(<span class="kw">arrange</span>(mtcars,<span class="kw">desc</span>(cyl),<span class="kw">desc</span>(mpg)))</code></pre></div>
+<span class="kw">arrange</span>(mtcars, <span class="kw">desc</span>(cyl), <span class="kw">desc</span>(mpg)) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
 <pre><code>##    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## 1 19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
 ## 2 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
@@ -432,9 +446,9 @@ rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_jo
 ## 4 16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
 ## 5 15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
 ## 6 15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2</code></pre>
-<p>Now <code>slice()</code> which accomplishes what we did with the numeric indices before. Remembering back to that, we’d could grab rows of the data frame with something like <code>x[1:3,]</code>.</p>
+<p>Now <code>slice()</code> which accomplishes what we did with the numeric indices before. Remembering back to that, we could grab rows of the data frame with something like <code>x[3:10,]</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#grab rows 3 through 10</span>
-<span class="kw">slice</span>(mtcars,<span class="dv">3</span>:<span class="dv">10</span>)</code></pre></div>
+<span class="kw">slice</span>(mtcars, <span class="dv">3</span>:<span class="dv">10</span>)</code></pre></div>
 <pre><code>##    mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## 1 22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
 ## 2 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
@@ -445,7 +459,7 @@ rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_jo
 ## 7 22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
 ## 8 19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4</code></pre>
 <p><code>mutate()</code> allows us to add new columns based on expressions applied to existing columns</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">mutate</span>(mtcars,<span class="dt">kml=</span>mpg*<span class="fl">0.425</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mutate</span>(mtcars, <span class="dt">kml=</span>mpg*<span class="fl">0.425</span>) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
 <pre><code>##    mpg cyl disp  hp drat    wt  qsec vs am gear carb    kml
 ## 1 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4 8.9250
 ## 2 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4 8.9250
@@ -455,8 +469,9 @@ rbind_df_merge_allx_dplyr &lt;-<span class="st"> </span><span class="kw">left_jo
 ## 6 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1 7.6925</code></pre>
 <p>Lastly, one more function, <code>rowwise()</code> allows us run rowwise, operations. Let’s use a bit of a contrived example for this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#First a dataset of temperatures, recorded weekly at 100 sites.</span>
-temp_df&lt;-<span class="kw">data.frame</span>(<span class="dt">id=</span><span class="dv">1</span>:<span class="dv">100</span>,<span class="dt">week1=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">20</span>,<span class="dv">25</span>), <span class="dt">week2=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">19</span>,<span class="dv">24</span>), 
-                    <span class="dt">week3=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">18</span>,<span class="dv">26</span>), <span class="dt">week4=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">17</span>,<span class="dv">23</span>))
+temp_df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">id=</span><span class="dv">1</span>:<span class="dv">100</span>, <span class="dt">week1=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">20</span>,<span class="dv">25</span>), <span class="dt">week2=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">19</span>,<span class="dv">24</span>), 
+  <span class="dt">week3=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">18</span>,<span class="dv">26</span>), <span class="dt">week4=</span><span class="kw">runif</span>(<span class="dv">100</span>,<span class="dv">17</span>,<span class="dv">23</span>))
 <span class="kw">head</span>(temp_df)</code></pre></div>
 <pre><code>##   id    week1    week2    week3    week4
 ## 1  1 22.99866 22.18784 25.57801 22.67650
@@ -466,7 +481,7 @@ temp_df&lt;-<span class="kw">data.frame</span>(<span class="dt">id=</span><span 
 ## 5  5 21.89586 20.57656 20.60193 21.55283
 ## 6  6 21.86640 21.46786 21.33221 20.03100</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#To add row means to the dataset, without the ID</span>
-temp_df2&lt;-temp_df %&gt;%<span class="st"> </span>
+temp_df2 &lt;-<span class="st"> </span>temp_df %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">rowwise</span>() %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">site_mean =</span> <span class="kw">mean</span>(<span class="kw">c</span>(week1,week2,week3,week4)))
 <span class="kw">head</span>(temp_df2)</code></pre></div>
@@ -487,9 +502,27 @@ temp_df2&lt;-temp_df %&gt;%<span class="st"> </span>
 <h2>Exercise 3</h2>
 <p>Next, we’re going to pull in and merge additional water data from NWIS for NM GAGES-II sites. Keep track of your method by adding to your R script and commenting as you go. This exercise has several steps that each depend on the prior one- use your stickies and don’t get frustrated! We’ll work through these one at a time. If you complete a step and notice that your neighbor has not, see if you can answer any questions to help them get it done.</p>
 <ol style="list-style-type: decimal">
-<li><p>Return to the code chunk in <a href="B_Get.html#reading-nwis-data-into-r">Lesson 02 Get</a> that accesses NWIS data. Modify that code chunk and add it to your R script to access additional physical and water quality variables at FL sites: temperature (‘00010’), discharge (‘00060’), and specific conductance (‘00095’). Save these data in data frames named using the variable name and state abbreviation.</p></li>
-<li><p>Next, because we are just exploring here, let’s make some assumptions about the variables we have just collected: (a) all of the measurements we have in the data frames are good (we don’t want to throw any out because of comment codes indicating issues with the data) and, (b) the only three variables we care about in this data frame are gage ID (a.k.a., ‘site_no’), measurement date (‘sample_dt’), and value of the measurement made (‘results_va’). These assumptions may <em>not</em> hold for other analyses, but for the purposes of this exercise, we’ll make them. Subset the four water measurement data frames to include only those three columns each.</p></li>
-<li><p>Rename the columns to prepare to merge the data with the ‘gages_data’ data frame. Remember, not all NWIS sites we have collected data from are GAGES-II sites, so we need to merge on a common variable- the columns across the ‘gages_data’ and the water variables that include the site ID should all be named consistently. Second, consider that ‘results_va’ columns are distinct across data frames. Re-name those columns prior to the merge so they reflect the variable included (e.g, ‘results_temp’).</p></li>
+<li><p>Return to the code chunk in <a href="B_Get.html#reading-nwis-data-into-r">Lesson B. Get</a> that accesses NWIS data. Modify that code chunk and add it to your R script to access phosphorus and also these additional physical and water quality variables at NM sites: temperature (‘00010’), discharge (‘00060’), and specific conductance (‘00095’). Save these data in data frames named using the variable name and state abbreviation, e.g., ‘discharge_fl’.</p></li>
+<li><p>Next, because we are just exploring here, let’s make some assumptions about the variables we have just collected: (a) all of the measurements we have in the data frames are good (i.e., assume none of the comment codes indicate issues with specific data points) and, (b) the only three variables we care about in this data frame are station ID (<code>site_no</code>), measurement date (<code>sample_dt</code>), and value of the measurement made (<code>result_va</code>). These assumptions may <em>not</em> hold for other analyses, but for the purposes of this exercise, we’ll make them. Subset the four water measurement data frames to include only those three columns each.</p></li>
+<li><p>Reformat the columns so their types are compatible for the merge. First, notice that <code>gages_data$STAID</code> is numeric while <code>phos_nm$site_no</code> is the character data type (can you confirm this?). Add this line to pad the STAID values with a preceding 0, which happens to be correct for this dataset, and convert those values to character.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gages_data &lt;-<span class="st"> </span><span class="kw">mutate</span>(gages_data, <span class="dt">STAID=</span><span class="kw">paste0</span>(<span class="st">&quot;0&quot;</span>, <span class="kw">as.character</span>(STAID)))</code></pre></div>
+<p>Next, check out the formats of the <code>sample_dt</code> column in the four NWIS variables. They’re not the same! To fix this, just use the following magic formula for now, substituting your variable names in the last four lines if they don’t match mine:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages('lubridate') # this might be necessary for you if you get errors</span>
+fix_wq_dates &lt;-<span class="st"> </span>function(wq_dat) {
+  wq_dat %&gt;%<span class="st"> </span><span class="kw">mutate</span>(
+    <span class="dt">sample_dt =</span> switch(
+      <span class="kw">class</span>(sample_dt)[<span class="dv">1</span>],
+      <span class="dt">Date =</span> <span class="kw">as.POSIXct</span>(<span class="kw">format</span>(sample_dt, <span class="st">&quot;%Y-%m-%d&quot;</span>), <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;MST7MDT&quot;</span>), 
+      <span class="dt">character =</span> <span class="kw">as.POSIXct</span>(sample_dt, <span class="dt">format=</span><span class="st">&quot;%Y-%m-%d&quot;</span>, <span class="dt">tz=</span><span class="st">&quot;MST7MDT&quot;</span>),
+      <span class="dt">POSIXct =</span> lubridate::<span class="kw">with_tz</span>(sample_dt, <span class="st">&quot;MST7MDT&quot;</span>)))
+}
+phos_nm &lt;-<span class="st"> </span><span class="kw">fix_wq_dates</span>(phos_nm)
+temp_nm &lt;-<span class="st"> </span><span class="kw">fix_wq_dates</span>(temp_nm)
+disch_nm &lt;-<span class="st"> </span><span class="kw">fix_wq_dates</span>(disch_nm)
+spcond_nm &lt;-<span class="st"> </span><span class="kw">fix_wq_dates</span>(spcond_nm)</code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Rename the columns to prepare to merge the data with the ‘gages_data’ data frame. Remember, not all NWIS sites we have collected data from are GAGES-II sites, so we need to merge on a common variable- the columns across the ‘gages_data’ and the water variables that include the site ID should all be named consistently. Second, consider that ‘result_va’ columns are distinct across data frames. Re-name those columns prior to the merge so they reflect the variable included (e.g, ‘result_disch’).</p></li>
 <li><p>Let’s merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called ‘gages_data_wq’ by merging ‘gages_data’ with the NWIS variables we’ve already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have a data frame that includes all rows and columns for GAGES-II sites for NM, in addition to five new columns: ‘sample_dt’, plus the four water quality variables we’re merging. Hint: the number of rows in your expanded ‘gages_data_wq’ data frame will be much longer than in the original ‘gages_data’ data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others.</p></li>
 </ol>
 <table>
