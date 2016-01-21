@@ -385,6 +385,12 @@ first_sheet <- read.csv("example.csv")
 first_sheet
 ```
 
+A common issue in reading in data is getting the column formats right. For example, the `first_sheet$Names` column is a factor by default (can you confirm this?). If you want it to be a character column instead, you can prevent it ever becoming a factor with the `stringsAsFactors` argument to `read.csv`, `data.frame`, and other data.frame-making functions:
+```{r}
+str(read.csv("example.csv"))
+str(read.csv("example.csv", stringsAsFactors=FALSE))
+```
+
 You can also save objects in your R workspace as csv files. 
 
 ```{r write.csv examp, eval=FALSE}
@@ -417,8 +423,8 @@ From here on out I hope to have these exercises begin to build on each other. We
 
 1. Create a new script in RStudio. Name it “usgs_analysis.R”
 2. Add comments and test each line as you write the script.
-3. Add commands to create two data frames: One named `gages_sites` that contains all the data in the [conterm_basinid.csv](https://usgs-r.github.io/introR/rmd_posts/all_gages_ii_data/conterm_basinid.csv) file, and another named `gages_cover` that contains all the data in the [conterm_lc06_basin.csv](https://usgs-r.github.io/introR/rmd_posts/all_gages_ii_data/conterm_lc06_basin.csv) file.
-4. Create a third data.frame from [this Excel file](http://water.usgs.gov/nsip/nsipmaps/nsip_2015.xlsx), which lists the [NSIP Sentinel Sites](http://water.usgs.gov/nsip/federalneeds.html). Download the file, export the sheet to .csv, and read it into a data.frame named gages_sentinels. Add `stringsAsFactors=FALSE` as the second argument to your call to `read.csv` - this will prevent character fields from being converted to factors willy-nilly.
+3. Add commands to create two data frames: One named `gages_sites` that contains all the data in the [conterm_basinid.csv](https://usgs-r.github.io/introR/rmd_posts/all_gages_ii_data/conterm_basinid.csv) file, and another named `gages_cover` that contains all the data in the [conterm_lc06_basin.csv](https://usgs-r.github.io/introR/rmd_posts/all_gages_ii_data/conterm_lc06_basin.csv) file. Include `stringsAsFactors=FALSE` as an argument to `read.csv` to prevent character fields from being converted to factors willy-nilly.
+4. Create a third data.frame from [this Excel file](http://water.usgs.gov/nsip/nsipmaps/nsip_2015.xlsx), which lists the [NSIP stream monitoring sites](http://water.usgs.gov/nsip/federalneeds.html). Download the file, export the sheet to .csv, and read it into a data.frame named `gages_nsip`. Again include `stringsAsFactors=FALSE` as an argument to `read.csv`.
 4. Add commands to your script that will provides details on the structure (hint: str) of each newly created data frame.
 5. Take a look at the variable description table [here on GitHub](https://github.com/USGS-R/introR/blob/gh-pages/rmd_posts/all_gages_ii_data/variable_descriptions.csv) to understand the column headers.
 6. Rerun the whole script and make sure it doesn’t throw any errors and you do in fact get the two data frames.
