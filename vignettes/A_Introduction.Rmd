@@ -67,7 +67,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 3. Create a new project. Select File | New Project....  Name it "usgs_r_workshop".  We will use this for the rest of the workshop.
 
-4. Create a new "R Script" in the Source Pane (click the icon with the green plus symbol below "File"), save that file into your newly created project and name it "lesson1.R". 
+4. Create a new "R Script" in the Source Pane (click the icon with the green plus symbol below "File"), save that file into your newly created project and name it "lessonA.R". 
 
 ##Using functions
 R is built off of functions and most of everything you do uses a function.
@@ -78,9 +78,9 @@ The basic syntax of function follows the form: `function_name(arg1, arg2, ...)`.
 #Print
 print("hello world!")
 #A sequence
-seq(1,10)
+seq(1, 10)
 #Random normal numbers
-rnorm(100,mean=10,sd=2)
+rnorm(100, mean=10, sd=2)
 #Mean
 mean(rnorm(100))
 #Sum
@@ -96,7 +96,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/).  This is where you download R and also where most will gain access to packages (there are other places, but that is for later). For some USGS specific packages that aren't of interest to the public, we have created [GRAN, the Geological survey R Archive Network](http://owi.usgs.gov/R/gran.html). We specify that we want packages from either archive network like this:
 
 ```{r set_repos, eval=FALSE}
-options(repos=c("http://cran.rstudio.com/","http://owi.usgs.gov/R"))
+options(repos=c("https://cran.rstudio.com/", "http://owi.usgs.gov/R"))
 ```
 
 ###Installing packages
@@ -108,7 +108,7 @@ install.packages("dataRetrieval")
 install.packages("EGRET")
 
 #You can also put more than one in
-install.packages(c("dplyr","ggplot2"))
+install.packages(c("dplyr", "ggplot2"))
 ```
 
 ###Loading packages
@@ -185,13 +185,14 @@ There are too many resources to mention and everyone has their favorites.  Below
 ##Exercise 2
 For this second exercise we are going to get used to using some basic functions, working with scripts and not just the console, and look through some task views and get used to basic navigation around packages.  Use the green stickies when you have completed, and red stickies if you are running into problems.
 
-1. If it is not already open, open the "lesson1.R" file you created in Exercise 1. Enter your commands into this script.
+1. If it is not already open, open the "lessonA.R" file you created in Exercise 1. Enter your commands into this script. As you go, place your cursor on a line and run that line by pressing Ctrl+Enter (or Cmd+Enter on Macs) or clicking the Run button at the top right of the editor window.
+![Run Button](figure/rstudio_runbutton.png)
 2. Use the `print` function to print something to the screen.
 3. Combine `mean` and `rnorm` to return the mean value of a set of random numbers.
 4. Open up a [task view](http://cran.r-project.org/web/views/) of your choosing.  Select a package and install it. 
 5. Load the package into R.
 6. Open the help for the package.
-7. Save all these functions inside your "lesson1.R" script.  Run the script using the "Run" button at the top right of the editor. *Note: the "Run" button will only run code on the current line of your cursor or code that is highlighted.* 
+7. Save all these commands inside your "lessonA.R" script. Comment out any lines that install packages - this only needs to be done once per computer. Run the whole script again using the "Source" button at the top right of the editor. Then run just a few lines at once by highlighting those lines with your mouse, then pressing the Run button or Ctrl+Enter (Cmd+Enter). What's the difference between (1) clicking Source and (2) selecting all lines then clicking Run?
 
 
 

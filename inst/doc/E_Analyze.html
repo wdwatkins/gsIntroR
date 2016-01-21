@@ -71,7 +71,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">E. Analyze: Base</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>19 January, 2016</em></h4>
+<h4 class="date"><em>21 January, 2016</em></h4>
 </div>
 
 <div id="TOC">
@@ -105,35 +105,35 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </tr>
 </tbody>
 </table>
-<p>The focus of this workshop hasn’t really been statistics, its been more about R, the language. But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place. So, we will spend a little bit of time on it. In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.</p>
+<p>The focus of this workshop hasn’t really been statistics, it’s been more about R, the language. But it’s pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place. So we will spend a little bit of time on it. In this lesson we will touch on some very simple stats that we can do with base R.</p>
 <div id="quick-links-to-exercises-and-r-code" class="section level2">
 <h2>Quick Links to Exercises and R code</h2>
 <ul>
-<li><a href="#exercise-1">Exercise 1</a>: Run some basic statistical test and build a simple model with USGS data</li>
+<li><a href="#exercise-1">Exercise 1</a>: Compute basic statistics and build a simple model with USGS data</li>
 </ul>
 </div>
 <div id="lesson-goals" class="section level2">
 <h2>Lesson Goals</h2>
 <ul>
 <li>Conduct basic statistical analyses with base R</li>
-<li>Get a taste of wide array of analyses in base R</li>
+<li>Get a taste of a wide array of analyses in base R</li>
 </ul>
 </div>
 <div id="base-statistics" class="section level2">
 <h2>Base statistics</h2>
-<p>The capabilities that come out of the box with R are actually quite good and used to (i.e. before R) cost you quite a bit to access. Now it all comes for free! Some of the things you can do with R without any additional packages inlcude: logistic regression (and all manner of generalized linear models), correlation, principle components analysis, chi-squared tests, clustering, loess, ANOVA, MANOVA, … In short, we can do a lot without moving out of base r and <code>stats</code>.</p>
+<p>The capabilities that come out of the box with R are actually quite good and used to (i.e. before R) cost you quite a bit to access. Now it all comes for free! Some things you can do in R without any additional packages include: logistic regression (and all manner of generalized linear models), correlation, principle components analysis, chi-squared tests, clustering, loess, ANOVA, MANOVA, … In short, we can do a lot without moving out of base r and the <code>stats</code> package.</p>
 <p>We will talk about a few analyses just to show the tip of the iceberg of what is available.</p>
 <div id="t-tests" class="section level3">
 <h3>t-tests</h3>
 <p>A t-test is done simply with <code>t.test()</code> and you control the specifics (paired, two-sided, etc.) with options. For the simple case of comparing the difference of two means we can use all of the defaults:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="kw">rnorm</span>(<span class="dv">30</span>,<span class="dt">mean=</span><span class="dv">3</span>,<span class="dt">sd=</span><span class="dv">2</span>)
-y&lt;-<span class="kw">rnorm</span>(<span class="dv">30</span>,<span class="dt">mean=</span><span class="dv">10</span>,<span class="dt">sd=</span><span class="dv">5</span>)
-xy_tt&lt;-<span class="kw">t.test</span>(x,y)
-xy_tt</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pop1 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dt">mean=</span><span class="dv">3</span>, <span class="dt">sd=</span><span class="dv">2</span>)
+pop2 &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">30</span>, <span class="dt">mean=</span><span class="dv">10</span>, <span class="dt">sd=</span><span class="dv">5</span>)
+pop_ttest &lt;-<span class="st"> </span><span class="kw">t.test</span>(pop1, pop2)
+pop_ttest</code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
-## data:  x and y
+## data:  pop1 and pop2
 ## t = -7.5834, df = 37.108, p-value = 4.714e-09
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
@@ -141,10 +141,10 @@ xy_tt</code></pre></div>
 ## sample estimates:
 ## mean of x mean of y 
 ##  3.022597 10.793608</code></pre>
-<p><code>t.test()</code> can also take a formula specification as input. I mentioned this briefly in the previous lesson. At it’s simplest a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign. For a t-test that is all we need to know.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Lets pick another dataset, ToothGrowth.</span>
-<span class="co">#Looking at diff in tooth length by groups specified in supp</span>
-<span class="kw">rbind</span>(<span class="kw">head</span>(ToothGrowth),<span class="kw">tail</span>(ToothGrowth))</code></pre></div>
+<p><code>t.test()</code> can also take a formula specification as input. In R, a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign, the dependent variable is on the left, and the independent variable[s] are on the right. For a t-test that is all we need to know.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Let's pick another dataset, ToothGrowth (see ?ToothGrowth)</span>
+<span class="co">#Compare tooth lengths between groups given different supplements</span>
+<span class="kw">rbind</span>(<span class="kw">head</span>(ToothGrowth), <span class="kw">tail</span>(ToothGrowth))</code></pre></div>
 <pre><code>##     len supp dose
 ## 1   4.2   VC  0.5
 ## 2  11.5   VC  0.5
@@ -158,7 +158,7 @@ xy_tt</code></pre></div>
 ## 58 27.3   OJ  2.0
 ## 59 29.4   OJ  2.0
 ## 60 23.0   OJ  2.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(ToothGrowth$len~ToothGrowth$supp)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(ToothGrowth$len ~<span class="st"> </span>ToothGrowth$supp)</code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -176,10 +176,10 @@ xy_tt</code></pre></div>
 <h3>Correlation</h3>
 <p>Next let’s take a look at correlations. Little inspiration is striking, so <code>iris</code> it is.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A simple correlation</span>
-<span class="kw">cor</span>(iris$Petal.Width,iris$Petal.Length)</code></pre></div>
+<span class="kw">cor</span>(iris$Petal.Width, iris$Petal.Length)</code></pre></div>
 <pre><code>## [1] 0.9628654</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#And a test of that correlation</span>
-<span class="kw">cor.test</span>(iris$Petal.Width,iris$Petal.Length)</code></pre></div>
+<span class="kw">cor.test</span>(iris$Petal.Width, iris$Petal.Length)</code></pre></div>
 <pre><code>## 
 ##  Pearson's product-moment correlation
 ## 
@@ -191,24 +191,23 @@ xy_tt</code></pre></div>
 ## sample estimates:
 ##       cor 
 ## 0.9628654</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A data frame as input returns a correlation matrix</span>
-<span class="co"># Can't do: because iris is not numeric:</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A data frame as input to cor returns a correlation matrix</span>
+<span class="co">#Can't just do cor(iris) because iris is not numeric:</span>
 <span class="co"># cor(iris)</span>
-
-<span class="kw">library</span>(dplyr)
-<span class="kw">select</span>(iris,-Species) %&gt;%<span class="st"> </span>
+<span class="kw">library</span>(dplyr) <span class="co"># use dplyr to select the numeric columns of iris</span>
+<span class="kw">select</span>(iris, -Species) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">cor</span>()</code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
 ## Sepal.Width    -0.1175698   1.0000000   -0.4284401  -0.3661259
 ## Petal.Length    0.8717538  -0.4284401    1.0000000   0.9628654
 ## Petal.Width     0.8179411  -0.3661259    0.9628654   1.0000000</code></pre>
-<p>If you look at the help for <code>cor()</code>, you’ll see two main optional arguments. First is the <code>use</code> argument which allows you to use the entire dataset or select complete cases which is useful when you have <code>NA</code> values. There are several options. Also, the default correlation method is for Pearson’s. If you would like to us non-parametric correlations (e.g. rank), you specify that here.</p>
+<p>If you look at the help for <code>cor()</code>, you’ll see two main optional arguments. First is the <code>use</code> argument which allows you to use the entire dataset or select complete cases which is useful when you have <code>NA</code> values. There are several options. Also, the default correlation method is for Pearson’s. If you would like to use non-parametric correlations (e.g. rank), you specify that here.</p>
 </div>
 <div id="linear-regression" class="section level3">
 <h3>Linear Regression</h3>
-<p>Next let’s take a look at linear regression. One of the common ways of accessing linear regressions is with <code>lm()</code>. We have already seen the formula object so there isn’t too much that is new here. Some of the options though are new and useful. Let’s take a look:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(Ozone~Temp,<span class="dt">data=</span>airquality)</code></pre></div>
+<p>Next let’s take a look at linear regression. One of the common ways of fitting linear regressions is with <code>lm()</code>. We have already seen the formula object so there isn’t too much that is new here. Some of the options are new and useful, though. Let’s take a look:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(Ozone ~<span class="st"> </span>Temp, <span class="dt">data=</span>airquality)</code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Ozone ~ Temp, data = airquality)
@@ -217,7 +216,7 @@ xy_tt</code></pre></div>
 ## (Intercept)         Temp  
 ##    -146.995        2.429</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Not much info, so save to object and use summary</span>
-lm_aq1&lt;-<span class="kw">lm</span>(Ozone~Temp,<span class="dt">data=</span>airquality)
+lm_aq1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Ozone ~<span class="st"> </span>Temp, <span class="dt">data=</span>airquality)
 <span class="kw">summary</span>(lm_aq1)</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -239,7 +238,7 @@ lm_aq1&lt;-<span class="kw">lm</span>(Ozone~Temp,<span class="dt">data=</span>ai
 ## Multiple R-squared:  0.4877, Adjusted R-squared:  0.4832 
 ## F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#And now a multiple linear regression</span>
-lm_aq2&lt;-<span class="kw">lm</span>(Ozone~Temp+Wind+Solar.R,<span class="dt">data=</span>airquality)
+lm_aq2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Ozone ~<span class="st"> </span>Temp +<span class="st"> </span>Wind +<span class="st"> </span>Solar.R, <span class="dt">data=</span>airquality)
 <span class="kw">summary</span>(lm_aq2)</code></pre></div>
 <pre><code>## 
 ## Call:
@@ -262,15 +261,15 @@ lm_aq2&lt;-<span class="kw">lm</span>(Ozone~Temp+Wind+Solar.R,<span class="dt">d
 ##   (42 observations deleted due to missingness)
 ## Multiple R-squared:  0.6059, Adjusted R-squared:  0.5948 
 ## F-statistic: 54.83 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>All of your standard modelling approaches (and then some) are available in R including typical variable selection techniques (e.g. stepwise with AIC) and logistic regression, which is implemented with the rest of the generalized linear models in <code>glm()</code>. Interaction terms can be specified directly in the model, but there are several ways to do so (x*y, x:y, x^y). Lastly, if you are interested in more involved or newer approaches these will be implemented (most likely) with additional packages and will not be available in base R or <code>stats</code>.</p>
+<p>All of your standard modelling approaches (and then some) are available in R, including typical variable selection techniques (e.g. stepwise with AIC) and logistic regression, which is implemented with the rest of the generalized linear models in <code>glm()</code>. Interaction terms can be specified directly in the model, but there are several ways to do so (<code>x*y</code>, <code>x:y</code>, <code>x^y</code>). Lastly, if you are interested in more involved or newer approaches these are likely implemented in additional packages, beyond base R and <code>stats</code>, which you can find on a repository such as <a href="https://cran.rstudio.com">CRAN</a>, <a href="http://owi.usgs.gov/R/gran.html">GRAN</a>, or <a href="https://www.bioconductor.org/packages/release/BiocViews.html#___Software">Bioconductor</a>.</p>
 </div>
 </div>
 <div id="exercise-1" class="section level2">
 <h2>Exercise 1</h2>
 <p>For this exercise, let’s start to look at some of the statistical tests and relationships for NWIS data we collected for GAGES-II sites in NM. We have already plotted some of these variables together, so you may have an idea ahead of time about what the statistical tests might show.</p>
 <ol style="list-style-type: decimal">
-<li><p>First, lets take a look at the relationship between discharge, temperature specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites. Add a section to your script that tests for a difference in the mean value across these parameters between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implications for the differences in sample sizes.</p></li>
-<li><p>Next, lets build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen.</p></li>
+<li><p>First, let’s take a look at the relationship between discharge, temperature, specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites. Add a section to your script that tests for a difference in the mean value across these parameters between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implications for the differences in sample sizes.</p></li>
+<li><p>Next, let’s build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least two, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen.</p></li>
 </ol>
 <table>
 <thead>

@@ -41,13 +41,11 @@ radii <- runif(25, 0, 10)
 cols <- colors()[round(runif(25, 0, 500))]
 symbols(x, y, circles = radii, bg = cols)
 
-
 ## ----warning = FALSE, message = FALSE------------------------------------
 library(dataRetrieval)
 # Gather NWIS data:
 P_site1 <- readNWISqw("01656960", parameterCd = "00665")
 P_site2 <- readNWISqw("01656725", parameterCd = "00665")
-
 
 ## ----axis_example--------------------------------------------------------
 xData <- 1:50
@@ -61,7 +59,6 @@ axis(side=3, at=seq(1,50, by=0.5))
 plot(xData, yData, pch=20, log='y')
 axis(side=4) #this axis is also logged
 
-
 ## ----multiple_plots_example----------------------------------------------
 #use the built-in r data, "iris"
 
@@ -74,6 +71,10 @@ plot2 <- plot(iris$Species, iris$Sepal.Length, ylab="Sepal Length")
 plot3 <- plot(iris$Species, iris$Petal.Width, ylab="Petal Width")
 plot4 <- plot(iris$Species, iris$Petal.Length, ylab="Petal Length")
 
+## ----save_eg, eval=FALSE-------------------------------------------------
+#  png("my_iris_pairs.png", width=5, height=6, res=300, units="in") # see ?png
+#  plot(iris[1:3])
+#  dev.off()
 
 ## ----echo=FALSE----------------------------------------------------------
 gsIntroR::navigation_array(title)
