@@ -307,6 +307,8 @@ fix_wq_dates <- function(wq_dat) {
 }
 phos_nm <- fix_wq_dates(phos_nm)
 temp_nm <- fix_wq_dates(temp_nm)
+disch_nm <- fix_wq_dates(disch_nm)
+spcond_nm <- fix_wq_dates(spcond_nm)
 ```
 
 4) Rename the columns to prepare to merge the data with the 'gages_data' data frame. Remember, not all NWIS sites we have collected data from are GAGES-II sites, so we need to merge on a common variable- the columns across the 'gages_data' and the water variables that include the site ID should all be named consistently. Second, consider that 'result_va' columns are distinct across data frames. Re-name those columns prior to the merge so they reflect the variable included (e.g, 'result_disch'). 
