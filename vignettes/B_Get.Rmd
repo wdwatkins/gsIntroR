@@ -39,7 +39,7 @@ Before we jump into details on data in R we need to introduce a few of the basic
 Being thoughtful about workflow from the beginning of a project is something that gets overlooked a lot, but a little up-front effort can provide a big benefit.  For our purposes we are going to make use of RStudio projects and will script *EVERYTHING*.  The console has its utility and we will use it plenty, especially when we are first figuring out how to use commands.  But beyond that, we will store all of our work in a script.  The basic workflow I am going to advocate is:
 
 1. Use a single project for this workshop (we created that in Lesson 1: Exercise 1).
-2. Start everything in a script and use copy/paste or the RStudio tools to send to the console.
+2. Start everything in a script and use copy/paste, Ctrl+Enter / Cmd+Enter, or the RStudio tools to send to the console.
 3. Use a new script for each lesson.
 4. Comment ruthlessly.
 5. Don't save .RData files or workspace history.  The script should recreate whatever you need.
@@ -53,18 +53,18 @@ R can be used as a calculator and a way to compare values.  Some examples of the
 
 ```{r operators_console, eval=FALSE, echo=TRUE}
 #A really powerful calculator!
-1+1 #Add
-10-4 #Subtract
-3*2 #Multiply
-3^3 #Exponents
-100/10 #Divide
-5%%2 #Modulus
-5>2 #Greater than
-4<5 #Less than
-5<=5 #Less than or equal
-8>=2 #Greater than or equal
-2==2 #Equality: notice that it is TWO equal signs!
-5!=7 #Not Equals
+1 + 1 #Add
+10 - 4 #Subtract
+3 * 2 #Multiply
+3 ^ 3 #Exponents
+100 / 10 #Divide
+5 %% 2 #Modulus
+5 > 2 #Greater than
+4 < 5 #Less than
+5 <= 5 #Less than or equal
+8 >= 2 #Greater than or equal
+2 == 2 #Equality: notice that it is TWO equal signs!
+5 != 7 #Not Equals
 ```
 
 That's neat, but so what...  
@@ -73,18 +73,18 @@ Well, it could be interesting to do something with those values and save them fo
 
 ```{r assignment_operator}
 #Numeric assignment
-x<-5
+x <- 5
 x
-y<-x+1
+y <- x + 1
 y
-z<-x+y
+z <- x + y
 z
 #Character
-a<-"Bob"
+a <- "Bob"
 a
-b<-"Sue"
+b <- "Sue"
 b
-a2<-"Larry"
+a2 <- "Larry"
 a2
 ```
 
@@ -101,15 +101,15 @@ ls(pattern="a")
 rm(x)
 
 #Save your workspace
-#Saves the whole thing to a file called lesson2.RData
-save.image("lesson2.RData") 
-#Saves just the a and y objects to a file called lesson2_ay.RData
-save(a,y,file="lesson2_ay.RData")
+#Saves the whole thing to a file called lessonB.RData
+save.image("lessonB.RData") 
+#Saves just the a and y objects to a file called lessonB_ay.RData
+save(a, y, file="lessonB_ay.RData")
 ```
 
 A note about saving your workspace: This should not be something you do regularly because your script should contain code that can easily recreate all of the objects in your workspace. 
 
-This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a,y,file="lesson2_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and arguments are never quoted.  We quote the name of the file "lesson2_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
+This is probably a good spot to bring up quotes vs no quotes around arguments in a function.  This is a very common stumbling block.  The general rule is that no quotes are used only when referring to an object that currently exists.  Quotes are used in all other cases.  For instance in `save(a, y, file="lessonB_ay.RData")` the objects `a` and `y` are not quoted because they are objects in the workspace.  `file` is an argument of save and arguments are never quoted.  We quote the name of the file "lessonB_ay.RData" because it is not an R object but the name of a file to be created.  You will likely still have some issues with this.  My recommendation is to think about if it is an object in your R workspace or not.  If so, no quotes! This isn't foolproof, but works well most of the time.
 
 Next thing you might want to do is navigate around your files and directories.
 
@@ -169,24 +169,22 @@ There are values that you will run across on ocassion that aren't really data ty
 `NA` is R's value for missing data.  You will see this often and need to figure out how to deal with them in your analysis.  A few built in functions are useful for dealing with `NA`.  We will show their usage a bit later.
 
 ```{r na_examples, eval=FALSE}
-na.omit()#na.omit - removes them
-na.exclude()#similar to omit, but has different behavior with some functions.
-is.na()#Will tell you if a value is NA
+na.omit() #na.omit - removes them
+na.exclude() #similar to omit, but has different behavior with some functions.
+is.na() #Will tell you if a value is NA
 ```
 
 `Inf` is infinity. You can have positive or negative infinity.
 
 ```{r}
-1/0
-# [1] Inf
-1/Inf
-# [1] 0
+1 / 0
+1 / Inf
 ```
 
 `NaN` means Not a number. it's an undefined value.
 
 ```{r}
-0/0
+0 / 0
 NaN
 ```
 
@@ -212,9 +210,9 @@ A vector can be a vector of characters, logical, integers or numeric and all val
 There are many ways to create vectors, but we will focus on one, `c()`, which is a very common way to create a vector from a set of values.  `c()` combines a set of arguments into a single vector.  For instance,
 
 ```{r use_c}
-char_vector <- c("Joe","Bob","Sue")
-num_vector <- c(1,6,99,-2)
-logical_vector <- c(TRUE,FALSE,FALSE,TRUE,T,F)
+char_vector <- c("Joe", "Bob", "Sue")
+num_vector <- c(1, 6, 99, -2)
+logical_vector <- c(TRUE, FALSE, FALSE, TRUE, T, F)
 ```
 
 Now that we have these we can use some functions to examine the vectors. 
@@ -247,9 +245,9 @@ seq(10)
 seq(1, 10, by = 0.1)
 
 #Repeat values
-fives<-rep(5,10)
+fives <- rep(5, 10)
 fives
-laugh<-rep("Ha", 100)
+laugh <- rep("Ha", 100)
 laugh
 ```
 
@@ -257,22 +255,21 @@ Lastly, R can operate directly on vectors.  This means we can use use our arithm
 
 ```{r vectorized_examp}
 #A numeric example
-x<-1:10
-y<-10:1
-z<-x+y
+x <- 1:10
+y <- 10:1
+z <- x + y
 z
 
 #another one, with different lengths
-a<-1
-b<-1:10
-c<-a+b
+a <- 1
+b <- 1:10
+c <- a + b
 c
 
-
 #A character example with paste()
-first<-c("Buggs","Elmer","Pepe", "Foghorn")
-last<-c("Bunny", "Fudd","Le Pew", "Leghorn")
-first_last<-paste(first, last)
+first <- c("Buggs", "Elmer", "Pepe", "Foghorn")
+last <- c("Bunny", "Fudd", "Le Pew", "Leghorn")
+first_last <- paste(first, last)
 first_last
 ```
 
@@ -292,8 +289,8 @@ yn <- factor(c("yes", "no", "no", "yes", "yes"))
 yn
 
 #An ordered factor
-lmh <- factor (c("high","high","low","medium","low","medium","high"),
-               levels=c("low","medium","high"),ordered=TRUE )
+lmh <- factor(c("high","high","low","medium","low","medium","high"),
+              levels=c("low","medium","high"), ordered=TRUE)
 lmh
 ```
 
@@ -306,10 +303,10 @@ Data frames are made up of rows and columns.  Each column is a vector and those 
 So one way to create a data frame is from some vectors and the `data.frame()` command:
 
 ```{r create_data_frame}
-numbers <- c(1:26,NA)
-lettersNew <- c(NA,letters) #letters is a special object available from base R
-logical <- c(rep(TRUE,13),NA,rep(FALSE,13))
-examp_df <- data.frame(lettersNew,numbers,logical, stringsAsFactors = FALSE)
+numbers <- c(1:26, NA)
+lettersNew <- c(NA, letters) #letters is a special object available from base R
+logical <- c(rep(TRUE, 13), NA, rep(FALSE, 13))
+examp_df <- data.frame(lettersNew, numbers, logical, stringsAsFactors = FALSE)
 ```
 
 Now that we have this data frame we probably want to do something with it.  We can examine it in many ways.
@@ -345,10 +342,11 @@ Also, lists don't print out like a vector. They print a new line for each elemen
 Lists are made simply with the `list()` function.
 
 ```{r list_examples}
-examp_list<-list(letters=c("x","y","z"),
-                 animals=c("cat","dog","bird","fish"),
-                 numbers=1:100,
-                 df=examp_df)
+examp_list <- list(
+  letters=c("x","y","z"),
+  animals=c("cat","dog","bird","fish"),
+  numbers=1:100,
+  df=examp_df)
 examp_list
 ```
 
@@ -377,16 +375,20 @@ There are a variety of ways to pull data from Excel. We are going to show you ou
 
 Let's give it a try. Download the example excel sheet [here](http://usgs-r.github.io/introR/figure/example.xlsx).
 
-Now, open the example in Excel, and go to File > Save As. Select CSV in the drop-down menu and save the file as "example.csv" in your usgs_exercise directory. 
+Now, open the example in Excel, make sure you're on the first worksheet, and go to File > Save As. Select CSV in the drop-down menu and save the file as "example.csv" in your usgs_r_workshop directory. 
 
 ![How to save csv](figure/excel_to_csv.png)
 
 ```{r excel_to_csv_examp, eval=FALSE}
-
-first_sheet<-read.csv("example.csv")
+first_sheet <- read.csv("example.csv")
 #Did it work?
 first_sheet
+```
 
+A common issue in reading in data is getting the column formats right. For example, the `first_sheet$Names` column is a factor by default (can you confirm this?). If you want it to be a character column instead, you can prevent it ever becoming a factor with the `stringsAsFactors` argument to `read.csv`, `data.frame`, and other data.frame-making functions:
+```{r, eval=FALSE}
+str(read.csv("example.csv"))
+str(read.csv("example.csv", stringsAsFactors=FALSE))
 ```
 
 You can also save objects in your R workspace as csv files. 
@@ -404,16 +406,11 @@ The USGS has created an R package to directly link NWIS with R. It is called `da
 ```{r dataRetrievalExample, eval=FALSE}
 library(dataRetrieval)
 # Gather NWIS data:
-siteListPhos <- readNWISdata(stateCd="FL",parameterCd="00665", 
-                              siteOutput="expanded", 
-                             drainAreaMin=400,siteType="ST",
-                             service="site") 
-
-                             
-phosData <- readNWISqw(siteListPhos$site_no, parameterCd = "00665")
-
+siteListPhos <- readNWISdata(
+  stateCd="FL", parameterCd="00665", drainAreaMin=400,
+  siteType="ST", service="site") 
+phosData <- readNWISqw(siteListPhos$site_no, parameterCd="00665")
 head(phosData)
-
 ```
 
 So now we have a basic feel on how to work in R, how data is dealt with, and how to pull data from a file into R.  Next we are going to practice some of these skills.
@@ -425,11 +422,12 @@ So now we have a basic feel on how to work in R, how data is dealt with, and how
 From here on out I hope to have these exercises begin to build on each other. We may not do that 100%, but there should at least be a modicum of continuity. For this exercise we are going to grab some more data, look at that data, and be able to describe some basic information about that dataset. The data we will use are phosphorus data observed at sites included with the Geospatial Attributes of Gages for Evaluating Streamflow, version II (GAGES-II) sites from New Mexico. Navigate to the abstract on the [GAGES-II dataset](http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml) metadata page for additional information on GAGES-II sites and site metadata.
 
 1. Create a new script in RStudio. Name it “usgs_analysis.R”
-2. As you write the script comment as you go.
-3. Add commands to create two data frames: One named `gages_sites` that contains all the data in the [conterm_basinid.csv](/introR/rmd_posts/all_gages_ii_data/conterm_basinid.csv) file, and another named `gages_cover` that contains all the data in the [conterm_lc06_basin.csv](/introR/rmd_posts/all_gages_ii_data/conterm_lc06_basin.csv) file.
+2. Add comments and test each line as you write the script.
+3. Add commands to create two data frames: One named `gages_sites` that contains all the data in the [conterm_basinid.csv](https://usgs-r.github.io/introR/rmd_posts/all_gages_ii_data/conterm_basinid.csv) file, and another named `gages_cover` that contains all the data in the [conterm_lc06_basin.csv](https://usgs-r.github.io/introR/rmd_posts/all_gages_ii_data/conterm_lc06_basin.csv) file. Include `stringsAsFactors=FALSE` as an argument to `read.csv` to prevent character fields from being converted to factors willy-nilly.
+4. Create a third data.frame from [this Excel file](http://water.usgs.gov/nsip/nsipmaps/nsip_2015.xlsx), which lists the [NSIP stream monitoring sites](http://water.usgs.gov/nsip/federalneeds.html). Download the file, export the sheet to .csv, and read it into a data.frame named `gages_nsip`. Again include `stringsAsFactors=FALSE` as an argument to `read.csv`.
 4. Add commands to your script that will provides details on the structure (hint: str) of each newly created data frame.
-5. Take a look at the variable description table [here on github](https://github.com/USGS-R/introR/blob/gh-pages/rmd_posts/all_gages_ii_data/variable_descriptions.csv) to understand the column headers.
-6. Run the script and make sure it doesn’t throw any errors and you do in fact get the two data frames.
+5. Take a look at the variable description table [here on GitHub](https://github.com/USGS-R/introR/blob/gh-pages/rmd_posts/all_gages_ii_data/variable_descriptions.csv) to understand the column headers.
+6. Rerun the whole script and make sure it doesn’t throw any errors and you do in fact get the two data frames.
 7. If you still have some time, explore the data frames using some of the commands we covered. This part does not need to be included in the script.
 
 ```{r echo=FALSE}

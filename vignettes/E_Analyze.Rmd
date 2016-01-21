@@ -19,19 +19,17 @@ title="E. Analyze - base"
 gsIntroR::navigation_array(title)
 ```
 
-
-
-The focus of this workshop hasn't really been statistics, its been more about R, the language.  But, it is pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place.  So, we will spend a little bit of time on it.  In this lesson we will touch on some very simple stats that we can do with base R as well as provide a quick (i.e. top of my head as I write this) list of what can be done in base R.  
+The focus of this workshop hasn't really been statistics, it's been more about R, the language.  But it's pretty much impossible to talk a lot about R without getting into stats, as that is what draws most people to R in the first place. So we will spend a little bit of time on it.  In this lesson we will touch on some very simple stats that we can do with base R.  
 
 ##Quick Links to Exercises and R code
-- [Exercise 1](#exercise-1): Run some basic statistical test and build a simple model with USGS data
+- [Exercise 1](#exercise-1): Compute basic statistics and build a simple model with USGS data
 
 ##Lesson Goals
 - Conduct basic statistical analyses with base R
-- Get a taste of wide array of analyses in base R
+- Get a taste of a wide array of analyses in base R
 
 ##Base statistics
-The capabilities that come out of the box with R are actually quite good and used to (i.e. before R) cost you quite a bit to access.  Now it all comes for free!  Some of the things you can do with R without any additional packages inlcude: logistic regression (and all manner of generalized linear models), correlation, principle components analysis, chi-squared tests, clustering, loess, ANOVA, MANOVA, ...  In short, we can do a lot without moving out of base r and `stats`.
+The capabilities that come out of the box with R are actually quite good and used to (i.e. before R) cost you quite a bit to access.  Now it all comes for free!  Some things you can do in R without any additional packages include: logistic regression (and all manner of generalized linear models), correlation, principle components analysis, chi-squared tests, clustering, loess, ANOVA, MANOVA, ...  In short, we can do a lot without moving out of base r and the `stats` package.
 
 We will talk about a few analyses just to show the tip of the iceberg of what is available.
 
@@ -39,19 +37,19 @@ We will talk about a few analyses just to show the tip of the iceberg of what is
 A t-test is done simply with `t.test()` and you control the specifics (paired, two-sided, etc.) with options.  For the simple case of comparing the difference of two means we can use all of the defaults:
 
 ```{r ttest_examp }
-x<-rnorm(30,mean=3,sd=2)
-y<-rnorm(30,mean=10,sd=5)
-xy_tt<-t.test(x,y)
-xy_tt
+pop1 <- rnorm(30, mean=3, sd=2)
+pop2 <- rnorm(30, mean=10, sd=5)
+pop_ttest <- t.test(pop1, pop2)
+pop_ttest
 ```
 
-`t.test()` can also take a formula specification as input. I mentioned this briefly in the previous lesson.  At it's simplest a formula takes the form of `y ~ x`.  The tilde is used in place of the equals sign.  For a t-test that is all we need to know.  
+`t.test()` can also take a formula specification as input. In R, a formula takes the form of `y ~ x`.  The tilde is used in place of the equals sign, the dependent variable is on the left, and the independent variable[s] are on the right.  For a t-test that is all we need to know.
 
 ```{r ttest_formula_examp}
-#Lets pick another dataset, ToothGrowth.
-#Looking at diff in tooth length by groups specified in supp
-rbind(head(ToothGrowth),tail(ToothGrowth))
-t.test(ToothGrowth$len~ToothGrowth$supp)
+#Let's pick another dataset, ToothGrowth (see ?ToothGrowth)
+#Compare tooth lengths between groups given different supplements
+rbind(head(ToothGrowth), tail(ToothGrowth))
+t.test(ToothGrowth$len ~ ToothGrowth$supp)
 ```
 There's a lot more you can do with `t.test()`, but you'll have to rely on `?t.test` for more info.
 
@@ -60,34 +58,34 @@ Next let's take a look at correlations.  Little inspiration is striking, so `iri
 
 ```{r corr_examp,message=FALSE,warning=FALSE}
 #A simple correlation
-cor(iris$Petal.Width,iris$Petal.Length)
+cor(iris$Petal.Width, iris$Petal.Length)
 #And a test of that correlation
-cor.test(iris$Petal.Width,iris$Petal.Length)
-#A data frame as input returns a correlation matrix
-# Can't do: because iris is not numeric:
-# cor(iris)
+cor.test(iris$Petal.Width, iris$Petal.Length)
 
-library(dplyr)
-select(iris,-Species) %>% 
+#A data frame as input to cor returns a correlation matrix
+#Can't just do cor(iris) because iris is not numeric:
+# cor(iris)
+library(dplyr) # use dplyr to select the numeric columns of iris
+select(iris, -Species) %>% 
   cor()
 ```
 
-If you look at the help for `cor()`, you'll see two main optional arguments.  First is the `use` argument which allows you to use the entire dataset or select complete cases which is useful when you have `NA` values.  There are several options.  Also, the default correlation method is for Pearson's.  If you would like to us non-parametric correlations (e.g. rank), you specify that here.
+If you look at the help for `cor()`, you'll see two main optional arguments.  First is the `use` argument which allows you to use the entire dataset or select complete cases which is useful when you have `NA` values.  There are several options.  Also, the default correlation method is for Pearson's.  If you would like to use non-parametric correlations (e.g. rank), you specify that here.
 
 ### Linear Regression
-Next let's take a look at linear regression.  One of the common ways of accessing linear regressions is with `lm()`.  We have already seen the formula object so there isn't too much that is new here.  Some of the options though are new and useful.  Let's take a look:
+Next let's take a look at linear regression.  One of the common ways of fitting linear regressions is with `lm()`.  We have already seen the formula object so there isn't too much that is new here.  Some of the options are new and useful, though.  Let's take a look:
 
 ```{r lm_examp}
-lm(Ozone~Temp,data=airquality)
+lm(Ozone ~ Temp, data=airquality)
 #Not much info, so save to object and use summary
-lm_aq1<-lm(Ozone~Temp,data=airquality)
+lm_aq1 <- lm(Ozone ~ Temp, data=airquality)
 summary(lm_aq1)
 #And now a multiple linear regression
-lm_aq2<-lm(Ozone~Temp+Wind+Solar.R,data=airquality)
+lm_aq2 <- lm(Ozone ~ Temp + Wind + Solar.R, data=airquality)
 summary(lm_aq2)
 ```
 
-All of your standard modelling approaches (and then some) are available in R including typical variable selection techniques (e.g. stepwise with AIC) and logistic regression, which is implemented with the rest of the generalized linear models in `glm()`.  Interaction terms can be specified directly in the model, but there are several ways to do so (x*y, x:y, x^y).  Lastly, if you are interested in more involved or newer approaches these will be implemented (most likely) with additional packages and will not be available in base R or `stats`.
+All of your standard modelling approaches (and then some) are available in R, including typical variable selection techniques (e.g. stepwise with AIC) and logistic regression, which is implemented with the rest of the generalized linear models in `glm()`.  Interaction terms can be specified directly in the model, but there are several ways to do so (`x*y`, `x:y`, `x^y`).  Lastly, if you are interested in more involved or newer approaches these are likely implemented in additional packages, beyond base R and `stats`, which you can find on a repository such as [CRAN](https://cran.rstudio.com), [GRAN](http://owi.usgs.gov/R/gran.html), or [Bioconductor](https://www.bioconductor.org/packages/release/BiocViews.html#___Software).
 
 ```{r Exercise1, echo=FALSE}
 ```
@@ -95,9 +93,9 @@ All of your standard modelling approaches (and then some) are available in R inc
 ##Exercise 1
 For this exercise, let's start to look at some of the statistical tests and relationships for NWIS data we collected for GAGES-II sites in NM. We have already plotted some of these variables together, so you may have an idea ahead of time about what the statistical tests might show. 
 
-1. First, lets take a look at the relationship between discharge, temperature specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites.  Add a section to your script that tests for a difference in the mean value across these parameters between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implications for the differences in sample sizes. 
+1. First, let's take a look at the relationship between discharge, temperature, specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites.  Add a section to your script that tests for a difference in the mean value across these parameters between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implications for the differences in sample sizes. 
 
-2. Next, lets build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least three, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen. 
+2. Next, let's build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least two, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen. 
 
 
 
