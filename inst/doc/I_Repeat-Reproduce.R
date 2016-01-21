@@ -3,28 +3,29 @@ title="I. Repeat and Reproduce"
 gsIntroR::navigation_array(title)
 
 ## ----function_create-----------------------------------------------------
-hw<-function(){
-  print("Hello, World")
+say_hi <- function() {
+  print("Hello, World!")
 }
-
-hw()
+say_hi()
 
 ## ----function2_create----------------------------------------------------
-p<-function(my_text){
+print_twice <- function(my_text) {
+  print(my_text)
   print(my_text)
 }
 
-p("Hello, world")
-p("Hola, mundo")
-p("Howdy, Texas")
+print_twice("Hello, World!")
+print_twice("Hola, mundo")
+print_twice("Howdy, Texas")
 
 ## ----plot_function_examp-------------------------------------------------
-myplot<-function(x,y,grp,file){
-  my_p<-ggplot(data.frame(x,y,grp),aes(x=x,y=y)) +
-            geom_point(aes(color=grp, shape=grp),size=5) +
-            geom_smooth(method="lm",aes(colour=grp))+
-            labs(x=substitute(x),y=substitute(y))
-  ggsave(my_p,file=file)
+myplot <- function(x, y, grp, file) {
+  my_dat <- data.frame(X=x,Y=y, Grp=grp)
+  my_p <- ggplot(my_dat, aes(x=X, y=Y)) +
+            geom_point(aes(color=Grp, shape=Grp), size=5) +
+            geom_smooth(method="lm", aes(color=Grp)) +
+            labs(x=substitute(x), y=substitute(y))
+  ggsave(my_p, file=file)
   return(my_p)
 }
 
