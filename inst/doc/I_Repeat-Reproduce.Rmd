@@ -19,7 +19,7 @@ gsIntroR::navigation_array(title)
 ```
 
 
-In theory, you now have a basic understanding of how to conduct a typical data analysis workflow in R.  All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. To do this effectively we need to understand how to create reusable R code and create reproducible reports.  This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.
+You now have a basic understanding of how to conduct a typical data analysis workflow in R.  All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. To do this effectively we need to understand how to create reusable R code and create reproducible reports.  This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.
 
 ##Quick Links to Exercises and R code
 - [Exercise 1](#exercise-1): Writing functions and control structures
@@ -32,26 +32,22 @@ In theory, you now have a basic understanding of how to conduct a typical data a
 - Create a simple, reproducible document and presentation
 
 ##Functions and Programming with R
-At this point we should be pretty well versed at using functions.  They have a name, some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool things about R (and programming in general), is that we are not stuck with the functions provided to us.  We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal because we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of: 
-
+At this point we should be pretty well versed at using functions.  They have a name and some arguments, and they do something.  Some return a value, some don't.  In short they form the basic structure of R.  One of the cool things about R (and programming in general), is that we are not stuck with the functions provided to us.  We can and should develop our own, as we often want to do things repeatedly, and in slightly different contexts.  Creating a function to deal with this fact helps us a great deal because we do not have to repeat ourselves, we can just use what we have already written.  Creating a function is really easy.  We use the `function()` function.  It has the basic structure of: 
 
 ```
-function_name<-function(arguments){
+function_name <- function(arguments) {
   code goes here
   use arguments as needed
 }
 ```
 
-And each function comes with some basic information attached to it and have functions associated with them.  These are the `formals()`, the `body()`, and the `environment()`.  We aren't going to get into the details of these, but I did want you to at least be aware of them.
-
-So a real example, without arguments might look like:
+So a real example with no arguments might look like:
 
 ```{r function_create}
-hw<-function(){
-  print("Hello, World")
+say_hi <- function() {
+  print("Hello, World!")
 }
-
-hw()
+say_hi()
 ```
 
 Well that's nice...  Not really useful, but shows the main components, `function()`, and the `{}` which are really the only new things.
@@ -59,24 +55,26 @@ Well that's nice...  Not really useful, but shows the main components, `function
 It would be a bit better if it were more flexible.  We can do that because we can specify our own arguments to use within the body of the function.  For example,
 
 ```{r function2_create}
-p<-function(my_text){
+print_twice <- function(my_text) {
+  print(my_text)
   print(my_text)
 }
 
-p("Hello, world")
-p("Hola, mundo")
-p("Howdy, Texas")
+print_twice("Hello, World!")
+print_twice("Hola, mundo")
+print_twice("Howdy, Texas")
 ```
 
-So, this is of course a silly example.  Functions are useful when we want to combine many other functions together that do something useful that we might want to repeat.  Since we have been working most recently with creating plots, I could imagine us wanting to create a plot with a similar layout, but with different source data and then save that plot to a file, all with a single function call.  That might look like:
+Functions are most useful when we want to repeat a general procedure with different specifics each time. Since we have been working most recently with creating plots, I could imagine us wanting to create a plot with a similar layout, but with different source data and then save that plot to a file, all with a single function call.  That might look like:
 
 ```{r plot_function_examp}
-myplot<-function(x,y,grp,file){
-  my_p<-ggplot(data.frame(x,y,grp),aes(x=x,y=y)) +
-            geom_point(aes(color=grp, shape=grp),size=5) +
-            geom_smooth(method="lm",aes(colour=grp))+
-            labs(x=substitute(x),y=substitute(y))
-  ggsave(my_p,file=file)
+myplot <- function(x, y, grp, file) {
+  my_dat <- data.frame(X=x,Y=y, Grp=grp)
+  my_p <- ggplot(my_dat, aes(x=X, y=Y)) +
+            geom_point(aes(color=Grp, shape=Grp), size=5) +
+            geom_smooth(method="lm", aes(color=Grp)) +
+            labs(x=substitute(x), y=substitute(y))
+  ggsave(my_p, file=file)
   return(my_p)
 }
 
@@ -85,6 +83,7 @@ myplot(iris$Sepal.Length,iris$Sepal.Width,iris$Species,"sepal_l_petal_w.jpg")
 ```
 
 Cool, a function, that does something useful.  It still is just a collection of functions at this point though.  What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set?  Well we need to look more at some of the classic programming structures in R.  For this introduction, I am going to look just at `if-else` statements, `for` loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful and I M writing this, so there!),  and `return()`.  
+
 
 ###if-else
 If you have done any programing in any language, then `if-else` statements are not new to you.  All they do is allow us to tell the function how to make some decisions.  

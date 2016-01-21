@@ -160,7 +160,7 @@ Similar to before let's first just play around with some basic exploratory data 
 
 1. Try out each of the plotting commands discussed above and explore any of the data in our `gages_data_wq` data frame.
 
-2. Let's add another section to the script to create a pairs plot of the NM data physical and water quality we have collected so far (phosphorus, discharge, temperature, and specific conductance).
+2. Let's add another section to the script to create a pairs plot of the NM physical and water quality data we have collected so far (phosphorus, discharge, temperature, and specific conductance).
 
 3. Try a boxplot of discharge that compares [NSIP Sentinel](http://water.usgs.gov/nsip/federalneeds.html) sites versus non-Sentinel sites. Feel free to try and log transform the discharge data, too. You can label sites in `gages_data_wq` as Sentinels or Non-Sentinels with the following line of code, which uses the `gages_nsip:
 ```r
