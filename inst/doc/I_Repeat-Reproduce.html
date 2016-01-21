@@ -11,9 +11,53 @@
 <meta name="author" content="Jeffrey W. Hollister" />
 
 
-<title>H. Repeat and Reproduce</title>
+<title>I. Repeat and Reproduce</title>
 
 
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0A%7D%0Apre%20%7B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
@@ -25,14 +69,21 @@
 
 
 <div id="header">
-<h1 class="title">H. Repeat and Reproduce</h1>
+<h1 class="title">I. Repeat and Reproduce</h1>
 <h4 class="author"><em>Jeffrey W. Hollister</em></h4>
-<h4 class="date"><em>18 January, 2016</em></h4>
+<h4 class="date"><em>19 January, 2016</em></h4>
 </div>
 
 <div id="TOC">
 <ul>
+<li><a href="#quick-links-to-exercises-and-r-code">Quick Links to Exercises and R code</a></li>
 <li><a href="#lesson-goals">Lesson Goals</a></li>
+<li><a href="#functions-and-programming-with-r">Functions and Programming with R</a><ul>
+<li><a href="#if-else">if-else</a></li>
+<li><a href="#for">for</a></li>
+<li><a href="#return">return</a></li>
+</ul></li>
+<li><a href="#exercise-1">Exercise 1</a></li>
 <li><a href="#markdown">Markdown</a><ul>
 <li><a href="#text">Text</a></li>
 <li><a href="#headers">Headers</a></li>
@@ -47,29 +98,245 @@
 </ul>
 </div>
 
-<ul>
-<li><a href="Outline.html">Workshop Outline</a></li>
-</ul>
 <table>
+<thead>
+<tr class="header">
+<th align="left">Previous Lesson</th>
+<th align="left">Current Lesson</th>
+<th align="left">Next Lesson</th>
+<th align="left">Workshop Outline</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="G_Visualize.html">G. Visualize</a></td>
-<td align="left">—————————————–</td>
-<td align="left"><a href="I_Parting-Thoughts-and-Extra-Materials.html">I. Parting Thoughts</a></td>
+<td align="left"><a href="H_Visualize.html">H. Visualize - ggplot2</a></td>
+<td align="left"><a href="I_Repeat-Reproduce.html">I. Repeat and Reproduce</a></td>
+<td align="left"><a href="J_Parting-Thoughts-and-Extra-Materials.html">J. Parting Thoughts</a></td>
+<td align="left"><a href="Outline.html">Workshop Outline</a></td>
 </tr>
 </tbody>
 </table>
 <p>In theory, you now have a basic understanding of how to conduct a typical data analysis workflow in R. All that is left is to be able to write it up in such a way that others can not only understand what we did, but repeat it exactly on their own machines. To do this effectively we need to understand how to create reusable R code and create reproducible reports. This will be a very high level introduction to both concepts, but should hopefully give you a jumping off place for more learning.</p>
+<div id="quick-links-to-exercises-and-r-code" class="section level2">
+<h2>Quick Links to Exercises and R code</h2>
+<ul>
+<li><a href="#exercise-1">Exercise 1</a>: Create your own function</li>
+</ul>
+</div>
 <div id="lesson-goals" class="section level2">
 <h2>Lesson Goals</h2>
-<!--
-- Understand how to create your own functions
-- Be able to use basic programming control structures
--->
 <ul>
+<li>Understand how to create your own functions</li>
+<li>Be able to use basic programming control structures</li>
 <li>Gain familiarity with Markdown and <code>knitr</code></li>
 <li>Create a simple, reproducible document and presentation</li>
 </ul>
+</div>
+<div id="functions-and-programming-with-r" class="section level2">
+<h2>Functions and Programming with R</h2>
+<p>At this point we should be pretty well versed at using functions. They have a name, some arguments, and they do something. Some return a value, some don’t. In short they form the basic structure of R. One of the cool things about R (and programming in general), is that we are not stuck with the functions provided to us. We can (and should!) develop our own as we often want to do things repeatedly, and in slightly different contexts. Creating a function to deal with this fact helps us a great deal because we do not have to repeat ourselves, we can just use what we have already written. Creating a function is really easy. We use the <code>function()</code> function. It has the basic structure of:</p>
+<pre><code>function_name&lt;-function(arguments){
+  code goes here
+  use arguments as needed
+}</code></pre>
+<p>And each function comes with some basic information attached to it and have functions associated with them. These are the <code>formals()</code>, the <code>body()</code>, and the <code>environment()</code>. We aren’t going to get into the details of these, but I did want you to at least be aware of them.</p>
+<p>So a real example, without arguments might look like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hw&lt;-function(){
+  <span class="kw">print</span>(<span class="st">&quot;Hello, World&quot;</span>)
+}
+
+<span class="kw">hw</span>()</code></pre></div>
+<pre><code>## [1] &quot;Hello, World&quot;</code></pre>
+<p>Well that’s nice… Not really useful, but shows the main components, <code>function()</code>, and the <code>{}</code> which are really the only new things.</p>
+<p>It would be a bit better if it were more flexible. We can do that because we can specify our own arguments to use within the body of the function. For example,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p&lt;-function(my_text){
+  <span class="kw">print</span>(my_text)
+}
+
+<span class="kw">p</span>(<span class="st">&quot;Hello, world&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Hello, world&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">p</span>(<span class="st">&quot;Hola, mundo&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Hola, mundo&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">p</span>(<span class="st">&quot;Howdy, Texas&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Howdy, Texas&quot;</code></pre>
+<p>So, this is of course a silly example. Functions are useful when we want to combine many other functions together that do something useful that we might want to repeat. Since we have been working most recently with creating plots, I could imagine us wanting to create a plot with a similar layout, but with different source data and then save that plot to a file, all with a single function call. That might look like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myplot&lt;-function(x,y,grp,file){
+  my_p&lt;-<span class="kw">ggplot</span>(<span class="kw">data.frame</span>(x,y,grp),<span class="kw">aes</span>(<span class="dt">x=</span>x,<span class="dt">y=</span>y)) +
+<span class="st">            </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color=</span>grp, <span class="dt">shape=</span>grp),<span class="dt">size=</span><span class="dv">5</span>) +
+<span class="st">            </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span><span class="st">&quot;lm&quot;</span>,<span class="kw">aes</span>(<span class="dt">colour=</span>grp))+
+<span class="st">            </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="kw">substitute</span>(x),<span class="dt">y=</span><span class="kw">substitute</span>(y))
+  <span class="kw">ggsave</span>(my_p,<span class="dt">file=</span>file)
+  <span class="kw">return</span>(my_p)
+}
+
+<span class="kw">myplot</span>(iris$Petal.Length,iris$Petal.Width,iris$Species,<span class="st">&quot;petal_petal.jpg&quot;</span>)</code></pre></div>
+<pre><code>## Saving 6 x 6 in image</code></pre>
+<p><img src="data:image/png;base64,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" alt /><br />
+</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myplot</span>(iris$Sepal.Length,iris$Sepal.Width,iris$Species,<span class="st">&quot;sepal_l_petal_w.jpg&quot;</span>)</code></pre></div>
+<pre><code>## Saving 6 x 6 in image</code></pre>
+<p><img src="data:image/png;base64,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" alt /><br />
+ Cool, a function, that does something useful. It still is just a collection of functions at this point though. What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set? Well we need to look more at some of the classic programming structures in R. For this introduction, I am going to look just at <code>if-else</code> statements, <code>for</code> loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful and I M writing this, so there!), and <code>return()</code>.</p>
+<div id="if-else" class="section level3">
+<h3>if-else</h3>
+<p>If you have done any programing in any language, then <code>if-else</code> statements are not new to you. All they do is allow us to tell the function how to make some decisions.</p>
+<p>I will show the examples in the context of a function as that is how they are most commonly used. So, we can implement them in R like:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">odd_even&lt;-function(num){
+  if(num %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">0</span>){
+    <span class="kw">print</span>(<span class="st">&quot;EVEN&quot;</span>)
+  } else {
+    <span class="kw">print</span>(<span class="st">&quot;ODD&quot;</span>)
+  }
+}
+
+<span class="kw">odd_even</span>(<span class="dv">27</span>)</code></pre></div>
+<pre><code>## [1] &quot;ODD&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">odd_even</span>(<span class="dv">34</span>)</code></pre></div>
+<pre><code>## [1] &quot;EVEN&quot;</code></pre>
+<p>And you can you use multiple <code>if</code> statements</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plus_minus&lt;-function(num){
+  if(num&gt;<span class="dv">0</span>){
+    <span class="kw">print</span>(<span class="st">&quot;plus&quot;</span>)
+  } else if (num &lt;<span class="st"> </span><span class="dv">0</span>) {
+    <span class="kw">print</span>(<span class="st">&quot;minus&quot;</span>)
+  } else {
+    <span class="kw">print</span>(<span class="st">&quot;zero&quot;</span>)
+  }
+}
+ 
+<span class="kw">plus_minus</span>(<span class="dv">198</span>)</code></pre></div>
+<pre><code>## [1] &quot;plus&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plus_minus</span>(-<span class="dv">44</span>)</code></pre></div>
+<pre><code>## [1] &quot;minus&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plus_minus</span>(<span class="dv">37</span>*<span class="dv">0</span>)</code></pre></div>
+<pre><code>## [1] &quot;zero&quot;</code></pre>
+</div>
+<div id="for" class="section level3">
+<h3>for</h3>
+<p>A <code>for</code> loop allows you to repeat code. You specify a variable and a range of values and the <code>for</code> loop runs the code for each value in your range. The basic structure looks like:</p>
+<pre><code>for(a_name in a_range){
+ code you want to run
+ may or may not use a_name
+}</code></pre>
+<p>And and example in a function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum_vec&lt;-function(vec){
+  j&lt;-<span class="dv">0</span>
+  for(i in vec){
+    j&lt;-i+j
+    <span class="kw">print</span>(j)
+  }
+}
+
+<span class="kw">sum_vec</span>(<span class="dv">1</span>:<span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 1
+## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum_vec</span>(<span class="dv">1</span>:<span class="dv">10</span>)</code></pre></div>
+<pre><code>## [1] 1
+## [1] 3
+## [1] 6
+## [1] 10
+## [1] 15
+## [1] 21
+## [1] 28
+## [1] 36
+## [1] 45
+## [1] 55</code></pre>
+<p>Again a bit of a silly example since all it is doing is looping through a list of values and summing it. In reality you would just use <code>sum()</code>. This also highlights the fact that loops in R can be slow compared to vector operations and/or primitive operations (see Hadley’s section on <a href="http://adv-r.had.co.nz/Functions.html#function-components">Primitive functions</a>).</p>
+<p>Let’s dig a bit more into this issue with another example. This time, let’s look at adding two vectors together. We haven’t touched on this yet, but R is really good at dealing with this kind of operation. It is what people mean when they talk about “vectorized” operations. For instance:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># A simple vectorize operation</span>
+x&lt;-<span class="dv">1</span>:<span class="dv">100</span>
+y&lt;-<span class="dv">100</span>:<span class="dv">1</span>
+z&lt;-x+y
+z</code></pre></div>
+<pre><code>##   [1] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [18] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [35] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [52] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [69] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [86] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101</code></pre>
+<p>Pretty cool. This kind of thing doesn’t come easily with many languages. You would need to program it yourself using a loop. For the sake of argument, let’s try that with R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#We will assume vectors of the same length...</span>
+add_vecs&lt;-function(vec1,vec2){
+  out&lt;-<span class="ot">NULL</span>
+  for(i in <span class="dv">1</span>:<span class="kw">length</span>(vec1)){
+    out[i]&lt;-vec1[i]+vec2[i]
+  }
+  out
+}
+<span class="kw">add_vecs</span>(x,y)</code></pre></div>
+<pre><code>##   [1] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [18] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [35] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [52] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [69] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101
+##  [86] 101 101 101 101 101 101 101 101 101 101 101 101 101 101 101</code></pre>
+<p>So, these do the same thing, big deal. It is big though when you look at the timing of the two. Let’s create two large vectors and see what happens.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">large_vec1&lt;-<span class="kw">as.numeric</span>(<span class="dv">1</span>:<span class="dv">100000</span>)
+large_vec2&lt;-<span class="kw">as.numeric</span>(<span class="dv">100000</span>:<span class="dv">1</span>)
+<span class="co">#Different speed</span>
+vec_time&lt;-<span class="kw">system.time</span>(large_vec1+large_vec2)
+loop_time&lt;-<span class="kw">system.time</span>(<span class="kw">add_vecs</span>(large_vec1,large_vec2))
+vec_time</code></pre></div>
+<pre><code>##    user  system elapsed 
+##       0       0       0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loop_time</code></pre></div>
+<pre><code>##    user  system elapsed 
+##    8.80    0.00    8.83</code></pre>
+<p>Wow, quite a difference in time! It is examples like this that lead to all the talk around why R is slow at looping. In general I agree that if there is an obvious vectorized/base solution (in this case simply adding the two vectors) use that. That being said, it isn’t always obvious what the vectorized solution would be. In that case there are some easy things to do to speed this up. With loops that write to an object and that object is getting re-sized, we may also know the final size of that object so we can do one simple thing to dramatically improve perfomance: pre-allocate your memory, like this:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#We will assume vectors of the same length...</span>
+add_vecs2&lt;-function(vec1,vec2){
+  out&lt;-<span class="kw">vector</span>(<span class="st">&quot;numeric&quot;</span>,<span class="kw">length</span>(vec1))
+  for(i in <span class="dv">1</span>:<span class="kw">length</span>(vec1)){
+    out[i]&lt;-vec1[i]+vec2[i]
+  }
+  out
+}
+
+<span class="kw">system.time</span>(<span class="kw">add_vecs2</span>(large_vec1,large_vec2))</code></pre></div>
+<pre><code>##    user  system elapsed 
+##    0.17    0.00    0.20</code></pre>
+<p>Now thats better. In short, if an obvious vector or primitive solution exists, use that. If those aren’t clear and you need to use a loop, don’t be afraid to use one. There are plenty of examples where a vectorized solution exists for a loop, but it may be difficult to code and understand. Personally, I think it is possible to go too far down the vectorized path. Do it when it makes sense, otherwise take advantage of the for loop! You can always try and speed things up after you have got your code working the first time.</p>
+</div>
+<div id="return" class="section level3">
+<h3>return</h3>
+<p>The last control structure we are going to talk about is <code>return()</code>. All <code>return()</code> does is provide a result from a function and terminates the function. You may be asking yourself, didn’t we terminate and get a value from the functions we just created? We did and <code>return()</code> is not mandatory for R functions as they will return the last calculation. However, I do think that including a <code>return()</code> is good practice and allows us to be clear and more specific about what you get out of your functions. Let’s take a look at the <code>sum_vec()</code> function (even though, I just explained why this is not the best function), the <code>odd_even()</code> function and make simple changes to take advantage of <code>return()</code>.</p>
+<p>First, <code>odd_even()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">odd_even&lt;-function(num){
+  if(num %%<span class="st"> </span><span class="dv">2</span> ==<span class="st"> </span><span class="dv">0</span>){
+    <span class="kw">return</span>(<span class="st">&quot;EVEN&quot;</span>)
+  } 
+  <span class="kw">return</span>(<span class="st">&quot;ODD&quot;</span>)
+}</code></pre></div>
+<p>Now, <code>sum_vec()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sum_vec&lt;-function(vec){
+  j&lt;-<span class="dv">0</span>
+  for(i in vec){
+    j&lt;-i+j
+  }
+  <span class="kw">return</span>(j)
+}</code></pre></div>
+</div>
+</div>
+<div id="exercise-1" class="section level2">
+<h2>Exercise 1</h2>
+<p>For this exercise we are going to practice with functions and some of the control structures.</p>
+<ol style="list-style-type: decimal">
+<li>Our first task is to create a simple function. This one is a bit contrived, but wanted let you try it first before we work on the NLA data (from “Visualize” lesson). Create a function that allows you to calculate the mean or standard deviation (hint: sd()) of an input vector.</li>
+<li>Our second task is going to be to take your last <code>ggplot2</code> plot, and turn that into a function. The function should take an x and y as input, and have an optional argument for a file name to save it as an image. Depending on how complex your plot was you may need to add in some additional arguments. To help things along, I have provided some starter code:</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_nla&lt;-function(x,y,<span class="dt">out=</span><span class="ot">NULL</span>){
+  <span class="co">#ggplot2 code</span>
+  <span class="co">#Note: ggplot requires a data frame as input.  How would you deal with that?</span>
+  
+  <span class="co">#ggsave here</span>
+  <span class="co">#look into the is.null() function</span>
+  if(put condition here){
+    <span class="kw">ggsave</span>()
+  }
+  
+  <span class="co">#Need to return something ...</span>
+  <span class="kw">return</span>()
+}</code></pre></div>
 </div>
 <div id="markdown" class="section level2">
 <h2>Markdown</h2>
@@ -194,11 +461,20 @@ output: html_document
 <p>Repeat the steps from above, but this time instead of selecting “Document”, select “Presentation”. Only thing we need to know is that a second level header (i.e. <code>##</code>) is what specifies the title of the next slide. Any thing you put after that goes on that slide. Similar to before, play around with this, add a slide with some new text, new code and knit it. There you have it, a reproducible presentation.</p>
 <p>I know you will probably wonder can you change the look and feel of this presentation, and the answer is yes. I have done that, but using a different method for creating slides by using the <code>slidify</code> package. An example of that presentation is in a talk I gave on <a href="http://jwhollister.com/epablogpresent">Social Media and Blogging</a>. It does take a bit more work to set this up. I am also not familar with where RStudio is getting the styling for the presentation. In short, yes but requires a bit of work.</p>
 <table>
+<thead>
+<tr class="header">
+<th align="left">Previous Lesson</th>
+<th align="left">Current Lesson</th>
+<th align="left">Next Lesson</th>
+<th align="left">Workshop Outline</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="G_Visualize.html">G. Visualize</a></td>
-<td align="left">—————————————–</td>
-<td align="left"><a href="I_Parting-Thoughts-and-Extra-Materials.html">I. Parting Thoughts</a></td>
+<td align="left"><a href="H_Visualize.html">H. Visualize - ggplot2</a></td>
+<td align="left"><a href="I_Repeat-Reproduce.html">I. Repeat and Reproduce</a></td>
+<td align="left"><a href="J_Parting-Thoughts-and-Extra-Materials.html">J. Parting Thoughts</a></td>
+<td align="left"><a href="Outline.html">Workshop Outline</a></td>
 </tr>
 </tbody>
 </table>

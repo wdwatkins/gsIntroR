@@ -71,7 +71,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">F. Analyze: Packages</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>18 January, 2016</em></h4>
+<h4 class="date"><em>19 January, 2016</em></h4>
 </div>
 
 <div id="TOC">
@@ -87,16 +87,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 </div>
 
-<ul>
-<li><a href="Outline.html">Workshop Outline</a></li>
-</ul>
-<pre><code>## Loading required package: XML</code></pre>
 <table>
+<thead>
+<tr class="header">
+<th align="left">Previous Lesson</th>
+<th align="left">Current Lesson</th>
+<th align="left">Next Lesson</th>
+<th align="left">Workshop Outline</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="E_Analyze.html">E. Analyze Base</a></td>
-<td align="left">—————————————–</td>
-<td align="left"><a href="G_Visualize.html">G. Visualize</a></td>
+<td align="left"><a href="E_Analyze.html">E. Analyze - base</a></td>
+<td align="left"><a href="F_Analyze.html">F. Analyze - packages</a></td>
+<td align="left"><a href="G_Visualize.html">G. Visualize - base</a></td>
+<td align="left"><a href="Outline.html">Workshop Outline</a></td>
 </tr>
 </tbody>
 </table>
@@ -116,7 +121,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <p>The R Exploration and Graphics for RivEr Trends (EGRET) package was developed by USGS scientists Robert Hirsch and Laura DeCicco for the analysis of long-term water quality trends in rivers. The package integrates all of the steps a scientist needs to take when doing long term analysis: gather data from multiple sources, organize it, analyze for long-term trends, and create summary graphics for the data analysis. The Weighted Regression on Time, Discharge, and Season (WRTDS) is the method used to assess long-term changes in water quality concentrations and fluxes, and accounts for long-term changes in flow. A publication on the analytical method can be found <a href="http://pubs.usgs.gov/tm/04/a10/pdf/tm4A10.pdf">here</a>, and the package on R, including a vignette with examples, can be found <a href="http://cran.r-project.org/web/packages/EGRET/index.html">here</a>. You can also use the R help function to search within RStudio on this package and its functions. ‘EGRET’ uses the ‘dataRetrieval’ package to access data from EPA STORET and USGS NWIS. All of the examples used in this lesson are drawn from the ‘EGRET’ package vignette; many thanks to Laura DeCicco and Bob Hirsch for providing such excellent examples.</p>
 <p>The ‘EGRET’ package expands and formalizes some of the flow and water quality analyses that we scratched the surface on in <a href="inst/doc/Analyze1.R">Lesson 05 Analyze</a>. The implementation in R is accessed through the <code>EGRET</code> package. If you have not already, let’s install this, load it up and start to look around.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;EGRET&quot;</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">options</span>(<span class="dt">repos=</span><span class="kw">c</span>(<span class="st">&quot;http://cran.rstudio.com/&quot;</span>,<span class="st">&quot;http://owi.usgs.gov/R&quot;</span>))
+<span class="kw">install.packages</span>(<span class="st">&quot;EGRET&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;EGRET&quot;</span>)
 <span class="kw">help</span>(<span class="dt">package=</span><span class="st">&quot;EGRET&quot;</span>)</code></pre></div>
 </div>
@@ -126,7 +132,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Merced River at Happy Isles Bridge, CA:</span>
 siteNumber&lt;-<span class="st">&quot;11264500&quot;</span>
 Daily &lt;-<span class="kw">readNWISDaily</span>(siteNumber,<span class="st">&quot;00060&quot;</span>,<span class="dt">startDate=</span><span class="st">&quot;&quot;</span>,<span class="dt">endDate=</span><span class="st">&quot;&quot;</span>)</code></pre></div>
-<pre><code>## There are 36673 data points, and 36673 days.</code></pre>
+<pre><code>## There are 36674 data points, and 36674 days.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">INFO &lt;-<span class="st"> </span><span class="kw">readNWISInfo</span>(siteNumber,<span class="st">&quot;&quot;</span>,<span class="dt">interactive=</span><span class="ot">FALSE</span>)
 INFO$shortName &lt;-<span class="st"> &quot;Merced River at Happy Isles Bridge, CA&quot;</span>
 eListMerced &lt;-<span class="st"> </span><span class="kw">as.egret</span>(INFO, Daily, <span class="ot">NA</span>, <span class="ot">NA</span>)
@@ -173,7 +179,7 @@ eList &lt;-<span class="st"> </span><span class="kw">mergeReport</span>(INFO, Da
 </div>
 <div id="learning-a-new-package" class="section level2">
 <h2>Learning a New Package</h2>
-<p>As of Jan 18, 2016, there were 7793 packages available on <a href="http://cran.r-project.org/web/packages/">CRAN</a>. Given this diversity and since these packages are created and maintained by many different authors, the ways in which you can get help on a specific package and the quality of that assistance can vary greatly. That being said, there are a few indicators of decent help for a given package.</p>
+<p>As of Jan 19, 2016, there were 7802 packages available on <a href="http://cran.r-project.org/web/packages/">CRAN</a>. Given this diversity and since these packages are created and maintained by many different authors, the ways in which you can get help on a specific package and the quality of that assistance can vary greatly. That being said, there are a few indicators of decent help for a given package.</p>
 <p>First, if a package has a vignette that is usually a good first place to start. To list the vignettes for a given package you can use the <code>vignette()</code> function. For instance:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vignette</span>(<span class="dt">package=</span><span class="st">&quot;knitr&quot;</span>)</code></pre></div>
 <p>Second, it is becoming increasingly common to see journal articles about packages. Many journals now accept software manuscripts, but the journals I most often use for finding out about new R packages are:</p>
@@ -186,11 +192,20 @@ eList &lt;-<span class="st"> </span><span class="kw">mergeReport</span>(INFO, Da
 </ul>
 <p>Third, the last resort is of course <a href="http://www.google.com">Google</a>!</p>
 <table>
+<thead>
+<tr class="header">
+<th align="left">Previous Lesson</th>
+<th align="left">Current Lesson</th>
+<th align="left">Next Lesson</th>
+<th align="left">Workshop Outline</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="E_Analyze.html">E. Analyze Base</a></td>
-<td align="left">—————————————–</td>
-<td align="left"><a href="G_Visualize.html">G. Visualize</a></td>
+<td align="left"><a href="E_Analyze.html">E. Analyze - base</a></td>
+<td align="left"><a href="F_Analyze.html">F. Analyze - packages</a></td>
+<td align="left"><a href="G_Visualize.html">G. Visualize - base</a></td>
+<td align="left"><a href="Outline.html">Workshop Outline</a></td>
 </tr>
 </tbody>
 </table>
