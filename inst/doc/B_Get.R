@@ -2,7 +2,7 @@
 title="B. Get"
 gsIntroR::navigation_array(title)
 
-## ----operators_consoloe, eval=FALSE, echo=TRUE---------------------------
+## ----operators_console, eval=FALSE, echo=TRUE----------------------------
 #  #A really powerful calculator!
 #  1 + 1 #Add
 #  10 - 4 #Subtract
