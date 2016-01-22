@@ -71,7 +71,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">D. Explore</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>21 January, 2016</em></h4>
+<h4 class="date"><em>22 January, 2016</em></h4>
 </div>
 
 <div id="TOC">
@@ -217,7 +217,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Similar to before let’s first just play around with some basic exploratory data visualization using water quality data in your newly created <code>gages_data_wq</code> data frame.</p>
 <ol style="list-style-type: decimal">
 <li><p>Try out each of the plotting commands discussed above and explore any of the data in our <code>gages_data_wq</code> data frame.</p></li>
-<li><p>Let’s add another section to the script to create a pairs plot of the NM data physical and water quality we have collected so far (phosphorus, discharge, temperature, and specific conductance).</p></li>
+<li><p>Let’s add another section to the script to create a pairs plot of the NM physical and water quality data we have collected so far (phosphorus, discharge, temperature, and specific conductance).</p></li>
 <li><p>Try a boxplot of discharge that compares <a href="http://water.usgs.gov/nsip/federalneeds.html">NSIP Sentinel</a> sites versus non-Sentinel sites. Feel free to try and log transform the discharge data, too. You can label sites in <code>gages_data_wq</code> as Sentinels or Non-Sentinels with the following line of code, which uses the `gages_nsip:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gages_data_wq$is_sentinel &lt;-<span class="st"> </span>gages_data_wq$site_no %in%<span class="st"> </span>gages_nsip$SITE_NO[gages_nsip$SENTINEL_S ==<span class="st"> </span><span class="dv">1</span>]</code></pre></div></li>
 </ol>

@@ -49,7 +49,7 @@ plot(data1$x, data1$y, pch=16, col='#FF5034')
 points(data2$x, data2$y, pch=16, col='skyblue')
 ```
 
-Similarly, you can change linetypes (`lty`), linewidths (`lwd`), point size (`cex`). These all refer to graphical parameters and there are many more. Use `?par` to read about the others.  
+Similarly, you can change linetypes (`lty`), linewidths (`lwd`), and point size (`cex`). These all refer to graphical parameters and there are many more. Use `?par` to read about the others.  
 
 Graphical parameters also apply to the overall graph. For instance, `las` is used to give the orientation of the axes labels - parallel or perpendicular to the axis, always horizontal, or always vertical. Plot margins can also be set using `par` arguments. 
 
