@@ -191,14 +191,13 @@ head(dplyr_big_iris_pipe)
 ```
 
 ##Exercise 1
-This exercise is going to focus on using what we just covered on `dplyr` to start to clean up the National Lakes Assessment data files.  Remember to use the stickies: green when you're done, red if you have a problem.
+This exercise is going to focus on using what we just covered on `dplyr` to start to clean up a dataset.  Remember to use the stickies: green when you're done, red if you have a problem.
 
 1. If it isn't already open, make sure you have the script we created, "usgs_analysis.R" opened up.
-2. Start a new section of code in this script by simply putting in a line or two of comments indicating what it is this set of code does.
-3. Our goal for this is to create two new data frames that represent a subset of the observations as well as a subset of the data. 
-4. First, from the  `gages_cover` data frame we want a new data frame that has only the following columns: STAID, DEVNLCD06, FORESTNLCD06, BARRENNLCD06, PASTURENLCD06, and CROPSNLCD06.  Name the new data frame `gages_cover_subset`.  Think `select()`
-5. Next, lets subset the water quality data from `gages_sites`.  The columns we want for this are: STAID, STANAME, DRAIN_SQKM, LAT_GAGE, LNG_GAGE, STATE, and COUNTYNAME_SITE. Name the new data frame `gages_sites_subset`.
-6. Last thing we are going to need to do is get a subset of the observations from `gages_sites_subset`. We only want streams where STATE equals "NM". Call it `gages_sites_nm`.
+2. Start a new section of code in this script by simply putting in a line or two of comments indicating what it is this set of code does. Our goal for this is to create a new data frame that represents a subset of the observations as well as a subset of the data. 
+3. First, we want a new data frame based on the PugetNitrate dataset from the `smwrData` package (don't forget to load your package!). Load the data by excuting `data(PugetNitrate)`. You'll see that it says `<Promise>` next to your object in the Environment. That just means it has delayed evaluation until you use it (no need to worry about that). Start typing `PugetNitrate` into the console and it should then show the dataset. 
+4. Using dplyr, remove the landuse columns (l10, l20, and l40).  Give the new data frame a new name, so you can distinguish it from your raw data. Think `select()`
+5. Lastly, we are going to get a subset of the observations. We only want wells where the surficial geology is Alluvium or Fine. Also give this data frame a different name than before.
 
 ##Merging Data
 Joining data in `dplyr` is accomplished via the various `x_join()` commands (e.g., `inner_join`, `left_join`, `anti_join`, etc).  These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you.  If not then they aren't immediately intuitive.  For our purposes, the base functions `rbind()` and `merge()` are more than adequate.  
