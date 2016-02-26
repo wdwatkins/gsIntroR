@@ -238,11 +238,11 @@ all.equal(rbind_df_merge_allx_dplyr, rbind_df_merge_allx)
 ```
 
 ##Exercise 2
-In this exercise we are going to practice merging our Gages data. You will remember that we have two datasets, site information and basin landcover types. We selected some rows out of the site data (based on state) but didn't select out of the basin landcover table, so we have two data frames, with differing numbers of rows and unknown order. Use your stickies!
+In this exercise we are going to practice merging data. We will be using two datasets from the `smwrData` package.
 
-1. This is the only task we have for this exercise.  Add to your script a line (or more if you need it) to create a new data frame, `gages_data`, that is a merge of `gages_sites_nm` and `gages_cover_subset`, but with only lines in `gages_sites_nm` preserved in the output.  The column to merge on is "STAID"
-2. This data frame may have some `NA` values.  For the purposes of these lessons, it is better to remove these.  Add another line to your code and create a data frame that removes all NA values from `gages_data`.
-3. If that goes quickly, feel free to explore `rbind()` some.
+1. Add to your script a line (or more if you need it) to create a new data frame, `Choptank_Q_NH3`, that is a merge of `ChoptankFlow` and `ChoptankNH3`, but with only lines in `ChoptankNH3` preserved in the output. The column to merge on is the date column (although named differently in each data frame, but they will need to have the same name to merge).  
+2. This data frame may have some `NA` values. Add another line to your code and create a data frame that removes all NA values from `Choptank_Q_NH3`.
+3. If that goes quickly, feel free to explore other joins (`inner_join`, `full_join`, etc).
 
 ##Modify and Summarize
 Now back to `dplyr`.  One area where it really shines is in modifying and summarizing.   We will do more here than we did with base, but first lets walk through one of the examples we did previously, aggregating.  We can do this with `group_by()` and  `summarize()`.
