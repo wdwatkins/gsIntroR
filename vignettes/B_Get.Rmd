@@ -419,18 +419,18 @@ So now we have a basic feel on how to work in R, how data is dealt with, and how
 ```
 
 ##Exercise 2
-For this exercise we are going to read in data from a csv file, look at that data, and be able to describe some basic information about that dataset. The data we will use originally comes from the smwrData datasets (and can be accessed using the `data()` function, but we are going to practice reading in csv files).
+For this exercise we are going to read in data from a csv file, look at that data, and be able to describe some basic information about that dataset. The data we will use originally comes from the `smwrData` datasets (and can be accessed using the `data()` function, but we are going to practice reading in csv files).
 
 1. Create a new script in RStudio. Name it “usgs_analysis.R”
 2. As you write the script comment as you go.
 3. Add commands to create a new data frame named `ion_balance` that contains all the data in the 
-IonBalance.csv file. The file is stored in the gsIntroR package. To get the filepath for this csv file use the following code:
+IonBalance.csv file. The file is stored in the `gsIntroR` package. To get the filepath for this csv file use the following code:
 ```{r}
 filepath <- system.file("IonBalance.csv", package = "gsIntroR")
 filepath_complete <- file.path(filepath, "IonBalance.csv")
 ```
 4. Add commands to your script that will provides details on the structure (hint: str) of this newly created data frame.
-5. Run the script and make sure it doesn’t throw any errors and you do in fact get the two data frames.
+5. Run the script and make sure it doesn’t throw any errors and you do in fact get the data frame.
 6. If you still have some time, explore the data frame using some of the commands we covered. 
 
 

@@ -166,8 +166,8 @@ This exercise is going to focus on using what we just covered on `dplyr` to star
 
 1. If it isn't already open, make sure you have the script we created, "usgs_analysis.R" opened up.
 2. Start a new section of code in this script by simply putting in a line or two of comments indicating what it is this set of code does. Our goal for this is to create a new data frame that represents a subset of the observations as well as a subset of the data. 
-3. First, we want a new data frame based on the PugetNitrate dataset from the `smwrData` package (don't forget to load your package!). Load the data by excuting `data(PugetNitrate)`. You'll see that it says `<Promise>` next to your object in the Environment. That just means it has delayed evaluation until you use it (no need to worry about that). Start typing `PugetNitrate` into the console and it should then show the dataset. 
-4. Using dplyr, remove the landuse columns (l10, l20, and l40).  Give the new data frame a new name, so you can distinguish it from your raw data. Think `select()`
+3. First, we want a new data frame based on the PugetNitrate dataset from the `smwrData` package (don't forget to load your package!). Load the data by executing `data(PugetNitrate)`. You'll see that it says `<Promise>` next to your object in the Environment. That just means it has delayed evaluation until you use it (no need to worry about that). Start typing `PugetNitrate` into the console and it should then show the dataset. 
+4. Using dplyr, remove the landuse columns (l10, l20, and l40). Think `select()`. Give the new data frame a new name, so you can distinguish it from your raw data. 
 5. Lastly, we are going to get a subset of the observations. We only want wells where the surficial geology is Alluvium or Fine. Also give this data frame a different name than before.
 
 ##Merging Data
@@ -211,9 +211,10 @@ all.equal(rbind_df_merge_allx_dplyr, rbind_df_merge_allx)
 ##Exercise 2
 In this exercise we are going to practice merging data. We will be using two datasets from the `smwrData` package.
 
-1. Add to your script a line (or more if you need it) to create a new data frame, `Choptank_Q_NH3`, that is a merge of `ChoptankFlow` and `ChoptankNH3`, but with only lines in `ChoptankNH3` preserved in the output. The column to merge on is the date column (although named differently in each data frame, but they will need to have the same name to merge).  
-2. This data frame may have some `NA` values. Add another line to your code and create a data frame that removes all NA values from `Choptank_Q_NH3`.
-3. If that goes quickly, feel free to explore other joins (`inner_join`, `full_join`, etc).
+1. Load `ChoptankFlow` and `ChoptankNH3` into your environment from the `smwrData` package by using `data()`. 
+2. Add to your script a line (or more if you need it) to create a new data frame, `Choptank_Flow_NH3`, that is a merge of `ChoptankFlow` and `ChoptankNH3`, but with only lines in `ChoptankNH3` preserved in the output. The column to merge on is the date column (although named differently in each data frame, but they will need to have the same name to merge).  
+3. This data frame may have some `NA` values. Add another line to your code and create a data frame that removes all NA values from `Choptank_Flow_NH3`.
+4. If that goes quickly, feel free to explore other joins (`inner_join`, `full_join`, etc).
 
 ##Modify and Summarize
 Now back to `dplyr`.  One area where it really shines is in modifying and summarizing.   We will do more here than we did with base, but first let's walk through one of the examples we did previously, aggregating.  We can do this with `group_by()` and  `summarize()`.
@@ -285,11 +286,11 @@ Let's practice some of these last functions with our Gages data.
 
 Next, we're going to practice summarizing large datasets. We will use the `MC11_1993` soil temperature dataset from the `smwrdata` package (271 rows, 10 columns). If you complete a step and notice that your neighbor has not, see if you can answer any questions to help them get it done. 
 
-1. Create a new data.frame that gives the average reference temperature (`TEMP.REF`) for each month and name it `MC11_1993_max_monthly_ref_temp`. Hint: don't forget about `group_by()`!
+1. Create a new data.frame that gives the maximum reference temperature (`TEMP.REF`) for each month and name it `MC11_1993_max_monthly_ref_temp`. Hint: don't forget about `group_by()`!
 
-2) Now add a new column that is the average soil temperature at each depth (do not include `TEMP.REF`). Then, sort the resulting data.frame in descending order. Name this new data.frame `MC11_1993_daily_avg_temp` Hint: use `rowwise` to compute at each depth.
+2. Now add a new column that is the average soil temperature at each depth (do not include `TEMP.REF`). Then, sort the resulting data.frame in descending order. Name this new data.frame `MC11_1993_daily_avg_temp`. Hint: use `rowwise` to compute at each depth.
 
-3) Challenge: Find the average and minimum temperatures (for each month) at depths of 0.5, 1.5, and 2.5 using `summarize_each`. 
+3. Challenge: Find the average and minimum temperatures (for each month) at depths of 0.5, 1.5, and 2.5 using `summarize_each`. 
 
 
 ```{r echo=FALSE}
