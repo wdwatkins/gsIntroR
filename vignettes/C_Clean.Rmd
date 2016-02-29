@@ -308,15 +308,13 @@ Let's practice some of these last functions with our Gages data.
 
 ##Exercise 3
 
-Next, we're going to pull in and merge additional water data from NWIS for NM GAGES-II sites. Keep track of your method by adding to your R script and commenting as you go. This exercise has several steps that each depend on the prior one- use your stickies and don't get frustrated! We'll work through these one at a time. If you complete a step and notice that your neighbor has not, see if you can answer any questions to help them get it done. 
+Next, we're going to practice summarizing large datasets. We will use the `MC11_1993` soil temperature dataset from the `smwrdata` package (271 rows, 10 columns). If you complete a step and notice that your neighbor has not, see if you can answer any questions to help them get it done. 
 
-1)  Return to the code chunk in [Lesson 02 Get](B_Get.html#reading-nwis-data-into-r) that accesses NWIS data. Modify that code chunk and add it to your R script to access additional physical and water quality variables at FL sites: temperature ('00010'), discharge ('00060'), and specific conductance ('00095'). Save these data in data frames named using the variable name and state abbreviation. 
+1. Create a new data.frame that gives the average reference temperature (`TEMP.REF`) for each month and name it `MC11_1993_max_monthly_ref_temp`. Hint: don't forget about `group_by()`!
 
-2) Next, because we are just exploring here, let's make some assumptions about the variables we have just collected: (a) all of the measurements we have in the data frames are good (we don't want to throw any out because of comment codes indicating issues with the data) and, (b) the only three variables we care about in this data frame are gage ID (a.k.a., 'site_no'), measurement date ('sample_dt'), and value of the measurement made ('results_va'). These assumptions may *not* hold for other analyses, but for the purposes of this exercise, we'll make them. Subset the four water measurement data frames to include only those three columns each. 
+2) Now add a new column that is the average soil temperature at each depth (do not include `TEMP.REF`). Then, sort the resulting data.frame in descending order. Name this new data.frame `MC11_1993_daily_avg_temp` Hint: use `rowwise` to compute at each depth.
 
-3) Rename the columns to prepare to merge the data with the 'gages_data' data frame. Remember, not all NWIS sites we have collected data from are GAGES-II sites, so we need to merge on a common variable- the columns across the 'gages_data' and the water variables that include the site ID should all be named consistently. Second, consider that 'results_va' columns are distinct across data frames. Re-name those columns prior to the merge so they reflect the variable included (e.g, 'results_temp').
-
-4) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have a data frame that includes all rows and columns for GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
+3) Challenge: Find the average and minimum temperatures (for each month) at depths of 0.5, 1.5, and 2.5 using `summarize_each`. 
 
 
 ##Functions and Programming with R
