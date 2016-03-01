@@ -113,7 +113,7 @@ P_site2 <- readNWISqw("01656725", parameterCd = "00665")
 
 2. Using the base R plotting features just discussed, plot a timeseries (see dates column `sample_dt`) for two different sites phosphorus data (see column `result_va`). Show the different timeseries in different colors, linetypes, or linewidths. Include a legend. 
 
-3. Add a rectangle to the plot to highlight some of the data. Try to add diagonal lines or make the fill color transparent. Also, try to include this rectangle in the legend; this is can be challenging (hint: use "NA" when a legend item doesn't use the argument)!   
+3. Challenge: add points to show the maximum for each timeseries.
 
 ###Axes
 
