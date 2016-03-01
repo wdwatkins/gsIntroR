@@ -171,25 +171,13 @@ ggplot(iris_species_mean, aes(x=Species, y=mean_pl)) +
 ```
 
 ##Exercise 1
-Let's now build some plots with `ggplot2`
+Let's now build some plots with `ggplot2`.
 
-1. Add another section to the script with this data-getting and cleaning code:
-
-```{r get_nla, echo=TRUE, warning=FALSE, purl=FALSE, message=FALSE}
-nla_wq <- read.csv("http://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv")
-nla_sites <- read.csv("http://www.epa.gov/sites/production/files/2014-01/nla2007_sampledlakeinformation_20091113.csv")
-nla_sites_subset <- select(nla_sites, SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
-                           WSA_ECO9, NUT_REG, NUTREG_NAME, LAKE_ORIGIN, RT_NLA)
-nla_wq_subset <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, PTL, CHLA)
-nla_wq_subset <- filter(nla_wq_subset, VISIT_NO == 1, SITE_TYPE == "PROB_Lake")
-nla_data <- left_join(nla_wq_subset, nla_sites_subset, by="SITE_ID")
-```
-
-2. Try out a simple scatterplot, boxplot, and histogram on any data in the `nla_data` data frame.
-
-3. Build a bar plot of the mean CHLA for each of the values in WSA_ECO9.
-
-4. Lastly, build a scatter plot showing the relationship between PTL and CHLA (`log10()` transform both, or see `?scale_x_log10`) with each LAKE_ORIGIN value a different color.  For some optional fun add in a regression line for each value of LAKE_ORIGIN.
+1. Load the `CuyahogaTDS` dataset from the `smwrData` package. 
+2. Create a scatter plot of total dissolved solids (`TDS`) response to flow (`Q`).
+3. Create a histogram for total dissolved solids.
+4. Create a boxplot comparing the flow grouped by month. 
+5. Challenge: recreate the scatter plot where flow is logged.
 
 
 ##Customizing plots with themes
