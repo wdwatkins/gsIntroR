@@ -162,14 +162,13 @@ head(dplyr_big_iris_pipe)
 ```
 
 ##Exercise 1
-This exercise is going to focus on using what we just covered on `dplyr` to start to clean up the National Lakes Assessment data files.  Remember to use the stickies: green when you're done, red if you have a problem.
+This exercise is going to focus on using what we just covered on `dplyr` to start to clean up a dataset.  Remember to use the stickies: green when you're done, red if you have a problem.
 
 1. If it isn't already open, make sure you have the script we created, "usgs_analysis.R" opened up.
-2. Start a new section of code in this script by simply putting in a line or two of comments indicating what it is this set of code does.
-3. Our goal for this is to create two new data frames that represent a subset of the observations as well as a subset of the data. 
-4. First, from the  `gages_cover` data frame we want a new data frame that has only the following columns: STAID, DEVNLCD06, FORESTNLCD06, BARRENNLCD06, PASTURENLCD06, and CROPSNLCD06.  Name the new data frame `gages_cover_subset`.  Think `select()`
-5. Next, lets subset the water quality data from `gages_sites`.  The columns we want for this are: STAID, STANAME, DRAIN_SQKM, LAT_GAGE, LNG_GAGE, STATE, and COUNTYNAME_SITE. Name the new data frame `gages_sites_subset`.
-6. Last thing we are going to need to do is get a subset of the observations from `gages_sites_subset`. We only want streams where STATE equals "NM". Call it `gages_sites_nm`.
+2. Start a new section of code in this script by simply putting in a line or two of comments indicating what it is this set of code does. Our goal for this is to create a new data frame that represents a subset of the observations as well as a subset of the data. 
+3. First, we want a new data frame based on the PugetNitrate dataset from the `smwrData` package (don't forget to load your package!). Load the data by executing `data(PugetNitrate)`. You'll see that it says `<Promise>` next to your object in the Environment. That just means it has delayed evaluation until you use it (no need to worry about that). Start typing `PugetNitrate` into the console and it should then show the dataset. 
+4. Using dplyr, remove the landuse columns (l10, l20, and l40). Think `select()`. Give the new data frame a new name, so you can distinguish it from your raw data. 
+5. Lastly, we are going to get a subset of the observations. We only want wells where the surficial geology is Alluvium or Fine. Also give this data frame a different name than before.
 
 ##Merging Data
 Joining data in `dplyr` is accomplished via the various `x_join()` commands (e.g., `inner_join`, `left_join`, `anti_join`, etc).  These are very SQL-esque so if you speak SQL (I am far from fluent!) then these will be pretty easy for you.  If not then they aren't immediately intuitive.  For our purposes, the base functions `rbind()` and `merge()` are adequate.  
@@ -210,11 +209,12 @@ all.equal(rbind_df_merge_allx_dplyr, rbind_df_merge_allx)
 ```
 
 ##Exercise 2
-In this exercise we are going to practice merging our Gages data. You will remember that we have two datasets, site information and basin landcover types. We selected some rows out of the site data (based on state) but didn't select out of the basin landcover table, so we have two data frames, with differing numbers of rows and unknown order. Use your stickies!
+In this exercise we are going to practice merging data. We will be using two datasets from the `smwrData` package.
 
-1. This is the only task we have for this exercise.  Add to your script a line (or more if you need it) to create a new data frame, `gages_data`, that is a merge of `gages_sites_nm` and `gages_cover_subset`, but with only lines in `gages_sites_nm` preserved in the output.  The column to merge on is "STAID"
-2. This data frame may have some `NA` values.  For the purposes of these lessons, it is better to remove these.  Add another line to your code and create a data frame that removes all NA values from `gages_data`.
-3. If that goes quickly, feel free to explore `rbind()` some.
+1. Load `ChoptankFlow` and `ChoptankNH3` into your environment from the `smwrData` package by using `data()`. 
+2. Add to your script a line (or more if you need it) to create a new data frame, `Choptank_Flow_NH3`, that is a merge of `ChoptankFlow` and `ChoptankNH3`, but with only lines in `ChoptankNH3` preserved in the output. The column to merge on is the date column (although named differently in each data frame, but they will need to have the same name to merge).  
+3. This data frame may have some `NA` values. Add another line to your code and create a data frame that removes all NA values from `Choptank_Flow_NH3`.
+4. If that goes quickly, feel free to explore other joins (`inner_join`, `full_join`, etc).
 
 ##Modify and Summarize
 Now back to `dplyr`.  One area where it really shines is in modifying and summarizing.   We will do more here than we did with base, but first let's walk through one of the examples we did previously, aggregating.  We can do this with `group_by()` and  `summarize()`.
@@ -284,38 +284,13 @@ Let's practice some of these last functions with our Gages data.
 
 ##Exercise 3
 
-Next, we're going to pull in and merge additional water data from NWIS for NM GAGES-II sites. Keep track of your method by adding to your R script and commenting as you go. This exercise has several steps that each depend on the prior one- use your stickies and don't get frustrated! We'll work through these one at a time. If you complete a step and notice that your neighbor has not, see if you can answer any questions to help them get it done. 
+Next, we're going to practice summarizing large datasets. We will use the `MC11_1993` soil temperature dataset from the `smwrdata` package (271 rows, 10 columns). If you complete a step and notice that your neighbor has not, see if you can answer any questions to help them get it done. 
 
-1)  Return to the code chunk in [Lesson B. Get](B_Get.html#reading-nwis-data-into-r) that accesses NWIS data. Modify that code chunk and add it to your R script to access phosphorus, temperature ('00010'), discharge ('00060'), and specific conductance ('00095') for NM. Save these data in data frames named using the variable name and state abbreviation, e.g., 'discharge_fl'. 
+1. Create a new data.frame that gives the maximum reference temperature (`TEMP.REF`) for each month and name it `MC11_1993_max_monthly_ref_temp`. Hint: don't forget about `group_by()`!
 
-2) Next, because we are just exploring here, let's make some assumptions about the variables we have just collected: (a) all of the measurements we have in the data frames are good (i.e., assume none of the comment codes indicate issues with specific data points) and, (b) the only three variables we care about in this data frame are station ID (`site_no`), measurement date (`sample_dt`), and value of the measurement made (`result_va`). These assumptions may *not* hold for other analyses, but for the purposes of this exercise, we'll make them. Subset each of the water measurement data frames to include only those three columns each. 
+2. Now add a new column that is the average soil temperature at each depth (do not include `TEMP.REF`). Then, sort the resulting data.frame in descending order. Name this new data.frame `MC11_1993_daily_avg_temp`. Hint: use `rowwise` to compute at each depth.
 
-3) Reformat the columns so their types are compatible for the merge. First, notice that `gages_data$STAID` is numeric while `phos_nm$site_no` is the character data type (can you confirm this?). Add this line to pad the STAID values with a preceding 0, which happens to be correct for this dataset, and convert those values to character.
-```{r site_fix, eval=FALSE}
-gages_data <- mutate(gages_data, STAID=paste0("0", as.character(STAID)))
-```
-Next, check out the formats of the `sample_dt` column in the four NWIS variables. They're not the same! To fix this, just use the following magic formula for now, substituting your variable names in the last four lines if they don't match mine:
-```{r date_fix, eval=FALSE}
-# install.packages('lubridate') # this might be necessary for you if you get errors
-fix_wq_dates <- function(wq_dat) {
-  wq_dat %>% mutate(
-    sample_dt = switch(
-      class(sample_dt)[1],
-      Date = as.POSIXct(format(sample_dt, "%Y-%m-%d"), format="%Y-%m-%d", tz="MST7MDT"), 
-      character = as.POSIXct(sample_dt, format="%Y-%m-%d", tz="MST7MDT"),
-      POSIXct = lubridate::with_tz(sample_dt, "MST7MDT")))
-}
-phos_nm <- fix_wq_dates(phos_nm)
-temp_nm <- fix_wq_dates(temp_nm)
-disch_nm <- fix_wq_dates(disch_nm)
-spcond_nm <- fix_wq_dates(spcond_nm)
-```
-
-4) Rename the columns to prepare to merge the data with the 'gages_data' data frame. Remember, not all NWIS sites we have collected data from are GAGES-II sites, so we need to merge on a common variable- the columns across the 'gages_data' and the water variables that include the site ID should all be named consistently. Second, consider that 'result_va' columns are distinct across data frames. Re-name those columns prior to the merge so they reflect the variable included (e.g, 'result_disch'). 
-
-5) Merge the data from each of the four variable data frames so they can be easily viewed in a single data frame; this new data frame can be called `data_wq`. This action should preserve all rows from each of the original data frames.
-
-6) Let's merge the water quality data we have just collected with the GAGES-II sites. Create a new data frame called 'gages_data_wq' by merging 'gages_data' with the NWIS variables we've already collected: phosphorus, temperature, discharge, and specific conductance. In the end, you should have a data frame that includes all rows and columns for GAGES-II sites for NM, in addition to five new columns: 'sample_dt', plus the four water quality variables we're merging. Hint: the number of rows in your expanded 'gages_data_wq' data frame will be much longer than in the original 'gages_data' data frame, and depending on the frequency of observations made for different variables, some variables may be more sparsely populated than others. 
+3. Challenge: Find the average and minimum temperatures (for each month) at depths of 0.5, 1.5, and 2.5 using `summarize_each`. 
 
 
 ```{r echo=FALSE}

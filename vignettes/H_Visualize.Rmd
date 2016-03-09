@@ -171,25 +171,13 @@ ggplot(iris_species_mean, aes(x=Species, y=mean_pl)) +
 ```
 
 ##Exercise 1
-Let's now build some plots with `ggplot2`
+Let's now build some plots with `ggplot2`.
 
-1. Add another section to the script with this data-getting and cleaning code:
-
-```{r get_nla, echo=TRUE, warning=FALSE, purl=FALSE, message=FALSE}
-nla_wq <- read.csv("http://www.epa.gov/sites/production/files/2014-10/nla2007_chemical_conditionestimates_20091123.csv")
-nla_sites <- read.csv("http://www.epa.gov/sites/production/files/2014-01/nla2007_sampledlakeinformation_20091113.csv")
-nla_sites_subset <- select(nla_sites, SITE_ID, LON_DD, LAT_DD, STATE_NAME, 
-                           WSA_ECO9, NUT_REG, NUTREG_NAME, LAKE_ORIGIN, RT_NLA)
-nla_wq_subset <- select(nla_wq, SITE_ID, VISIT_NO, SITE_TYPE, TURB, NTL, PTL, CHLA)
-nla_wq_subset <- filter(nla_wq_subset, VISIT_NO == 1, SITE_TYPE == "PROB_Lake")
-nla_data <- left_join(nla_wq_subset, nla_sites_subset, by="SITE_ID")
-```
-
-2. Try out a simple scatterplot, boxplot, and histogram on any data in the `nla_data` data frame.
-
-3. Build a bar plot of the mean CHLA for each of the values in WSA_ECO9.
-
-4. Lastly, build a scatter plot showing the relationship between PTL and CHLA (`log10()` transform both, or see `?scale_x_log10`) with each LAKE_ORIGIN value a different color.  For some optional fun add in a regression line for each value of LAKE_ORIGIN.
+1. Load the `CuyahogaTDS` dataset from the `smwrData` package. 
+2. Create a scatter plot of total dissolved solids (`TDS`) response to flow (`Q`).
+3. Create a histogram for total dissolved solids.
+4. Create a boxplot comparing the flow grouped by month. 
+5. Challenge: recreate the scatter plot where flow is logged.
 
 
 ##Customizing plots with themes
@@ -257,11 +245,12 @@ ggsave(plot=scatter_polished, file="Fig1.pdf")
 ```
 
 ##Exercise 2
-From Exercise 1 you should have a good start on a plot.  Let's tweak this some.
+Let's create a simple scatter plot and spice it up. 
 
-1. Change up the theme of your plot.  This is your plot, so experiment.  Experiment with fonts, colors, backgrounds, etc.  Remember that all of the things you can change are listed in the help (`help("theme")`).  Also the various `element_xxx()` functions will be needed; try `??element_` . Remember that the [online help](http://docs.ggplot2.org/current/) is the best for `ggplot2`.
-2. If you have time, try to edit the colors of your points using `scale_color_manual()`.
-3. When you get the plot to a point where you are happy, save the plot to a file.  Use a dpi and file format of your liking.
+1. Use the `SaddlePeaks` dataset from `smwrData` and create a scatter plot of flow vs time.
+2. Change up the theme of your plot.  This is your plot, so experiment.  Experiment with fonts, colors, backgrounds, etc.  Remember that all of the things you can change are listed in the help (`help("theme")`). You can also run `names(theme_get())` for a list of arguments allowed in `theme()`. Also the various `element_xxx()` functions will be needed; try `??element_` . Remember that the [online help](http://docs.ggplot2.org/current/) is the best for `ggplot2`.
+3. If you have time, try to edit the colors of your points (hint: revisit `geom_point`). Also, try adding a plot title.  
+4. When you get the plot to a point where you are happy, save the plot to a file.  Use a file format of your liking.
 
 ##Cool stuff
 In this last section we won't have an exercise, but I did want to show some other things that `ggplot2` can do and show some other functions that people have built on top of `ggplot2` that are pretty cool.  Lastly, I provide some links on more reading as well as some nice (and fun) data visualization galleries.
