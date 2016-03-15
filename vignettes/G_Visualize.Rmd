@@ -40,6 +40,9 @@ First, let's start with two sets of random data and plot them using different co
 - you can use the function `colors()` to get a list of R colors
 
 ```{r pch_col_examp}
+#Load the data package!
+library(smwrData)
+
 #Use the dataset MenomineeMajorIons from smwrData
 data("MenomineeMajorIons")
 

@@ -71,12 +71,14 @@ x[c(TRUE,FALSE)]
 x[x %% 2 == 0]
 ```
 
-You can also index a data frame or select individual columns of a data frame.  Since a data frame has two dimensions, you need to specify an index for both the row and the column.  You can specify both and get a single value like `data_frame[row,column]`, specify just the row and the get the whole row back like `data_frame[row,]` or get just the column with `data_frame[,column]`. These examples show that.
+You can also index a data frame or select individual columns of a data frame.  Since a data frame has two dimensions, you need to specify an index for both the row and the column.  You can specify both and get a single value like `data_frame[row,column]`, specify just the row and the get the whole row back like `data_frame[row,]` or get just the column with `data_frame[,column]`. These examples show that. 
+
+For the remainder of this course, I will be using prefabricated datasets from the `smwrData` package. This package is a collection of real hydrologic data that can be loaded into your R workspace and used. It is similar to the stock R datasets (type `data()` into your console to see stock datasets), but with USGS-relevant data. So don't forget to load the package for each new R session (I will remind you at the beginning of each lesson).
 
 ```{r data_frame_index}
 #Let's use one a data frame from the smwrData package
 
-#Don't forget to load the package and data frame:
+#Load the package and data frame:
 library(smwrData)
 data("PugetNitrate")
 

@@ -79,7 +79,13 @@ myplot <- function(x, y, grp, file) {
   return(my_p)
 }
 
+#Call the function using a smwrData dataset
+
+#Load the data package!
+library(smwrData)
+
 data("MenomineeMajorIons")
+
 myplot(MenomineeMajorIons$Magnesium, MenomineeMajorIons$Potassium, 
        MenomineeMajorIons$season, "Mg_K.jpg")
 myplot(MenomineeMajorIons$Calcium, MenomineeMajorIons$Sodium, 

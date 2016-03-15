@@ -41,6 +41,8 @@ Before we start developing some graphics, we need to do a bit of package mainten
 # install.packages("ggplot2") # if needed
 library(ggplot2)
 library(dplyr)
+
+#Load the data package!
 library(smwrData)
 ```
 

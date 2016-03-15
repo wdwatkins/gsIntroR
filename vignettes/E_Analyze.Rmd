@@ -46,7 +46,10 @@ pop_ttest
 `t.test()` can also take a formula specification as input. In R, a formula takes the form of `y ~ x`.  The tilde is used in place of the equals sign, the dependent variable is on the left, and the independent variable[s] are on the right.  For a t-test that is all we need to know.
 
 ```{r ttest_formula_examp}
-#Let's pick another dataset, MiningIron 
+#Load the data package!
+library(smwrData)
+
+#Let's choose a prefabricated dataset, MiningIron 
 data("MiningIron")
 rbind(head(MiningIron), tail(MiningIron))
 

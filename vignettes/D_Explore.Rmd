@@ -34,6 +34,9 @@ Our next three lessons (Explore, Analyze, and Visualize) don't actually split ne
 There are a number of ways to get at the basic summaries of a data frame in R.  The easiest is to use `summary()` which for data frames will return a summary of each column.  For numeric columns it gives quantiles, median, etc. and for factor a frequency of the terms.  Let's use a data frame of major ion concentrations in the Menominee River, `MenomineeMajorIons` from the `smwrData` package.
 
 ```{r summary_data_example}
+#Load the data package!
+library(smwrData)
+
 #load the dataset and take a quick look
 data("MenomineeMajorIons")
 summary(MenomineeMajorIons)
