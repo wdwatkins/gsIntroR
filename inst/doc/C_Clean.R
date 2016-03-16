@@ -22,33 +22,38 @@ x[c(TRUE,FALSE)]
 x[x %% 2 == 0]
 
 ## ----data_frame_index----------------------------------------------------
-#Let's use one of the stock data frames in R, iris
-head(iris)
+#Let's use one a data frame from the smwrData package
+
+#Load the package and data frame:
+library(smwrData)
+data("PugetNitrate")
+
+head(PugetNitrate)
 #And grab a specific value
-iris[1,1]
+PugetNitrate[1,1]
 #A whole column
-petal_len<-iris[,3]
-petal_len
+nitrate_levels <- PugetNitrate[,7]
+nitrate_levels
 #A row
-obs15<-iris[15,]
+obs15<-PugetNitrate[15,]
 obs15
 #Many rows
-obs3to7<-iris[3:7,]
+obs3to7<-PugetNitrate[3:7,]
 obs3to7
 
 ## ----more_data_frame_index-----------------------------------------------
 #First, there are a couple of ways to use the column names
-iris$Petal.Length
-head(iris["Petal.Length"])
+PugetNitrate$wellid
+head(PugetNitrate["wellid"])
 #Multiple colums
-head(iris[c("Petal.Length","Species")])
+head(PugetNitrate[c("date","nitrate")])
 #Now we can combine what we have seen to do some more complex queries
-#Get all the data for flowers with a petal length less than 2
-little_iris<-iris[iris$Petal.Length<=2,]
-head(little_iris)
-#Or maybe we want just the sepal widths of the virginica species
-virginica_iris<-iris$Sepal.Width[iris$Species=="virginica"]
-head(virginica_iris)
+#Get all the data where nitrate concentration is greater than 10
+high_nitrate <- PugetNitrate[PugetNitrate$nitrate > 10,]
+head(high_nitrate)
+#Or maybe we want just the nitrate concentrations for Bedrock geology
+bedrock_nitrate <- PugetNitrate$nitrate[PugetNitrate$surfgeo == "BedRock"]
+head(bedrock_nitrate)
 
 ## ----setup_dplyr,eval=FALSE----------------------------------------------
 #  install.packages("dplyr")
@@ -56,33 +61,34 @@ head(virginica_iris)
 
 ## ----more_data_frame_dplyr-----------------------------------------------
 #First, select some columns
-dplyr_sel<-select(iris,Sepal.Length,Petal.Length,Species)
+dplyr_sel <- select(PugetNitrate, date, nitrate, surfgeo)
 #That's it.  Select one or many columns
-#Now select some, like before
-dplyr_big_iris<-filter(iris, Petal.Length>=6)
-head(dplyr_big_iris)
-#Or maybe we want just the virginica species
-virginica_iris<-filter(iris,Species=="virginica")
-head(virginica_iris)
+#Now select some observations, like before
+dplyr_high_nitrate <- filter(PugetNitrate, nitrate > 10)
+head(dplyr_high_nitrate)
+#Or maybe we want just the bedrock samples
+bedrock_nitrate <- filter(PugetNitrate, surfgeo == "BedRock")
+head(bedrock_nitrate)
 
 ## ----combine_commands----------------------------------------------------
 #Intermediate data frames
 #Select First: note the order of the output, neat too!
-dplyr_big_iris_tmp1 <- select(iris, Species, Sepal.Length, Petal.Length)
-dplyr_big_iris_tmp <- filter(dplyr_big_iris_tmp1, Petal.Length>=6)
-head(dplyr_big_iris_tmp)
+dplyr_bedrock_tmp1 <- select(PugetNitrate, surfgeo, date, nitrate)
+dplyr_bedrock_tmp <- filter(dplyr_bedrock_tmp1, surfgeo == "BedRock")
+head(dplyr_bedrock_tmp)
 
 #Nested function
-dplyr_big_iris_nest <- filter(
-  select(iris,Species,Sepal.Length,Petal.Length),
-  Species=="virginica")
-head(dplyr_big_iris_nest)
+dplyr_bedrock_nest <- filter(
+  select(PugetNitrate, surfgeo, date, nitrate),
+  surfgeo == "BedRock")
+head(dplyr_bedrock_nest)
 
 #Pipes
-dplyr_big_iris_pipe <-
-  select(iris,Species,Sepal.Length,Petal.Length) %>%
-  filter(Species=="virginica")
-head(dplyr_big_iris_pipe)
+dplyr_bedrock_pipe <- 
+  PugetNitrate %>% 
+  select(surfgeo, date, nitrate) %>%
+  filter(surfgeo == "BedRock")
+head(dplyr_bedrock_pipe)
 
 ## ----Exercise1, echo=FALSE-----------------------------------------------
 
@@ -114,62 +120,39 @@ all.equal(rbind_df_merge_allx_dplyr, rbind_df_merge_allx)
 
 ## ----aggregate_examp-----------------------------------------------------
 #Chained with Pipes
-iris %>%
-  group_by(Species) %>%
-  summarize(mean(Sepal.Length),
-            mean(Sepal.Width),
-            mean(Petal.Length),
-            mean(Petal.Width))
+PugetNitrate %>%
+  group_by(surfgeo) %>%
+  summarize(mean(nitrate),
+            mean(wellmet))
 
 ## ----arrange_example-----------------------------------------------------
-head(mtcars)
+data("TNLoads")
+
+head(TNLoads)
 # every function, including head(), can be chained
-mtcars %>% head()
+TNLoads %>% head()
 #ascending order is default
-arrange(mtcars, mpg) %>% head()
+arrange(TNLoads, LOGTN) %>% head()
 #descending
-arrange(mtcars, desc(mpg)) %>% head()
-#multiple columns: most cyl with best mpg at top
-arrange(mtcars, desc(cyl), desc(mpg)) %>% head()
+arrange(TNLoads, desc(LOGTN)) %>% head()
+#multiple columns: most nitrogen with lowest rainfall at top
+arrange(TNLoads, desc(LOGTN), MSRAIN) %>% head()
 
 ## ----slice_example-------------------------------------------------------
 #grab rows 3 through 10
-slice(mtcars, 3:10)
+slice(TNLoads, 3:10)
 
 ## ----mutate_example------------------------------------------------------
-mutate(mtcars, kml=mpg*0.425) %>% head()
+mutate(TNLoads, TN=exp(LOGTN)) %>% head()
 
 ## ----rowwise_examp-------------------------------------------------------
-#First a dataset of temperatures, recorded weekly at 100 sites.
-temp_df <- data.frame(
-  id=1:100, week1=runif(100,20,25), week2=runif(100,19,24), 
-  week3=runif(100,18,26), week4=runif(100,17,23))
-head(temp_df)
-#To add row means to the dataset, without the ID
-temp_df2 <- temp_df %>% 
+#Add a column that totals landuse for each observation
+landuse_sum <- TNLoads %>% 
   rowwise() %>% 
-  mutate(site_mean = mean(c(week1,week2,week3,week4)))
-head(temp_df2)
+  mutate(landuse_total = sum(PRES, PNON, PCOMM, PIND))
+head(landuse_sum)
 
 ## ----Exercise3, echo=FALSE-----------------------------------------------
-
-## ----site_fix, eval=FALSE------------------------------------------------
-#  gages_data <- mutate(gages_data, STAID=paste0("0", as.character(STAID)))
-
-## ----date_fix, eval=FALSE------------------------------------------------
-#  # install.packages('lubridate') # this might be necessary for you if you get errors
-#  fix_wq_dates <- function(wq_dat) {
-#    wq_dat %>% mutate(
-#      sample_dt = switch(
-#        class(sample_dt)[1],
-#        Date = as.POSIXct(format(sample_dt, "%Y-%m-%d"), format="%Y-%m-%d", tz="MST7MDT"),
-#        character = as.POSIXct(sample_dt, format="%Y-%m-%d", tz="MST7MDT"),
-#        POSIXct = lubridate::with_tz(sample_dt, "MST7MDT")))
-#  }
-#  phos_nm <- fix_wq_dates(phos_nm)
-#  temp_nm <- fix_wq_dates(temp_nm)
-#  disch_nm <- fix_wq_dates(disch_nm)
-#  spcond_nm <- fix_wq_dates(spcond_nm)
 
 ## ----echo=FALSE----------------------------------------------------------
 gsIntroR::navigation_array(title)

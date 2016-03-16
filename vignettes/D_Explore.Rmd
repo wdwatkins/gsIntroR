@@ -60,7 +60,7 @@ Lastly, quantiles, at specific points, can be returned with, well, `quantile()`.
 quantile(MenomineeMajorIons$Magnesium)
 
 #try this with Sulfate instead 
-quantile(MenomineeMajorIons$Sulfate)
+#quantile(MenomineeMajorIons$Sulfate)
 #there are missing values, so add the na.rm argument
 quantile(MenomineeMajorIons$Sulfate, na.rm = TRUE)
 ```

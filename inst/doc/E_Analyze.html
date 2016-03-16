@@ -7,6 +7,7 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta name="author" content="Jeffrey W. Hollister &amp; Emily Read" />
 
@@ -53,14 +54,9 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 
 
-<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0A%7D%0Apre%20%7B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -68,10 +64,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 
 
-<div id="header">
+<div class="fluid-row" id="header">
+
+
 <h1 class="title">E. Analyze: Base</h1>
 <h4 class="author"><em>Jeffrey W. Hollister &amp; Emily Read</em></h4>
-<h4 class="date"><em>22 January, 2016</em></h4>
+<h4 class="date"><em>16 March, 2016</em></h4>
+
 </div>
 
 <div id="TOC">
@@ -142,134 +141,170 @@ pop_ttest</code></pre></div>
 ## mean of x mean of y 
 ##  3.022597 10.793608</code></pre>
 <p><code>t.test()</code> can also take a formula specification as input. In R, a formula takes the form of <code>y ~ x</code>. The tilde is used in place of the equals sign, the dependent variable is on the left, and the independent variable[s] are on the right. For a t-test that is all we need to know.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Let's pick another dataset, ToothGrowth (see ?ToothGrowth)</span>
-<span class="co">#Compare tooth lengths between groups given different supplements</span>
-<span class="kw">rbind</span>(<span class="kw">head</span>(ToothGrowth), <span class="kw">tail</span>(ToothGrowth))</code></pre></div>
-<pre><code>##     len supp dose
-## 1   4.2   VC  0.5
-## 2  11.5   VC  0.5
-## 3   7.3   VC  0.5
-## 4   5.8   VC  0.5
-## 5   6.4   VC  0.5
-## 6  10.0   VC  0.5
-## 55 24.8   OJ  2.0
-## 56 30.9   OJ  2.0
-## 57 26.4   OJ  2.0
-## 58 27.3   OJ  2.0
-## 59 29.4   OJ  2.0
-## 60 23.0   OJ  2.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(ToothGrowth$len ~<span class="st"> </span>ToothGrowth$supp)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Load the data package!</span>
+<span class="kw">library</span>(smwrData)
+
+<span class="co">#Let's choose a prefabricated dataset, MiningIron </span>
+<span class="kw">data</span>(<span class="st">&quot;MiningIron&quot;</span>)
+<span class="kw">rbind</span>(<span class="kw">head</span>(MiningIron), <span class="kw">tail</span>(MiningIron))</code></pre></div>
+<pre><code>##      Iron      Rock MineType C5
+## 1    0.05 Sandstone  Unmined C5
+## 2    0.39 Sandstone  Unmined C5
+## 3    0.49 Sandstone  Unmined C5
+## 4    0.60 Sandstone  Unmined C5
+## 5    0.66 Sandstone  Unmined C5
+## 6    0.71 Sandstone  Unmined C5
+## 236  0.56 Limestone  Unmined   
+## 237  0.68 Limestone  Unmined   
+## 238  1.20 Limestone  Unmined C5
+## 239  1.20 Limestone  Unmined   
+## 240  4.50 Limestone  Unmined   
+## 241 36.00 Limestone  Unmined C5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Compare iron concentration between rock types</span>
+<span class="co">#There are two rock types, these serve as your two different populations </span>
+<span class="co">#You cannot use this to compare more than two groups </span>
+<span class="co">#Try using MineType instead of Rock and see what R tells you</span>
+<span class="kw">t.test</span>(MiningIron$Iron ~<span class="st"> </span>MiningIron$Rock)</code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
-## data:  ToothGrowth$len by ToothGrowth$supp
-## t = 1.9153, df = 55.309, p-value = 0.06063
+## data:  MiningIron$Iron by MiningIron$Rock
+## t = -2.2031, df = 120.76, p-value = 0.02948
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1710156  7.5710156
+##  -200.59315  -10.70878
 ## sample estimates:
-## mean in group OJ mean in group VC 
-##         20.66333         16.96333</code></pre>
+## mean in group Limestone mean in group Sandstone 
+##                5.603583              111.254545</code></pre>
 <p>There’s a lot more you can do with <code>t.test()</code>, but you’ll have to rely on <code>?t.test</code> for more info.</p>
 </div>
 <div id="correlation" class="section level3">
 <h3>Correlation</h3>
-<p>Next let’s take a look at correlations. Little inspiration is striking, so <code>iris</code> it is.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A simple correlation</span>
-<span class="kw">cor</span>(iris$Petal.Width, iris$Petal.Length)</code></pre></div>
-<pre><code>## [1] 0.9628654</code></pre>
+<p>Next let’s take a look at correlations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Use the UraniumTDS data set from smwrData</span>
+<span class="kw">data</span>(<span class="st">&quot;UraniumTDS&quot;</span>)
+
+<span class="co">#A simple correlation</span>
+<span class="kw">cor</span>(UraniumTDS$TDS, UraniumTDS$Uranium)</code></pre></div>
+<pre><code>## [1] 0.216127</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#And a test of that correlation</span>
-<span class="kw">cor.test</span>(iris$Petal.Width, iris$Petal.Length)</code></pre></div>
+<span class="kw">cor.test</span>(UraniumTDS$TDS, UraniumTDS$Uranium)</code></pre></div>
 <pre><code>## 
 ##  Pearson's product-moment correlation
 ## 
-## data:  iris$Petal.Width and iris$Petal.Length
-## t = 43.387, df = 148, p-value &lt; 2.2e-16
+## data:  UraniumTDS$TDS and UraniumTDS$Uranium
+## t = 1.4346, df = 42, p-value = 0.1588
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.9490525 0.9729853
+##  -0.08629011  0.48207551
 ## sample estimates:
-##       cor 
-## 0.9628654</code></pre>
+##      cor 
+## 0.216127</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#A data frame as input to cor returns a correlation matrix</span>
-<span class="co">#Can't just do cor(iris) because iris is not numeric:</span>
-<span class="co"># cor(iris)</span>
-<span class="kw">library</span>(dplyr) <span class="co"># use dplyr to select the numeric columns of iris</span>
-<span class="kw">select</span>(iris, -Species) %&gt;%<span class="st"> </span>
+<span class="co">#Can't just do cor(UraniumTDS) because UraniumTDS has non-numeric columns:</span>
+<span class="co"># cor(UraniumTDS)</span>
+<span class="kw">library</span>(dplyr) <span class="co"># use dplyr to select the numeric columns of UraniumTDS</span>
+<span class="kw">select</span>(UraniumTDS, -HCO3) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">cor</span>()</code></pre></div>
-<pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
-## Sepal.Length    1.0000000  -0.1175698    0.8717538   0.8179411
-## Sepal.Width    -0.1175698   1.0000000   -0.4284401  -0.3661259
-## Petal.Length    0.8717538  -0.4284401    1.0000000   0.9628654
-## Petal.Width     0.8179411  -0.3661259    0.9628654   1.0000000</code></pre>
+<pre><code>##              TDS  Uranium
+## TDS     1.000000 0.216127
+## Uranium 0.216127 1.000000</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#This is especially useful for data frames with many columns that could correlate</span>
+<span class="co">#Create a correlation matrix for MiscGW (all columns are numeric)</span>
+<span class="kw">data</span>(<span class="st">&quot;MiscGW&quot;</span>)
+<span class="kw">cor</span>(MiscGW)</code></pre></div>
+<pre><code>##                Calcium  Magnesium     Sodium   Potassium Carbonate
+## Calcium      1.0000000 -0.6816989 -0.7861816 -0.15151515        NA
+## Magnesium   -0.6816989  1.0000000  0.6628186  0.26995276        NA
+## Sodium      -0.7861816  0.6628186  1.0000000 -0.41191071        NA
+## Potassium   -0.1515152  0.2699528 -0.4119107  1.00000000        NA
+## Carbonate           NA         NA         NA          NA         1
+## Bicarbonate -0.9540554  0.7936118  0.9185587 -0.02902499        NA
+## Sulfate     -0.8688535  0.5846284  0.9748508 -0.34681754        NA
+## Chloride     0.3194320  0.3525794  0.2036404 -0.38904457        NA
+## Fluoride    -0.9264085  0.8303799  0.6208948  0.45291081        NA
+## Nitrate             NA         NA         NA          NA        NA
+##             Bicarbonate     Sulfate    Chloride   Fluoride Nitrate
+## Calcium     -0.95405535 -0.86885349  0.31943198 -0.9264085      NA
+## Magnesium    0.79361181  0.58462845  0.35257942  0.8303799      NA
+## Sodium       0.91855874  0.97485080  0.20364045  0.6208948      NA
+## Potassium   -0.02902499 -0.34681754 -0.38904457  0.4529108      NA
+## Carbonate            NA          NA          NA         NA      NA
+## Bicarbonate  1.00000000  0.93915368 -0.02993281  0.8779472      NA
+## Sulfate      0.93915368  1.00000000 -0.01903635  0.6730911      NA
+## Chloride    -0.02993281 -0.01903635  1.00000000 -0.2244484      NA
+## Fluoride     0.87794724  0.67309110 -0.22444842  1.0000000      NA
+## Nitrate              NA          NA          NA         NA       1</code></pre>
 <p>If you look at the help for <code>cor()</code>, you’ll see two main optional arguments. First is the <code>use</code> argument which allows you to use the entire dataset or select complete cases which is useful when you have <code>NA</code> values. There are several options. Also, the default correlation method is for Pearson’s. If you would like to use non-parametric correlations (e.g. rank), you specify that here.</p>
 </div>
 <div id="linear-regression" class="section level3">
 <h3>Linear Regression</h3>
 <p>Next let’s take a look at linear regression. One of the common ways of fitting linear regressions is with <code>lm()</code>. We have already seen the formula object so there isn’t too much that is new here. Some of the options are new and useful, though. Let’s take a look:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(Ozone ~<span class="st"> </span>Temp, <span class="dt">data=</span>airquality)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">&quot;MenomineeMajorIons&quot;</span>) <span class="co">#from smwrData</span>
+
+<span class="kw">lm</span>(Magnesium ~<span class="st"> </span>HCO3, <span class="dt">data=</span>MenomineeMajorIons)</code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Ozone ~ Temp, data = airquality)
+## lm(formula = Magnesium ~ HCO3, data = MenomineeMajorIons)
 ## 
 ## Coefficients:
-## (Intercept)         Temp  
-##    -146.995        2.429</code></pre>
+## (Intercept)         HCO3  
+##     2.51540      0.07566</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Not much info, so save to object and use summary</span>
-lm_aq1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Ozone ~<span class="st"> </span>Temp, <span class="dt">data=</span>airquality)
-<span class="kw">summary</span>(lm_aq1)</code></pre></div>
+lm_gwq1 &lt;-<span class="st"> </span><span class="kw">lm</span>(Magnesium ~<span class="st"> </span>HCO3, <span class="dt">data=</span>MenomineeMajorIons)
+<span class="kw">summary</span>(lm_gwq1)</code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Ozone ~ Temp, data = airquality)
+## lm(formula = Magnesium ~ HCO3, data = MenomineeMajorIons)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -40.729 -17.409  -0.587  11.306 118.271 
+## -1.5623 -0.5358 -0.2061  0.8753  1.7076 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -146.9955    18.2872  -8.038 9.37e-13 ***
-## Temp           2.4287     0.2331  10.418  &lt; 2e-16 ***
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 2.515404   1.042353   2.413   0.0212 *  
+## HCO3        0.075664   0.008726   8.671 3.08e-10 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 23.71 on 114 degrees of freedom
-##   (37 observations deleted due to missingness)
-## Multiple R-squared:  0.4877, Adjusted R-squared:  0.4832 
-## F-statistic: 108.5 on 1 and 114 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.8979 on 35 degrees of freedom
+## Multiple R-squared:  0.6823, Adjusted R-squared:  0.6733 
+## F-statistic: 75.18 on 1 and 35 DF,  p-value: 3.083e-10</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#And now a multiple linear regression</span>
-lm_aq2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Ozone ~<span class="st"> </span>Temp +<span class="st"> </span>Wind +<span class="st"> </span>Solar.R, <span class="dt">data=</span>airquality)
-<span class="kw">summary</span>(lm_aq2)</code></pre></div>
+lm_gwq2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Magnesium ~<span class="st"> </span>HCO3 +<span class="st"> </span>Calcium +<span class="st"> </span>Sodium, <span class="dt">data=</span>MenomineeMajorIons)
+<span class="kw">summary</span>(lm_gwq2)</code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = Ozone ~ Temp + Wind + Solar.R, data = airquality)
+## lm(formula = Magnesium ~ HCO3 + Calcium + Sodium, data = MenomineeMajorIons)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -40.485 -14.219  -3.551  10.097  95.619 
+##      Min       1Q   Median       3Q      Max 
+## -1.81218 -0.26416 -0.06806  0.46821  1.47692 
 ## 
 ## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -64.34208   23.05472  -2.791  0.00623 ** 
-## Temp          1.65209    0.25353   6.516 2.42e-09 ***
-## Wind         -3.33359    0.65441  -5.094 1.52e-06 ***
-## Solar.R       0.05982    0.02319   2.580  0.01124 *  
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.18904    0.98110   3.250 0.002654 ** 
+## HCO3         0.04062    0.01089   3.728 0.000722 ***
+## Calcium      0.08051    0.04816   1.671 0.104082    
+## Sodium       0.21035    0.06843   3.074 0.004218 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 21.18 on 107 degrees of freedom
-##   (42 observations deleted due to missingness)
-## Multiple R-squared:  0.6059, Adjusted R-squared:  0.5948 
-## F-statistic: 54.83 on 3 and 107 DF,  p-value: &lt; 2.2e-16</code></pre>
+## Residual standard error: 0.7276 on 33 degrees of freedom
+## Multiple R-squared:  0.8033, Adjusted R-squared:  0.7855 
+## F-statistic: 44.93 on 3 and 33 DF,  p-value: 9.394e-12</code></pre>
 <p>All of your standard modelling approaches (and then some) are available in R, including typical variable selection techniques (e.g. stepwise with AIC) and logistic regression, which is implemented with the rest of the generalized linear models in <code>glm()</code>. Interaction terms can be specified directly in the model, but there are several ways to do so (<code>x*y</code>, <code>x:y</code>, <code>x^y</code>). Lastly, if you are interested in more involved or newer approaches these are likely implemented in additional packages, beyond base R and <code>stats</code>, which you can find on a repository such as <a href="https://cran.rstudio.com">CRAN</a>, <a href="http://owi.usgs.gov/R/gran.html">GRAN</a>, or <a href="https://www.bioconductor.org/packages/release/BiocViews.html#___Software">Bioconductor</a>.</p>
 </div>
 </div>
 <div id="exercise-1" class="section level2">
 <h2>Exercise 1</h2>
-<p>For this exercise, let’s start to look at some of the statistical tests and relationships for NWIS data we collected for GAGES-II sites in NM. We have already plotted some of these variables together, so you may have an idea ahead of time about what the statistical tests might show.</p>
+<p>For this exercise, let’s start to look at some of the statistical tests and relationships.</p>
 <ol style="list-style-type: decimal">
-<li><p>First, let’s take a look at the relationship between discharge, temperature, specific conductance, and phosphorus concentration across Sentinel and non-Sentinel sites. Add a section to your script that tests for a difference in the mean value across these parameters between NSIP Sentinal sites and non-Sentinel sites. For this we will have the script save each test to a new object and print the results to the screen. Hint: consider that there are many fewer Sentinel sites than non-Sentinel sites. Consider the statistical implications for the differences in sample sizes.</p></li>
-<li><p>Next, let’s build some linear models that predict phosphorus concentrations across all GAGES-II sites in NM. Choose at least two, and as many as ten, explanatory variables that you think may be useful to predicting phosphorus. Again save your model to an object and print the summary of that model to the screen.</p></li>
+<li><p>First, let’s take a look at the relationship between ammonia and organic nitrogen concentration across land-use types (<code>PrecipNitrogen</code> dataset from <code>smwrData</code>). Add a section to your script that tests for a difference in the mean value across these parameters between industrial sites and residential sites. What is the conclusion? Are the means statistically different?</p></li>
+<li><p>Challenge: Recreate step 1, but use a formula rather than two vectors as input to <code>t.test</code>. You should get the same results.</p></li>
+<li><p>Next, let’s build a linear model that predicts phosphorus concentrations at a USGS site on Klamath River (<code>KlamathTP</code> dataset from <code>smwrData</code>). Use flow as the explanatory variable. Add a line to extract the r-squared value from the linear model.</p></li>
+<li><p>Challenge: Create a multivariate linear model relating total nitrogen to two or three explanatory variables in the <code>TNLoads</code> dataset from <code>smwrData</code>. Extract the adjusted r-squared value. If there’s time, try to figure out which variables maximize the r-squared.</p></li>
 </ol>
 <table>
 <thead>
