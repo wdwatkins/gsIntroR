@@ -79,8 +79,17 @@ myplot <- function(x, y, grp, file) {
   return(my_p)
 }
 
-myplot(iris$Petal.Length, iris$Petal.Width, iris$Species, "petal_petal.jpg")
-myplot(iris$Sepal.Length, iris$Sepal.Width, iris$Species, "sepal_l_petal_w.jpg")
+#Call the function using a smwrData dataset
+
+#Load the data package!
+library(smwrData)
+
+data("MenomineeMajorIons")
+
+myplot(MenomineeMajorIons$Magnesium, MenomineeMajorIons$Potassium, 
+       MenomineeMajorIons$season, "Mg_K.jpg")
+myplot(MenomineeMajorIons$Calcium, MenomineeMajorIons$Sodium, 
+       MenomineeMajorIons$season, "Ca_Na.jpg")
 ```
 
 Cool, a function, that does something useful.  It still is just a collection of functions at this point though.  What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set?  Well we need to look more at some of the classic programming structures in R.  For this introduction, I am going to look just at `if-else` statements, `for` loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful and I M writing this, so there!),  and `return()`.  
@@ -235,18 +244,19 @@ sum_vec <- function(vec) {
 ##Exercise 1
 For this exercise we are going to practice with functions and some of the control structures.
 
-1. Our first task is to create a simple function.  This one is a bit contrived, but wanted let you try it first before we work on the NLA data (from "Visualize" lesson).  Create a function that allows you to calculate the mean or standard deviation (hint: sd()) of an input vector.
-2. Our second task is going to be to take your last `ggplot2` plot, and turn that into a function.  The function should take an x and y as input, and have an optional argument for a file name to save it as an image.  Depending on how complex your plot was you may need to add in some additional arguments.  To help things along, I have provided some starter code:
+1. Our first task is to create a simple function. Create ONE function that allows you to calculate the mean or standard deviation (hint: sd()) of an input vector.
+2. Our second task is going to be to make a function that returns a simple `ggplot2` or base scatter plot. The function should take an x and y as input, and have an optional argument for a file name to save it as an image.  Depending on how complex your plot was you may need to add in some additional arguments.  To help things along, I have provided some starter code:
 
 ```{r ggplot_starter function, eval=FALSE}
-plot_nla <- function(x, y, filename=NULL){
-  #ggplot2 code
+create_my_plot <- function(x, y, filename=NULL){
+  #plot code
   #Note: ggplot requires a data frame as input.  How would you deal with that?
   
-  #ggsave here
+  #saving image code here
   #look into the is.null() function
   if(put condition here) {
-    ggsave()
+    ggsave() # or png(), jpeg(), etc
+    #Note when saving using png(), jpeg(), etc plot needs to be printed after
   }
   
   #Need to return something ...
@@ -415,6 +425,7 @@ I know you will probably wonder whether you can change the look and feel of this
 1. Follow the 'Create a Document' example above to create a new RMarkdown document of your own.
 2. Spend some time playing around with this document. Add in some markdown (e.g., section titles), text, and a code chunk.
 3. Push the `Knit` button to see the outcome.
+4. Challenge: use the `Qall` dataset from `smwrData` to add a plot. Try changing the plot size (hint: chunk options).
 
 
 ```{r echo=FALSE}

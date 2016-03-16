@@ -10,32 +10,50 @@ pop_ttest <- t.test(pop1, pop2)
 pop_ttest
 
 ## ----ttest_formula_examp-------------------------------------------------
-#Let's pick another dataset, ToothGrowth (see ?ToothGrowth)
-#Compare tooth lengths between groups given different supplements
-rbind(head(ToothGrowth), tail(ToothGrowth))
-t.test(ToothGrowth$len ~ ToothGrowth$supp)
+#Load the data package!
+library(smwrData)
+
+#Let's choose a prefabricated dataset, MiningIron 
+data("MiningIron")
+rbind(head(MiningIron), tail(MiningIron))
+
+#Compare iron concentration between rock types
+#There are two rock types, these serve as your two different populations 
+#You cannot use this to compare more than two groups 
+#Try using MineType instead of Rock and see what R tells you
+t.test(MiningIron$Iron ~ MiningIron$Rock)
 
 ## ----corr_examp,message=FALSE,warning=FALSE------------------------------
+#Use the UraniumTDS data set from smwrData
+data("UraniumTDS")
+
 #A simple correlation
-cor(iris$Petal.Width, iris$Petal.Length)
+cor(UraniumTDS$TDS, UraniumTDS$Uranium)
 #And a test of that correlation
-cor.test(iris$Petal.Width, iris$Petal.Length)
+cor.test(UraniumTDS$TDS, UraniumTDS$Uranium)
 
 #A data frame as input to cor returns a correlation matrix
-#Can't just do cor(iris) because iris is not numeric:
-# cor(iris)
-library(dplyr) # use dplyr to select the numeric columns of iris
-select(iris, -Species) %>% 
+#Can't just do cor(UraniumTDS) because UraniumTDS has non-numeric columns:
+# cor(UraniumTDS)
+library(dplyr) # use dplyr to select the numeric columns of UraniumTDS
+select(UraniumTDS, -HCO3) %>% 
   cor()
 
+#This is especially useful for data frames with many columns that could correlate
+#Create a correlation matrix for MiscGW (all columns are numeric)
+data("MiscGW")
+cor(MiscGW)
+
 ## ----lm_examp------------------------------------------------------------
-lm(Ozone ~ Temp, data=airquality)
+data("MenomineeMajorIons") #from smwrData
+
+lm(Magnesium ~ HCO3, data=MenomineeMajorIons)
 #Not much info, so save to object and use summary
-lm_aq1 <- lm(Ozone ~ Temp, data=airquality)
-summary(lm_aq1)
+lm_gwq1 <- lm(Magnesium ~ HCO3, data=MenomineeMajorIons)
+summary(lm_gwq1)
 #And now a multiple linear regression
-lm_aq2 <- lm(Ozone ~ Temp + Wind + Solar.R, data=airquality)
-summary(lm_aq2)
+lm_gwq2 <- lm(Magnesium ~ HCO3 + Calcium + Sodium, data=MenomineeMajorIons)
+summary(lm_gwq2)
 
 ## ----Exercise1, echo=FALSE-----------------------------------------------
 

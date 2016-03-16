@@ -7,133 +7,135 @@ gsIntroR::navigation_array(title)
 library(ggplot2)
 library(dplyr)
 
+#Load the data package!
+library(smwrData)
+
 ## ----ggplot_examp--------------------------------------------------------
 # aes() are the "aesthetics" info.  When you simply add the x and y
 # that can seem a bit of a confusing term.  You also use aes() to 
-# change color, shape, size etc. of some items 
-iris_gg <- ggplot(iris, aes(x=Petal.Length, y=Petal.Width))
-iris_gg
+# change clor, shape, size etc. of some items
+data("MenomineeMajorIons")
+ion_gg <- ggplot(MenomineeMajorIons, aes(x=Magnesium, y=Potassium))
+ion_gg
 
 ## ----points_examp--------------------------------------------------------
 #Different syntax than you are used to
-iris_gg + geom_point()
+ion_gg + geom_point()
 
 #This too can be saved to an object
-iris_scatter <- iris_gg + geom_point()
+ion_scatter <- ion_gg + geom_point()
 
 #Call it to create the plot
-iris_scatter
+ion_scatter
 
-## ----iris_labels---------------------------------------------------------
-iris_scatter <- iris_scatter +
-  labs(title="Iris Petal Morphology Relationship",
-       x="Petal Length", y="Petal Width")
+## ----ion_labels----------------------------------------------------------
+ion_scatter <- ion_scatter +
+  labs(title="Potassium vs Magnesium Concentrations in Menominee River",
+       x="Magnesium Concentration", y="Potassium Concentration")
 # same thing, different commands
-iris_scatter <- iris_scatter +
-  ggtitle("Iris Petal Morphology Relationship") +
-  xlab("Petal Length") + ylab("Petal Width")
-iris_scatter
+ion_scatter <- ion_scatter +
+  ggtitle("Potassium vs Magnesium Concentrations in Menominee River") +
+  xlab("Magnesium Concentration") + ylab("Potassium Concentration")
+ion_scatter
 
-## ----iris_colors---------------------------------------------------------
-iris_scatter <- iris_scatter +
-  geom_point(aes(color=Species, shape=Species), size=5)
-iris_scatter
+## ----ion_colors----------------------------------------------------------
+ion_scatter <- ion_scatter +
+  geom_point(aes(color=season, shape=season), size=5)
+ion_scatter
 
-## ----iris_loess----------------------------------------------------------
-iris_scatter_loess <- iris_scatter +
+## ----ion_loess-----------------------------------------------------------
+ion_scatter_loess <- ion_scatter +
   geom_smooth()
-iris_scatter_loess
+ion_scatter_loess
 
-## ----iris_lm-------------------------------------------------------------
-iris_scatter_lm <- iris_scatter +
+## ----ion_lm--------------------------------------------------------------
+ion_scatter_lm <- ion_scatter +
   geom_smooth(method="lm")
-iris_scatter_lm
+ion_scatter_lm
 
-## ----iris_lm_groups------------------------------------------------------
-iris_scatter_lm_group <- iris_scatter +
-  geom_smooth(method="lm", aes(group=Species))
-iris_scatter_lm_group
+## ----ion_lm_groups-------------------------------------------------------
+ion_scatter_lm_group <- ion_scatter +
+  geom_smooth(method="lm", aes(group=season))
+ion_scatter_lm_group
 
-## ----iris_lm_color-------------------------------------------------------
-iris_scatter_lm_color <- iris_scatter +
-  geom_smooth(method="lm", aes(color=Species, fill=Species))
-iris_scatter_lm_color
+## ----ion_lm_color--------------------------------------------------------
+ion_scatter_lm_color <- ion_scatter +
+  geom_smooth(method="lm", aes(color=season, fill=season))
+ion_scatter_lm_color
 
 ## ----gg_box_examp--------------------------------------------------------
-ggplot(iris, aes(x=Species, y=Sepal.Width)) +
+ggplot(MenomineeMajorIons, aes(x=season, y=Sodium)) +
   geom_boxplot()
 
 ## ----gg_hist_examp-------------------------------------------------------
-ggplot(iris, aes(x=Sepal.Width))+
-  geom_histogram(binwidth=0.25)
+ggplot(MenomineeMajorIons, aes(x=Sodium))+
+  geom_histogram(binwidth=1)
 
 ## ----gg_bar_examp2-------------------------------------------------------
-iris_species_mean <- group_by(iris, Species) %>%
-  summarize(mean_pl=mean(Petal.Length))
-ggplot(iris_species_mean, aes(x=Species, y=mean_pl)) +
+data("MiningIron")
+
+iron_minetype_mean <- group_by(MiningIron, MineType) %>%
+  summarize(mean_iron=mean(Iron))
+ggplot(iron_minetype_mean, aes(x=MineType, y=mean_iron)) +
   geom_bar(stat="identity")
 
 ## ----Exercise1, echo=FALSE-----------------------------------------------
 
 ## ----themes_examp--------------------------------------------------------
-scatter_p <- ggplot(iris, aes(x=Petal.Width, y=Petal.Length)) +
-  geom_point(aes(color=Species, shape=Species))
-scatter_p
+scatter_ions <- ggplot(MenomineeMajorIons, aes(x=Magnesium, y=Potassium)) +
+  geom_point(aes(color=season, shape=season))
+scatter_ions
 
 ## ----themes_examp_custom-------------------------------------------------
-scatter_p_base <- scatter_p + 
+scatter_ions_base <- scatter_ions + 
   theme(panel.background = element_blank(), 
         panel.grid = element_blank(),
         panel.border = element_rect(fill = NA),
         text = element_text(family="serif", color="red", size=24))
-scatter_p_base
+scatter_ions_base
 
 ## ----themes_examp_stock--------------------------------------------------
-scatter_p + theme_bw()
-scatter_p + theme_classic()
+scatter_ions + theme_bw()
+scatter_ions + theme_classic()
 
 ## ----themes_examp_polished-----------------------------------------------
 #Now Let's start over, with some new colors and regression lines
-scatter_polished <- ggplot(iris, aes(x=Petal.Width, y=Petal.Length)) +
-  geom_point(aes(color=Species, shape=Species)) +
-  stat_smooth(method="lm", aes(color=Species)) +
+scatter_ions_polished <- ggplot(MenomineeMajorIons, aes(x=Magnesium, y=Potassium)) +
+  geom_point(aes(color=season, shape=season)) +
+  stat_smooth(method="lm", aes(color=season)) +
   scale_color_manual(
-    breaks=iris$Species, 
-    values=c("steelblue1", "sienna", "springgreen3")) + 
+    breaks=c("summer", "winter"), 
+    values=c("steelblue1", "sienna")) + 
   theme_classic(18, "serif") +
   theme(text=element_text(color="slategray")) +
-  labs(title="Iris Petal Morphology Relationship",
-       x="Petal Length", y="Petal Width")
+  labs(title="Relationship between Potassium and Magnesium",
+       x="Magnesium Concentration", y="Potassium Concentration")
 
-scatter_polished 
+scatter_ions_polished 
 
 ## ----ggsave_examp, eval=FALSE--------------------------------------------
 #  #Save as jpg, with 600dpi, and set width and height (see ?ggsave)
-#  ggsave(plot=scatter_polished, file="Fig1.jpg", dpi=600, width=8, height=5)
+#  ggsave(plot=scatter_ions_polished, file="Fig1.jpg", dpi=600, width=8, height=5)
 #  #Save as PDF
-#  ggsave(plot=scatter_polished, file="Fig1.pdf")
+#  ggsave(plot=scatter_ions_polished, file="Fig1.pdf")
 
 ## ----Exercise2, echo=FALSE-----------------------------------------------
 
 ## ----facet_grid_example--------------------------------------------------
-#From the examples in H. Wickham. ggplot2: elegant graphics for data analysis. 
-#Springer New York, 2009. 
-#In particular the facet_grid help.
-p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-# With one variable
-p + facet_grid(cyl ~ .)
-# With two variables
-p + facet_grid(vs ~ am)
+#Return to Magnesium vs Potassium scatter plot
+ions <- ggplot(MenomineeMajorIons, aes(x=Magnesium, y=Potassium)) +
+  geom_point() 
+ions
 
-## ----facet_grid_nla, warning=FALSE, message=FALSE------------------------
-tp_chla <- ggplot(nla_data, aes(x=log10(PTL), y=log10(CHLA))) + 
-  geom_point(na.rm = TRUE)
+# Faceting with one variable 
+# season = row faceting
+# . = no column faceting
+ions + facet_grid(season ~ .)
 
-tp_chla + facet_grid(RT_NLA ~ .)
-
-tp_chla +
-  stat_smooth(na.rm = TRUE) +
-  facet_grid(RT_NLA ~ LAKE_ORIGIN)
+# Faceting with two variables (remark codes of "<" indicate the sample was below the detection limit)
+#Nitrate.rmk = row faceting
+#Fluoride.rmk = column faceting
+ions + facet_grid(Nitrate.rmk ~ Fluoride.rmk)
 
 ## ----echo=FALSE----------------------------------------------------------
 gsIntroR::navigation_array(title)

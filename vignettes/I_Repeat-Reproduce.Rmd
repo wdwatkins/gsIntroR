@@ -79,8 +79,17 @@ myplot <- function(x, y, grp, file) {
   return(my_p)
 }
 
-myplot(iris$Petal.Length, iris$Petal.Width, iris$Species, "petal_petal.jpg")
-myplot(iris$Sepal.Length, iris$Sepal.Width, iris$Species, "sepal_l_petal_w.jpg")
+#Call the function using a smwrData dataset
+
+#Load the data package!
+library(smwrData)
+
+data("MenomineeMajorIons")
+
+myplot(MenomineeMajorIons$Magnesium, MenomineeMajorIons$Potassium, 
+       MenomineeMajorIons$season, "Mg_K.jpg")
+myplot(MenomineeMajorIons$Calcium, MenomineeMajorIons$Sodium, 
+       MenomineeMajorIons$season, "Ca_Na.jpg")
 ```
 
 Cool, a function, that does something useful.  It still is just a collection of functions at this point though.  What if we wanted to repeat something or have the function make some decisions and do one thing given a set of criteria and something else for a different set?  Well we need to look more at some of the classic programming structures in R.  For this introduction, I am going to look just at `if-else` statements, `for` loops (some in the R world think this to be bad since R is optimized for working on vectors, but I think the concept useful and I M writing this, so there!),  and `return()`.  

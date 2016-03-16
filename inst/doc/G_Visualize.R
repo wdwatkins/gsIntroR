@@ -3,25 +3,37 @@ title="G. Visualize - base"
 gsIntroR::navigation_array(title)
 
 ## ----pch_col_examp-------------------------------------------------------
-#use runif to generate a vector of n random numbers between min and max
-data1 <- data.frame(x=1:75, y=runif(n=25, min=0, max=75)) 
-data2 <- data.frame(x=1:75, y=runif(25, 0, 75))
+#Load the data package!
+library(smwrData)
 
-#Now, plot two different sets of points in different colors
-plot(data1$x, data1$y, pch=16, col='#FF5034')
-points(data2$x, data2$y, pch=16, col='skyblue')
+#Use the dataset MenomineeMajorIons from smwrData
+data("MenomineeMajorIons")
+
+#plot Magnesium vs Calcium (winter and summer different colors)
+#Create two data frames using dplyr (winter & summer)
+library(dplyr)
+winter <- MenomineeMajorIons %>% 
+  filter(season == "winter") %>% 
+  select(Magnesium, Calcium)
+summer <- MenomineeMajorIons %>% 
+  filter(season == "summer") %>% 
+  select(Magnesium, Calcium)
+
+#Now, plot winter and summer points in different colors
+plot(summer$Calcium, summer$Magnesium, pch=16, col='#FF5034')
+points(winter$Calcium, winter$Magnesium, pch=16, col='skyblue')
 
 ## ----par_example---------------------------------------------------------
 par(las=2, tck=0.01, bg="darkseagreen")
-plot(data1$x, data1$y, pch=6)
+plot(summer$Calcium, summer$Magnesium, pch=6)
 
 ## ----legend_example------------------------------------------------------
-#plot the same plot using to illustrate color and point type
-plot(data1$x, data1$y, pch=16, col='#FF5034')
-points(data2$x, data2$y, pch=16, col='skyblue')
+#use the same plot and add a legend to illustrate color and point type
+plot(summer$Calcium, summer$Magnesium, pch=16, col='#FF5034')
+points(winter$Calcium, winter$Magnesium, pch=16, col='skyblue')
 
 #add a legend
-legend(x="topright", legend=c("My data1 points", "my data2 points"),
+legend(x="topright", legend=c("Summer", "Winter"),
        pch=16, col=c('#FF5034', 'skyblue'), title="Legend")
 
 ## ----add_features_example------------------------------------------------
@@ -35,11 +47,12 @@ rect(xleft=6, xright=10, ybottom=5, ytop=11, density=5, col="orange")
 polygon(x=c(2,3,4), y=c(2,6,2), col="lightgreen", border=NA)
 
 #use symbols to plot circles (and more) based on data
-x <- runif(25, 0, 25)
-y <- runif(25, 0, 25)
-radii <- runif(25, 0, 10)
-cols <- colors()[round(runif(25, 0, 500))]
-symbols(x, y, circles = radii, bg = cols)
+#plot of Uranium concentration as a function of TDS w/ circle radii as high or low bicarbonate concentration
+data("UraniumTDS")
+x <- UraniumTDS$TDS
+y <- UraniumTDS$Uranium
+radii <- UraniumTDS$HCO3
+symbols(x, y, circles = radii)
 
 ## ----warning = FALSE, message = FALSE------------------------------------
 library(dataRetrieval)
@@ -48,32 +61,37 @@ P_site1 <- readNWISqw("01656960", parameterCd = "00665")
 P_site2 <- readNWISqw("01656725", parameterCd = "00665")
 
 ## ----axis_example--------------------------------------------------------
-xData <- 1:50
-yData <- runif(50, min=1, max=10000)
+#plot Uranium vs total dissolved solids from the smwrData::UraniumTDS dataset
+plot(UraniumTDS$TDS, UraniumTDS$Uranium, pch=20)
+#add a second y-axis
+axis(side=4)
 
-#add a second y axis
-plot(xData, yData, pch=20)
-axis(side=3, at=seq(1,50, by=0.5))
-
-#log the y-axis
-plot(xData, yData, pch=20, log='y')
-axis(side=4) #this axis is also logged
+#now log the x axis
+plot(UraniumTDS$TDS, UraniumTDS$Uranium,  pch=20, log='x')
+#format the second y-axis to have tick marks at every concentration (not just every 5) & no labels
+axis(side=4, at=1:15, labels=FALSE)
+#add a second x-axis
+axis(side=3) #this axis is also logged
 
 ## ----multiple_plots_example----------------------------------------------
-#use the built-in r data, "iris"
+#use the smwrData dataset, "MenomineeMajorIons"
 
 layout_matrix <- matrix(c(1:4), nrow=2, ncol=2, byrow=TRUE)
 layout(layout_matrix)
 
 #four boxplots:
-plot1 <- plot(iris$Species, iris$Sepal.Width, ylab="Sepal Width")
-plot2 <- plot(iris$Species, iris$Sepal.Length, ylab="Sepal Length")
-plot3 <- plot(iris$Species, iris$Petal.Width, ylab="Petal Width")
-plot4 <- plot(iris$Species, iris$Petal.Length, ylab="Petal Length")
+plot1 <- plot(MenomineeMajorIons$season, MenomineeMajorIons$Magnesium, ylab="Concentration", main="Magnesium")
+plot2 <- plot(MenomineeMajorIons$season, MenomineeMajorIons$Calcium, ylab="Concentration", main="Calcium")
+plot3 <- plot(MenomineeMajorIons$season, MenomineeMajorIons$Chloride, ylab="Concentration", main="Chloride")
+plot4 <- plot(MenomineeMajorIons$season, MenomineeMajorIons$Sulfate, ylab="Concentration", main="Sulfate")
 
 ## ----save_eg, eval=FALSE-------------------------------------------------
-#  png("my_iris_pairs.png", width=5, height=6, res=300, units="in") # see ?png
-#  plot(iris[1:3])
+#  #Using the MiscGW dataset from smwrData
+#  data("MiscGW")
+#  ions_to_plot <- MenomineeMajorIons %>% select(Magnesium, Potassium, Chloride, Sulfate)
+#  
+#  png("gw_ion_pairs.png", width=5, height=6, res=300, units="in") # see ?png
+#  plot(ions_to_plot)
 #  dev.off()
 
 ## ----echo=FALSE----------------------------------------------------------

@@ -29,8 +29,17 @@ myplot <- function(x, y, grp, file) {
   return(my_p)
 }
 
-myplot(iris$Petal.Length, iris$Petal.Width, iris$Species, "petal_petal.jpg")
-myplot(iris$Sepal.Length, iris$Sepal.Width, iris$Species, "sepal_l_petal_w.jpg")
+#Call the function using a smwrData dataset
+
+#Load the data package!
+library(smwrData)
+
+data("MenomineeMajorIons")
+
+myplot(MenomineeMajorIons$Magnesium, MenomineeMajorIons$Potassium, 
+       MenomineeMajorIons$season, "Mg_K.jpg")
+myplot(MenomineeMajorIons$Calcium, MenomineeMajorIons$Sodium, 
+       MenomineeMajorIons$season, "Ca_Na.jpg")
 
 ## ----if_else_examp-------------------------------------------------------
 odd_even <- function(num) {
@@ -130,14 +139,15 @@ sum_vec <- function(vec) {
 ## ----Exercise1, echo=FALSE-----------------------------------------------
 
 ## ----ggplot_starter function, eval=FALSE---------------------------------
-#  plot_nla <- function(x, y, filename=NULL){
-#    #ggplot2 code
+#  create_my_plot <- function(x, y, filename=NULL){
+#    #plot code
 #    #Note: ggplot requires a data frame as input.  How would you deal with that?
 #  
-#    #ggsave here
+#    #saving image code here
 #    #look into the is.null() function
 #    if(put condition here) {
-#      ggsave()
+#      ggsave() # or png(), jpeg(), etc
+#      #Note when saving using png(), jpeg(), etc plot needs to be printed after
 #    }
 #  
 #    #Need to return something ...

@@ -200,6 +200,10 @@ summary(web_df)
 
 ## ----Exercise2, echo=FALSE-----------------------------------------------
 
+## ------------------------------------------------------------------------
+filepath <- system.file("IonBalance.csv", package = "gsIntroR")
+filepath_complete <- file.path(filepath, "IonBalance.csv")
+
 ## ----echo=FALSE----------------------------------------------------------
 gsIntroR::navigation_array(title)
 
